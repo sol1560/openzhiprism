@@ -1,0 +1,1 @@
+ALTER TABLE `connector_clients` ADD `metadata_expires_at` integer;

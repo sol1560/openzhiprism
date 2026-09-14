@@ -1,0 +1,278 @@
+{
+  "query": "Python 数据分析",
+  "fetchedAt": "2026-09-03T14:53:30.769Z",
+  "source": "justone",
+  "items": [
+    {
+      "id": "article:496261722",
+      "type": "article",
+      "title": "Python数据分析",
+      "excerpt": "0. 主要内容 数据挖掘基础环境安装和使用 Matplotlib 画图（可视化分析） Numpy高效运算工具",
+      "content": "0. 主要内容\n数据挖掘基础环境安装和使用\nMatplotlib 画图（可视化分析）\nNumpy高效运算工具\nPandas数据处理工具\n\n1. Matplotlib画图基础\n\n2. Numpy高效运算工具\n\n3. Pandas 数据处理工具\n\n4. 练手小项目\n1. 总统喜好-天池实验室-实时在线的数据分析协作工具，享受免费计算资源",
+      "url": "https://zhuanlan.zhihu.com/p/496261722",
+      "author": {
+        "name": "渣渣",
+        "avatarUrl": "https://pic1.zhimg.com/50/v2-a0963542682fbe60764317f352e9b45d_l.jpg?source=4e949a73",
+        "urlToken": "ZhanyanRK",
+        "followerCount": 4087
+      },
+      "voteUp": 1,
+      "commentCount": 3,
+      "publishedAt": 1649646829,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "answer:34263870970",
+      "type": "answer",
+      "title": "python要学习数据分析，要学习哪些呢？",
+      "excerpt": "下面系统聊聊Python数据分析： 1.为什么选择用Python做数据分析？ 2.Python数据分析要学哪些知识",
+      "content": "下面系统聊聊Python数据分析：\n1.为什么选择用Python做数据分析？\n2.Python数据分析要学哪些知识？\n\n1.为什么选择用Python做数据分析？\n因为Python是人工智能时代排名第一的编程语言，做数据分析非常方便。\n你不信？\n我们通过一个真实的数据，来看下Python有多流行。\nTIOBE编程语言排行榜，会对全世界差大约600多种编程语言进行排名。\n通过排名发现，其实流行的的编程语言也就那么20来种。\n那么，Python在排行榜中处于什么地位呢？\nPython居然排名在第1名，这说明什么？\n数据告诉你，现在你学习Python是正确的选择，是符合时代潮流趋势的。\n我们再通过这个排行榜，看下最近10年，Python是如何一步一步上位的。\n这里的折线图反映了Python最近10年是如何从默默无闻，一步一步上位的。\n那么，Python是如何一步一步上位的呢？\n你看，在2002年，它跟其他编程语言排名相比，排名还特别低。\n但是，却在后面几年满满一步一步往上爬。最终爬到了现在的第1名，从众多编程语言中脱颖而出。\n为什么Python会发展这么好呢？\n这要得益于现在职场里需要进行数据分析的工作越来越多，而Python是天生用于数据分析的好武器，而且还容易上手，所以就流行起来了。\n你比如说，许多大型网站就是用Python开发的，例如视频网站YouTube、Instagram，还有国内的豆瓣。\n很多大公司，包括腾讯、阿里巴巴、百度、知乎等等，都在大量地使用Python进行数据分析。\n\n你看Python在众多编程语言中10年的发展，像不像我们职场里的每个人发展一样。\n一开始你可能和同龄人处于同一起跑线，但是这么多人，总有人学到了符合时代发展的技能，导致他从职场里像Python一样升职加薪，职场路走的非常好。\n所以，选择学习数字化时代，需要的知识，才是你职场发展的核心竞争力。\n就像周杰伦的歌《蜗牛》里唱的一样：“\n小小的天，有大大的梦想\n重重的壳裹着轻轻的仰望\n我要一步一步往上爬\n总有一天我有属于我的天”\nPython不仅是非常流行的编程语言，而且有数据显示，会Python真能给你带来升职加薪。\nStackoverflow是全球最大的技术问题网站。他们通过数据分析发现，这个网站上浏览最多编程语言是这4个：Python，Android ，PHP, R。\n这个气泡图里，横轴从左到右表示人均GDP从低到高，纵轴是Stackoverflow上浏览某编程语言的人数（百分比），橙色圆圈越大表示访问人数越多。\n从图中可以看出，Android 和 Php 主要是低收入国家的人在浏览，Python 和 R 高收入国家为多。这说明什么呢？\n其实，从这个层面也可以回答，为什么现在用Python的收入就是比其他人高。\n\n所以，人生苦短，我用Python\n那么，为什么很多人学习Python，从入门到放弃，原因是什么？\n很多人初学Python，会以为所有Python知识都需要去学习。\n于是，一头陷入Python知识的海洋里，最后落得个从入门到放弃。\n那么，这部分人没学会Python的真实原因是什么呢？\n其实，这是因为这部分人，光低头努力了，但是却没有抬头看路。\n因为Python是个知识大海洋，很多不同的岗位都需要用到Python这个知识海洋里的内容。\n如果你不加区分就去学习Python所有知识的话，\n那么，根据我多年的经验，如果Python所有知识都去学一遍的话，那么你学到60岁也学不完。\n\n2.那么，问题就来了，Python数据分析要学习哪些知识点呢？\n因此，你需要从Python这个知识大海洋里，找到自己需要的知识去学习，这样你才能学会，而且学完才能在工作里用得上。\n如果你学习Python是为了找数据分析相关的工作，或者在目前自己工作里用Python进行数据分析，来提高工作效率，或者把Python作为一项职场技能，以备后面升职加薪用。\n那么你只需要从Python这个大海洋里，把数据分析相关的知识拿出来学习就可以啦。\n那么，Python数据分析相关的要学习哪些知识呢？\n其实，Python要学的知识远比你想的简单。\n根据我多年的实战经验，Python数据分析相关的知识，你只需要掌握5部分知识就足够你用啦。\n1.Python工具：Anaconda、Jupyter\n2.Python基础语法\n3.数据分析：Numpy和Pandas\n4.数据可视化：Matplotlib、Searborn\n5.推论统计分析：A/B测试\n\n你看，明确了学习目标和要学什么以后，其实，学习Python很简单，\n所以，我常说：要一边低头努力，一边抬头看路。\n只有明确自己的学习目标，你才能在最短时间学会最有效的知识。 \n参考学习资料：人工智能AI核心技术Python\nAI 核心技能Python(视频+社群)",
+      "url": "https://www.zhihu.com/question/3331543399/answer/34263870970",
+      "author": {
+        "name": "中科院猴子",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-12ef91a3f1e91e70bd3480d755e058b1_l.jpg?source=4e949a73",
+        "urlToken": "houziliaorenwu",
+        "followerCount": 395983
+      },
+      "voteUp": 48,
+      "commentCount": 0,
+      "publishedAt": 1731899021,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "answer:3262449772",
+      "type": "answer",
+      "title": "怎么利用 Python 进行数据分析？",
+      "excerpt": "Python具有强大的数据分析和处理能力，使用Python做数据分析需掌握pandas、matplotlib、seaborn这三个Python包",
+      "content": "Python具有强大的数据分析和处理能力，使用Python做数据分析需掌握pandas、matplotlib、seaborn这三个Python包，掌握Python数据分析知识，可帮助我们更好地发现数据背后的规律和趋势，为业务决策提供支持。\n1.使用Pandas数据读取\n首先，导入pandas库，pandas库有强大的数据处理能力，使用read_excel函数可导入数据，只要导入文件路径即可导入数据，head可以预览前5行数据。\nimport pandas as pd\n\ndf=pd.read_excel(r'C:\\Desktop\\电商销售数据-23年8月.xlsx')\ndf.head()#预览前5行数据\n\ninfo函数可以看各个字段的信息，包括非空值计数，数据类型，比如，这里的日期为日期型数据，区域为字符型数据，客户年龄为数值型数据。\ndf.info()#数据信息预览\n\n使用describe函数对数据进行描述统计，描述统计内容包括计数、平均值、标准差、最小值、最大值等，比如对客户年龄进行描述统计，平均客户年龄为42岁，年龄最小的客户为22岁，年龄最大的客户为62岁。\ndf.describe()#数据描述统计\n\n2.使用Pandas数据排序\nsort_values函数可用于数据排序，by导入排序的数据列，默认排序是升序排序。\ndf.sort_values(by='销售额',inplace=True)#默认升序排序\ndf\n\nascending=False参数可以降序排列。\ndf.sort_values(by='销售额',inplace=True,ascending=False)#降序排序\ndf\n\n如果要自定义排序，比如商品品类升序排序，销售额降序排序，by导入自定义数据列，ascending设置参数，True升序排序，False降序排序。\ndf.sort_values(by=['商品品类','销售额'],ascending=[True,False],inplace=True)#自定义排序\ndf\n\n3.使用Pandas数据过滤\n数据筛选使用数据框[]筛选，数据框里面写条件用于数据筛选，&当条件均满足时筛选，==满足特定条件筛选，这里表示筛选客户性别是男且客户年龄大于60的数据。\ndf[(df['客户性别']=='男')&(df['客户年龄']>60)]#数据筛选&与\n\n下面筛选区域是“西北-甘肃省-白银”或者商品品类是“电脑硬件”的数据，& 当条件均满足时筛选，| 满足其一条件时筛选数据。\ndf[(df['区域']=='西北-甘肃省-白银')|(df['商品品类']=='电脑硬件')]#数据筛选|或\n\nisin可筛选特定标签的数据，()内写具体的筛选标签即可，比如下面筛选特定订单号的数据。\ndf[df['订单号'].isin(['10021296335','10021669688','10021250896','10021434444','10021412817'])]\n\n4.使用Pandas数据拆分\n通过str.split方法对列中的数据进行拆分，expand参数设置为True，将返回包含拆分后的数据的DataFrame对象，如下将区域拆分为“省份”和“城市”两列。\ndf_split=df['区域'].str.split(pat='-',expand=True)#数据拆分\n\ndf['区域']=df_split.iloc[:,0]\ndf['省份']=df_split.iloc[:,1]\ndf['城市']=df_split.iloc[:,2]\n\ndf\n\n5.使用Pandas统计运算\n对数据进行统计运算，count用于计数，比如这里对订单号计数，计数结果有7409单。\ndf['订单号'].count()#计数\n\n7409\n如果对商品品类非重复计数，可以先使用unique返回非重复的列表，然后使用len对列表计数，返回结果商品品类有8个非重复值。\nlen(df['商品品类'].unique())#非重复计数\n\n8\n对销售数求和，sum用于求和，这里结果显示销售数总数为48354个。\ndf['销售数'].sum()#求和\n\n48354\n对每一个商品品类的订单数计数，使用groupby分组计数，即可得到每一个商品品类的订单数。\ndf.groupby(['商品品类'])['订单号'].count().reset_index()#分组计数\n\n6.使用Python数据作图\nPython中的matplotlib和seaborn库有强大的数据可视化功能，对各个区域的销售数计数，导入matplotlib包，传入销售数据列，并对具体的图表参数进行设置，可得出华南区域的销售数占比最大为36.3%，西南区域的销售数占比最小为3.1%。\nimport matplotlib.pyplot as plt \nimport matplotlib.style as psl\n\nplt.rcParams['font.sans-serif']=['SimHei'] #用来正常显示中文标签\nplt.rcParams['axes.unicode_minus']=False #用来正常显示负号\n\npsl.use('ggplot')\n\ndf_QY=df.groupby(['区域'])['销售数'].count().reset_index()\n\n#饼图\nlabels = df_QY['区域'].tolist()\nexplode = [0.05,0.05,0,0,0,0] # 用于突出显示数据\ndf_QY['销售数'].plot(kind='pie',figsize=(9,6),\n autopct='%.1f%%',#数据标签\n labels=labels,\n startangle=260, #初始角度\n explode=explode, # 突出显示数据\n pctdistance=0.87, # 设置百分比标签与圆心的距离\n textprops = {'fontsize':12, 'color':'k'}, # 设置文本标签的属性值\n )\nplt.title(\"各区域销售数占比\")\n\nplt.show()\n\n对利润做箱线图，使用boxplot函数，并对箱线图图表的参数进行设置，可得出利润的数据分布情况，箱线图中的大多数利润数据都超过了箱线图的上下限。\nimport matplotlib.pyplot as plt \nimport matplotlib.style as psl\n\nplt.rcParams['font.sans-serif']=['SimHei'] #用来正常显示中文标签\nplt.rcParams['axes.unicode_minus']=False #用来正常显示负号\n\npsl.use('ggplot')\nplt.title('利润箱线图')\n\ndf_XB=df[df['区域']=='西北']\n\n#箱线图\nplt.boxplot(x=df_XB['利润'],#指定绘制箱线图的数据\n whis=1.5, #指定1.5倍的四分位数差\n widths=0.1, #指定箱线图中箱子的宽度为0.3\n showmeans=True, #显示均值\n #patch_artist=True, #填充箱子的颜色\n #boxprops={'facecolor':'RoyalBlue'}, #指定箱子的填充色为宝蓝色 \n flierprops={'markerfacecolor':'red','markeredgecolor':'red','markersize':3}, #指定异常值的填充色、边框色和大小\n meanprops={'marker':'h','markerfacecolor':'black','markersize':8}, #指定中位数的标记符号（虚线）和颜色\n medianprops={'linestyle':'--','color':'orange'}, #指定均值点的标记符号（六边形）、填充色和大小\n labels=['西北'] \n )\n\nplt.show()\n\n对销售数做折线图，导入seaborn库，日期列做为X轴，销售数作为Y轴，由折线图可以看到销售数随日期的波动变化趋势。\nimport seaborn as sns \nimport matplotlib.pyplot as plt \n\nplt.rcParams['font.sans-serif']=['SimHei'] #用来正常显示中文标签\nplt.rcParams['axes.unicode_minus']=False #用来正常显示负号\n\nplt.figure(figsize=(10,6))\n \n# 使用Seaborn绘制折线图 \nsns.lineplot(data=df, x='日期', y='销售数', color='blue') \n \n# 设置图表标题和轴标签 \nplt.title('销售数折线图') \nplt.xlabel('日期') \nplt.ylabel('销售额') \n \n# 显示图形 \nplt.show()\n\n对商品品类做词云图进行展示，wordcloud库可专门做词云图，通过使用字典统计商品类别数量，创建词云对象后，使用matplotlib绘制词云图，由词云图可以看出床品件套的品类最多，办公家具的品类最少。\nfrom wordcloud import WordCloud \nimport matplotlib.pyplot as plt \n \n# 商品类别列表\nproduct_categories = df['商品…",
+      "url": "https://www.zhihu.com/question/616388486/answer/3262449772",
+      "author": {
+        "name": "大话<em>数据分析</em>",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-451ec4bd2699337e012ad131a0f9df20_l.jpg?source=4e949a73",
+        "urlToken": "xin-cheng-jiu-meng-98",
+        "followerCount": 19778
+      },
+      "voteUp": 87,
+      "commentCount": 7,
+      "publishedAt": 1698128983,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "article:106873853",
+      "type": "article",
+      "title": "如何入门Python数据分析？B站课程推荐",
+      "excerpt": "【全30集】使用 pandas 进行数据分析：Data analysis in Python with pandas_哔哩哔哩",
+      "content": "入门只推荐2门网课+1本书：\nNo1. Coursera的【Python for Everybody】\n最少看完前两章，[Getting Started with Python] 以及 [Python Data Structures]\n这门课很有名，老师讲的很好，一般一节课时间也不会很长，第二章Data Structures讲解的很透很清楚，data structures对于入门还是很重要的，很多网课一笔带过，但这个认真听了以后不会有那种 “欸我好像看过这个东西但是又记不太清了” 的那种感觉\n（悄悄的说这个课B站上也有，有条件最好直接Coursera注册啦 支持一下老师！）\n\nNo2. Pandas数据分析\nYoutube博主Kevin Markham的系列视频，博主在米国现在专门做了数据培训的创业公司，这个一集5-10分钟，是英文但语速很慢，实用还练听力，某up主的搬运：\n【全30集】使用 pandas 进行数据分析：Data analysis in Python with pandas_哔哩哔哩 (゜-゜)つロ 干杯~-bilibili\n\nNo3. Python数据分析与挖掘实战\n原因，不是说觉得这本书有多么多么好，但是，它里面是一些实际的案例，很多人推荐【利用python进行数据分析】这本书，但是实际学过来感觉一开始就看这本书，很容易觉得枯燥，很容易放弃。。。真的看身边好几个人都是从入门到弃疗\n所以感觉从案例学起来成就感会高一些，先提点兴趣然后一步一步稳扎基础",
+      "url": "https://zhuanlan.zhihu.com/p/106873853",
+      "author": {
+        "name": "甜酒充电",
+        "avatarUrl": "https://pic1.zhimg.com/50/v2-959ba14b5f452c97f5cdd410d34fe9f7_l.jpg?source=4e949a73",
+        "urlToken": "ma-xiao-jiao-85",
+        "followerCount": 1285
+      },
+      "voteUp": 130,
+      "commentCount": 5,
+      "publishedAt": 1581663381,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "article:109671414",
+      "type": "article",
+      "title": "Python数据分析五大步骤",
+      "excerpt": "不管是用excel还是用Python， 数据分析过程都遵循一样的套路。在学习完Python的基础知识之后，我把用Python进行数据分析过程中涉及的函数都标注了出来以方便后来回忆查看",
+      "content": "不管是用excel还是用Python， 数据分析过程都遵循一样的套路。在学习完Python的基础知识之后，我把用Python进行数据分析过程中涉及的函数都标注了出来以方便后来回忆查看。",
+      "url": "https://zhuanlan.zhihu.com/p/109671414",
+      "author": {
+        "name": "不认输的猪猪女孩",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-06671954a0c9ddf7a2bfb2af0b7a7170_l.jpg?source=4e949a73",
+        "urlToken": "xu-qian-er-6",
+        "followerCount": 642
+      },
+      "voteUp": 422,
+      "commentCount": 13,
+      "publishedAt": 1582871190,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "answer:971783840",
+      "type": "answer",
+      "title": "用 Python 进行数据分析，不懂 Python，求合适的 Python 书籍或资料推荐？",
+      "excerpt": "上面第1步已经打好了Python编程的基础，现在进入数据分析的学习阶段。推荐一本书《利用Python进行数据分析》就够了",
+      "content": "我不喜欢一上来就推荐一堆参考资料的东西，那只会让初学者更迷茫。\n好比一个婴儿，你告诉他学会走路的方法有100种，他只会变的对走路毫无兴趣，他要的只是一种最有效的学会走路的办法，而不是100种。 \n同样的，下面介绍的是我之前刚开始自己学习python的1种方法，只需要1种就可以了。 \n第1步，基础入门 \n很多人喜欢搞一本厚厚的书来看，虽然看完了但是还不会用Python，这是最大的悲哀。 伤心吧？难过吧？ 其实，你只需要，看菜鸟教程网站的这个教程就足够了，网站地址： Python3 教程 | 菜鸟教程\n如果你是刚开始学习编程的新手，没看懂，多看几次就会了。虽然这个过程会很乏味，但是对于你建立牢固的编程思维是必须的。\n这一阶段的辅助工具： \n当你看到无法理解的代码或者概念时，可以将代码复制到下面这个网站，它会将你的代码用图形化的方式显示出来，便于你理解：http://www.http://pythontutor.com/visualize.html#mode=edit \n如果你不知道代码在内存中是如何运行的，不妨把它拷贝到Tutor里可视化执行一遍，加深理解。 举个栗子 ，比如你在学习Ptyhon中的字典数据结构，但是不太理解这个概念，那么你就可以将书中代码输入，然后点击下面红框汇中的按钮。\n就会运行处以下的图形结果，对着图形理解概念，不要太爽哦。\n第2步：数据分析进阶 \n上面第1步已经打好了Python编程的基础，现在进入数据分析的学习阶段。推荐一本书《利用Python进行数据分析》就够了，这本书在豆瓣评分是8.5分。\n看到书里涉及到到当统计概率知识看不懂的时候，这时候反过来再学习统计概率的知识。 很多人错误的学习方式是，先学习统计概率，再去学习数据分析编程工具（Excel，Python，R）。最后抱怨太难了，学不会。\n 这其实学习方法是错误的。这是为什么呢？\n 有两个原因： \n1）因为很多统计概率讲的都是复杂的数学公式，却不讲统计概率在生活中如何应用的。这样造成的结果就是你学习了很多，但是也忘记了很多。 \n2）统计概率知识大多数时候是理论基础，如果不结合数据分析工具（Excel，Python，R）来使用，你肯定学不会。 比如你学习了四分位数的理论，但是如何在实际中使用的，你不会数据分析的工具，你当然不会用了。 \n但是如果你会数据分析的工具，实际操作就一行代码，四分位就计算出来了。你当然兴奋了，一高兴学习兴趣也就上来了。\n所以，我的建议，也是正确的学习方式是：先学习基础的数据分析工具用法，当遇到统计概率知识的时候，再来补这个知识，边学习边用数据分析工具实现一遍。 如果不想看文字教程的，可以看这个视频教程，非常的通俗易懂：\nAI 核心技能Python(视频+社群)3. 数据分析高级-统计概率知识 \n统计概率知识学习其实很简单，只是很多老师和书把这个东东讲复杂了。学会下面图中的知识，你就可以学会统计概率了：\n简单解释下，上面的图。 如果你的学习目的是：提高认知，将统计概率应用在生活中，用于指导你面对重大决策时做出最好的选择，你的应该看《赤裸裸的统计学》这本书就够了。\n 如果你的学习目的是：学习大数据的基础知识：统计概率，希望成为数据分析师，实现升职加薪的目的，那你的学习参考书是《深入浅出统计学》或者《商务与经济统计》。\n 《深入浅出统计学》适合没有任何统计概率基础的人学习，这本书足够有趣和简单。\n 如果你之前上学学习过一些统计概率的课，但是最后还是把课堂学的内容还给了老师，你应该选择看《商务与经济统计》这本书来重新巩固你的基础知识。\n 学会高级知识，你就不再是一个苦逼的搬砖了，而且会帮助你实现年薪增幅的目标。\n如果不想看文字教程的，可以看这个视频教程，里面讲的统计知识非常的通俗易懂：\nAI 核心技能Python(视频+社群)4. 学习遇到困难，去哪找帮助？\n 只要是学习就会遇到困难，遇到困难怎么办呢？ \n1）首先，你需要使用某搜索引擎查找问题（你知道我说的不是百度），一般都能查到你问题的答案。学会用英文搜索真的很重要。 \n2）利用某搜索引擎查不到答案的话，当然是找前辈们帮忙了。不过问了不一定有人回复，为了解决这个问题，你可以找我加入学习群，一起交流。 \n3）最后记住，学习Ptyhon的目的，不是为了学一门编程语言而去学习一门编程语言，你的出发点应该是要完成什么项目，带着目标去学习。",
+      "url": "https://www.zhihu.com/question/24526559/answer/971783840",
+      "author": {
+        "name": "中科院猴子",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-12ef91a3f1e91e70bd3480d755e058b1_l.jpg?source=4e949a73",
+        "urlToken": "houziliaorenwu",
+        "followerCount": 395983
+      },
+      "voteUp": 422,
+      "commentCount": 14,
+      "publishedAt": 1578832658,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "article:148273130",
+      "type": "article",
+      "title": "太香了！墙裂推荐6个Python数据分析神器！！",
+      "excerpt": "是一个帮助我们理解数据的过程。它可以简单快速地对Pandas的数据框数据进行探索性数据分析。 其实，Pandas中df",
+      "content": "hello，大家好我是东哥！\n用Python处理数据大家都不陌生了，属常规操作，但常规之下还是也有些暗藏技巧的，本篇东哥分享6个好玩高效的操作，帮助大家提高效率。\n一、Pandas Profiling\nPandas Profiling提供数据的一个整体报告，是一个帮助我们理解数据的过程。它可以简单快速地对Pandas的数据框数据进行探索性数据分析。\n其实，Pandas中df.describe()和df.info()函数也可以实现数据探索过程第一步。但它们只提供了对数据非常基本的概述。而Pandas中的Profiling功能简单通过一行代码就能显示大量信息，同时还能生成交互式HTML报告。\n对于给定的数据集，Pandas中的profiling包计算了以下统计信息：\n由Pandas Profiling包计算出的统计信息包括直方图、众数、相关系数、分位数、描述统计量、其他信息包括类型、单一变量值、缺失值等。\n安装\n用pip和conda即可，使用方法很简单，如下：\npip install pandas-profiling\nconda install -c anaconda pandas-profiling\n用法\n以titanic数据集来演示profiling的功能。\nimport pandas as pd\nimport pandas_profiling\ndf = pd.read_csv('titanic/train.csv')\npandas_profiling.ProfileReport(df)\n除了导入库之外只需要一行代码，就能显示数据报告的详细信息，包括必要的图表。\n还可以使用以下代码将报告导出到交互式HTML文件中。\nprofile = pandas_profiling.ProfileReport(df)\nprofile.to_file(outputfile=\"Titanic data profiling.html\")\n二、pretty print\npprint是Python中的内置模块。它能够以格式清晰，可读性强漂亮格式打印任意数据结构。一个例子对比下print和pprint。\n# 定义个字典，测试用\nmy_dict = {'Student_ID': 34,'Student_name' : 'Tom', 'Student_class' : 5,\n 'Student_marks' : {'maths' : 92,\n 'science' : 95,\n 'social_science' : 65,\n 'English' : 88}\n }\nprint\n# 正常的print\nprint(my_dict)\n# 输出结果如下：\n{'Student_ID': 34, 'Student_name': 'Tom', 'Student_class': 5, 'Student_marks': {'maths': 92, 'science': 95, 'social_science': 65, 'English': 88}}\npprint\n# 使用pprint输出\nimport pprint\npprint.pprint(my_dict)\n# 输出结果如下：\n{'Student_ID': 34,\n 'Student_class': 5,\n 'Student_marks': {'English': 88,\n 'maths': 92,\n 'science': 95,\n 'social_science': 65},\n 'Student_name': 'Tom'}\n可以清楚看到pprint的优势之处，数据结构一目了然啊。\n三、Python Debugger\n交互式调试器也是一个神奇的函数，如果在运行代码单元格时出现报错，可以在新行中键入%debug运行它。这将打开一个交互式调试环境，自动转到报错发生的位置，并且还可以检查程序中分配的变量值并执行操作。要退出调试器，按q。比如下面这个例子。\nx = [1,2,3]\ny = 2\nz = 5\n\nresult = y+z\nprint(result)\nresult2 = x+y\nprint(result2)\n大家应该能看出x+y肯定会报错，因为二者不是一个类型，无法进行运算操作。然后我们敲入%debug。\n%debug\n这时会出现对话框让我们互交式输入命令，比如我们可以像下面这样做。\n四、Cufflinks\n这个东哥在之前也介绍过，对于数据探索的可视化分析超级好用，低代码量便可生成漂亮的可视化图形。下面举一个例子，详细的可参见这篇Python一行代码搞定炫酷可视化，你需要了解一下Cufflinks。\ncufflinks在plotly的基础上做了一进一步的包装，方法统一，参数配置简单。其次它还可以结合pandas的dataframe随意灵活地画图。可以把它形容为pandas like visualization。\n比如下面的lins线图。\nimport pandas as pd\nimport cufflinks as cf\nimport numpy as np\n\ncf.set_config_file(offline=True)\ncf.datagen.lines(1,500).ta_plot(study='sma',periods=[13,21,55])\n再比如box箱型图。\ncf.datagen.box(20).iplot(kind='box',legend=False)\n五、Pyforest\n这是一个能让你偷懒的import神器，可以提前在配置文件里写好要导入的三方库，这样每次编辑脚本的时候就省去了开头的一大堆import 各种库，对于有常用和固定使用库的朋友来说无疑也是提高效率的工具之一。\npyforest支持大部分流行的数据科学库，比如pandas，numpy，matplotlib，seaborn，sklearn，tensorflow等等，以及常用的辅助库如os，sys，re，pickle等。\n 此用法对于自己频繁调试很方便，但对于那些频繁跨环境比如和其它人共享脚本调试的时候就不是很好用了，因为别人不一定使用它。\n \n此库东哥在之前也详细介绍过 牛逼！这个Python库竟然可以偷懒，和import说再见！看下面这个操作就明白了。\n六、Jupyter notebook的笔记高亮\n此方法仅适用于Jupyter notebook中，当我们想高亮笔记，让笔记变得美观的时候，这个方法非常的香。\n笔记的高亮的颜色根据不同情况分为几种，前端的同学一看就明白，区别就是每种颜色代码的class类型不一样，其它只要在div标签中写内容就好。下面看下用法。\n蓝色代表info\n<div class=\"alert alert-block alert-info\">\n<b>Tip:</b> Use blue boxes (alert-info) for tips and notes. \nIf it’s a note, you don’t have to include the word “Note”.\n</div>\n黄色代表warning\n<div class=\"alert alert-block alert-warning\">\n<b>Example:</b> Yellow Boxes are generally used to include additional examples or mathematical formulas.\n</div>\n绿色代表success\n<div class=\"alert alert-block alert-success\">\nUse green box only when necessary like to display links to related content.\n</div>\n红色代表danger\n<div class=\"alert alert-block alert-danger\">\nIt is good to avoid red boxes but can be used to alert users to not delete some important part of code etc. \n</div>\n这里有个小提示东哥提示下，如果你直接复制到jupyter notebook中可能会报错，因为默认是代码的格式，所以你需要选中单元格按Esc变成可切换模式，然后再按Y切换成文本模式。这时候再运行shift+ok就ok了。看下面这个例子。\n以上就是本次分享内容，欢迎各位朋友点赞留言收藏。\n欢迎关注我的个人公众号：Python数据科学",
+      "url": "https://zhuanlan.zhihu.com/p/148273130",
+      "author": {
+        "name": "东哥起飞",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-cbbda3ac8941363c5f05fe1c86af3bc8_l.jpg?source=4e949a73",
+        "urlToken": "lu-yuan-86-37",
+        "followerCount": 19739
+      },
+      "voteUp": 390,
+      "commentCount": 13,
+      "publishedAt": 1592136943,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "answer:26893911888",
+      "type": "answer",
+      "title": "有没有用python做数据分析的项目或案例可以用来练习？",
+      "excerpt": "mean=data[c].mean() std=data[c].std() data=data[(data[c]>mean-n*std)&(data[c]<mean+n*std)]",
+      "content": "案例背景\n好久没做这种机器学习全流程的案例了，毕竟我是靠这个起家的，最近重温一下吧。很多新手或者是刚入门的同学可以凭借这个案例学一下机器学习。\n本次案例是一个价格预测，它是一个连续型的变量，因此它是一个回归问题。所以这是一篇回归问题的全流程的代码。从数据清洗到特征工程到分析可视化，再到模型选择，模型训练，交叉验证，超参数搜索，有效性评估，非常多的流程和套路。\n\n数据介绍\n本次做汽车价格的预测呢主要就是一些汽车的一些特征，牌子，年份什么的。主要变量有下面这些。\n46022条数据，数据量挺大的作，作为一般的机器学习模型来说，这种数据量已经能够训练出较为准确的模型了。\n目标就是做到输入这些特征，然后就能输出这个汽车的价格，保证准确率很高。\n变量不是很多，因此进行学习和作业是一个很不错的案例。\n当然需要所有的代码文件和本次案例数据的同学还是可以参考：汽车价格预测。\n\n代码实现\n还是先导入数据科学常用的包\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt \nimport seaborn as sns\n\nplt.rcParams ['font.sans-serif'] ='SimHei' #显示中文\nplt.rcParams ['axes.unicode_minus']=False #显示负号\n\n读取数据查看信息\ndf=pd.read_csv('Clean Data_pakwheels.csv')\ndf=df[[col for col in df.columns if 'Unnamed' not in col]]\ndf.head(2)\n\n查看数据基础信息\ndf.info()\n\n观察变量缺失值情况\n#观察缺失值\nimport missingno as msno\nmsno.matrix(df)\n\n没有缺失值，直接开始特征工程\n#查看数值型数据,\npd.set_option('display.max_columns', 30)\ndf.select_dtypes(exclude=['object']).head()\n\nPrice作为响应变量y，Model Year转为车龄age，其他变量不用处理\ny=df['Price']; df['age']=2024-df['Model Year'] \n\n#查看非数值型数据\ndf.select_dtypes(exclude=['int64','float64']).head()\n\n查看一下这些类别变量的取值类别数量都有多少\nfor col in df.select_dtypes(exclude=['int64','float64']).columns:\n print(f'{col}特征类别数量为{len(df[col].unique())}')\n\n其中，\nModel Name特征变量类别太多，进行删除。\n颜色24类有很多类似的颜色可以进行归类，减少变量。\nSilver/Grey: 包括银色和灰色。\nWhite/Beige: 包括白色和米色。\nBlack: 只包括黑色。\nBrown系: 包括棕色、栗色、褐红色和铜色。\nGold: 只包括金色。\nBlue系: 包括蓝色、海军蓝和靛蓝。\nRed系: 包括红色、粉色、洋红和酒红色。\nGreen系: 包括绿色和绿松石色。\nOrange: 只包括橙色。\nPurple: 只包括紫色。\nYellow: 只包括黄色。\nUnlisted: 包括未列出的颜色。\nCompany Name特征类别数量为31，也要进行适当的归类处理\ndf=df.drop(columns=['Model Name'])\n\n进行颜色的映射\ncolor_mapping = {\n 'Silver': ['Silver', 'Grey'],\n 'White': ['White', 'Beige'],\n 'Black': ['Black'],\n 'Brown': ['Brown', 'Maroon', 'Burgundy', 'Bronze'],\n 'Gold': ['Gold'],\n 'Blue': ['Blue', 'Navy', 'Indigo'],\n 'Red': ['Red', 'Pink', 'Magenta', 'Wine'],\n 'Green': ['Green', 'Turquoise'],\n 'Orange': ['Orange'],\n 'Purple': ['Purple'],\n 'Yellow': ['Yellow'],\n 'Unlisted': ['Unlisted', 'Assembly'] \n}\ninverse_color_mapping = {val: key for key, vals in color_mapping.items() for val in vals}\n# 映射\ndf['Color'] = df['Color'].map(inverse_color_mapping)\nprint(len(df['Color'].unique()))\n\n### 等同下面这个方法\ninverse_color_mapping = {}\n\n# 对原始字典进行双重循环\nfor main_color, variations in color_mapping.items():\n for color in variations:\n # 将变体颜色作为键，主要颜色作为值添加到字典中\n inverse_color_mapping[color] = main_color\ninverse_color_mapping\n\n颜色类别减少为12，下面对汽车品牌处理\nc=df['Company Name'].value_counts() # 统计每个品牌车辆的样本数量，然后计算每个品牌车辆的均价\ndf.groupby(['Company Name']).mean(numeric_only=True).loc[c.index,:].assign(count=c.to_numpy())[['Price','count']].style.bar(align='mid', color=['#491256', 'skyblue'])\n\nSuzuki，Toyota，Honda，Daihatsu四个品牌已经大概包含了大部分车辆，其他的剩下面的车辆可以归为一类， 但是有些牌子可能是奢侈品豪车，均价超级贵，所以我们把下面的Price均价分为三个区间，0-100w的作为普通其他类，100w-500w作为中档其他类，500w以上为高档其他类。\nc_p=df.groupby(['Company Name']).mean(numeric_only=True).loc[c.index,:]['Price'].iloc[4:]\nprint(f'普通其他类:{c_p[c_p<1000000].index}')\nprint(f'中档其他类:{c_p[(c_p > 1000000) & (c_p < 5000000)].index}')\nprint(f'高档其他类:{c_p[c_p>5000000].index}')\n\n映射处理\nbrand_mapping = {\n 'Suzuki': 'Suzuki',\n 'Toyota': 'Toyota',\n 'Honda': 'Honda',\n 'Daihatsu': 'Daihatsu', #这四个牌子保留\n 'General': ['Hyundai', 'United', 'Daewoo', 'Chevrolet', 'Chery', 'Fiat', 'Adam'],\n 'Mid-Range': ['Nissan', 'Mitsubishi', 'FAW', 'Mazda', 'KIA', 'Subaru', 'SsangYong', 'Land', 'DFSK', 'Jeep', 'MINI', 'Volvo'],\n 'Premium': ['Mercedes', 'Audi', 'BMW', 'Lexus', 'Range', 'Porsche', 'Hummer', 'Jaguar'] }\n# Inverting the mapping\ninverse_brand_mapping = {val: key for key, vals in brand_mapping.items() for val in ([vals] if isinstance(vals, str) else vals)}\ndf['Company Name'] = df['Company Name'].map(inverse_brand_mapping, na_action='ignore') # na_action='ignore' to keep the original value if not found in mapping\nprint(len(df['Company Name'].unique()))\n\n也可以下面这样做\n### 等同下面这个方法\ninverse_brand_mapping = {}\n\n# 对原始字典进行双重循环\nfor brand, models in brand_mapping.items():\n # 检查models是否是字符串类型，如果是，将其转换为列表\n if isinstance(models, str):\n models = [models]\n # 遍历模型列表\n for model in models:\n # 将牌子作为…",
+      "url": "https://www.zhihu.com/question/280744341/answer/26893911888",
+      "author": {
+        "name": "还有明天",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-0feb490281ece39dd0cbd1263bac19b5_l.jpg?source=4e949a73",
+        "headline": "人工智能，python，剧本杀，兵乒球，",
+        "urlToken": "qian-zhi-chen-ai",
+        "followerCount": 393
+      },
+      "voteUp": 251,
+      "commentCount": 4,
+      "publishedAt": 1731128129,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "answer:2546909993",
+      "type": "answer",
+      "title": "如何学习python数据分析？",
+      "excerpt": "首先是非常有名的《利用Python进行数据分析》，这是Python数据分析非常经典的书，关键是书的作者是Pandas的坐着",
+      "content": "其实想要学习任何一门编程语言，打基础还是非常必要的，很多同学都觉得应该去实战，在实战中能记住更多，但是一边实战一边查文档也会让你的实战感觉大打折扣。\n任何Python数据分析的入门和使用都基本会介绍这几个库，Numpy，Pandas，Matplotlib，前两个是基础，第三个是可视化的库，目前有其他的更好看的库来替代。\n不过在开始学习Python数据分析前，你应该至少先去学一下数据分析的思维，这种在“术”上的锻炼首先要早于在“器”上的锻炼。\n比如数据分析常见的思维：分类思维，矩阵化思维，漏斗思维，相关思维，这些都是你应该在做数据分析前应该掌握的，你想往哪个方向，分析，想要得到什么结果。如果你觉得思维能力还欠缺的话，可以先用一毛钱领一下这个课程。\n老师是知乎上的大V，@猴子老师，他的主页回答的都是数据分析相关的问题，有27万的关注。毕业于中国科学院大学，正经的科班毕业，讲的Python，SQL，Excel通俗易懂。他写的《数据分析思维》那本书让我受益匪浅。\n这一次，可以近距离接触大佬了，3天直播，每天2小时，学习数据思维能力，有不懂的问题还可以问助教老师，0基础小白也不用怕学不会。\n领取课程后，如果要学习Python数据分析的话，从我个人的经历来看，先推荐几本书：\n首先是非常有名的《利用Python进行数据分析》，这是Python数据分析非常经典的书，关键是书的作者是Pandas的坐着，pandas在数据分析中的作用可以说是重中之重了。\n但是在我阅读过程中，有些部分确实是比较难，涉及到一些线性代数，矩阵相关的内容，感觉平时的数据分析中也用不到。\n这个时候，我之前发现了这样一本书。\n这本书的特点就是把上一本经典的书进行了简化，删去了一些比较复杂且不常用的内容，补充了后来的seaborn和pyecharts这两个可视化库的使用。\n随着学习的深入，你会慢慢接触到GroupBy，数据透视表这些东西，如果你对Excel不是很熟练，那么学习这方面就比较困难。其实在学习的过程中有许多操作是和Excel相通的：\n这本书，就把两者联系起来了，小到怎么选取一个单元格，怎么选取一列，通过这种对比，能让你把Python代码和实际操作联系起来，不至于学过就忘掉。\n不过说实话，pandas里的函数还是很多的，国外有几个大佬就设计出了一个库，可以在可视化的条件下操作表格直接生成pandas代码，让你写代码更轻松。\n就是mito库。\nMito 是一个免费的 JupyterLab 扩展程序，可以使用 Excel 轻松探索和转换数据集。\n当你启动 Mito 时，它会显示一个 Pandas Dataframe 的电子表格视图。只需单击几下，你就可以执行创建、读取、更新、删除操作。\n这里解释一下JupyterLab 和Jupyter Notebook，这俩几乎是一样的，都可以成为数据分析绝佳的学习和演示平台。\n其实以上讲的都是基础，你即时跟着敲完了一遍，也不代表你记住了，所以需要时常来复习一下。比如整理个思维导图，或者笔记啥的。\n接下来就是要讲讲实战了，毕竟，你学了这些，还是要去解决一些问题的。\n比如眼下正火爆的高考志愿填报，面对海量数据，相信当时的你，报名也是一脸懵吧。\n现在回头再来看，怎样理出头绪呢？\n你可以拿到全国各省学校的数据，去分析下全国高校的分布啊。比如你去教育部官网上下载一份全国高校名单。\n然后利用Python可以看各学校的分布：\n具体到市：\n甚至你可以再看看分数线，这样对报考会有一个直观的认识。\n\n俗话说，巧妇难为无米之炊，学会了做饭的本领，没有米也不行呀！\n知乎上有大佬整理一份各领域公开数据集，几十个领域，上百份数据集，看看有没有感兴趣的东西，都可以去下载实验。\nhttps://http://zhuanlan.zhihu.com/p/25138563 \n还是那句话，学习数据分析，工具是次要的，最重要的还是思维能力，在职场上，永远是有方法论的指挥干活的，如果只会工具难免就会成为工具人，难以形成自己的思维习惯，也很难跟业务方battle。\n所以，学学这个数据思维课程还是很有必要的，一毛钱买不了吃亏，也买不了上当：\n最后，在学习Python的过程中，你也可以看到知乎上有很多程序员都会写一些Python数据分析的实战案例，比如分析国家的人口啊，Nba球员数据啊，招聘数据啊等等，可以看看人家的思路，面对同样的数据，和你自己的想法，有没有比较大的出入，如果大脑一片空白，那么你确实应该学学上边的课了，然后可以模仿人家的分析方法，以后再面对新的数据时，形成自己的方法论。\n再有，如果你还想再进一步的话，还可以去深入的学习机器学习，数据挖掘等等，数据分析更多的是描述现状，数据挖掘可以更好的预测未来，这样你的知识体系会更完善，我在这方面学的还不是很多，而且这个领域非常广阔，就不再赘述了。\n希望对你有所帮助。",
+      "url": "https://www.zhihu.com/question/412426667/answer/2546909993",
+      "author": {
+        "name": "忽如远行客",
+        "avatarUrl": "https://pica.zhimg.com/50/3a057036ff5966f58806ede91e7a32c9_l.jpg?source=4e949a73",
+        "headline": "对AI感兴趣，也喜欢推荐各类网站和软件",
+        "urlToken": "yuan_xing_ke",
+        "followerCount": 143100
+      },
+      "voteUp": 127,
+      "commentCount": 9,
+      "publishedAt": 1656297829,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "article:35976466",
+      "type": "article",
+      "title": "Python数据分析的基本过程",
+      "excerpt": "Notebook中（网络爬虫、数据读取等） 3.数据清洗——数据清洗是指发现并纠正数据文件中可识别的错误（检查数据一致性，处理无效值和缺失值等）",
+      "content": "一般来说，数据分析的基本过程包括以下几个步骤：\n1.提出问题——即我们所想要知道的指标（平均消费额、客户的年龄分布、营业额变化趋势等等）\n2.导入数据——把原始数据源导入Jupyter Notebook中（网络爬虫、数据读取等）\n3.数据清洗——数据清洗是指发现并纠正数据文件中可识别的错误（检查数据一致性，处理无效值和缺失值等）\n4.构建模型（高级的模型构建会使用机器学习的算法）\n5.数据可视化——matplotib库等\n\n具体的numpy库等基础知识之前的文章已经介绍了：\nNumy基础知识分享\nPandas入门基本知识\n\n我们现在来看一个实例——医院药店销售数据分析\n原始数据连接：\nhttps://pan.baidu.com/s/1zklAFKSCQOi_xxTGNgeRXQ原始数据预览（部分）：\n提出问题：\n我们想知道的信息有——月均消费额、月均消费次数、客单价、消费趋势\n\n理解数据：\n1.读取Excel数据（路径中最好不要有中文，或者特殊符号啥的，不然路径会提示错误找不到。\n最好将文件放到一个简单的英文路径下）\nimport pandas as pd\nfileNameStr='D:\\朝阳医院2018年销售数据.xlsx' #读取Ecxcel数据\nxls = pd.ExcelFile(fileNameStr, dtype='object') \nsalesDf = xls.parse('Sheet1',dtype='object')\n我们可以先查看下数据的基本信息：\nsalesDf.head() #打印出前5行，以确保数据运行正常\nsalesDf.shape #有多少行，多少列\nsalesDf.dtypes #查看每列的数据类型\n\n数据清洗：\n1.选择子集（本案例不用）：\n使用loc方法选择子集\n#subSalesDf=salesDf.loc[0:4,'购药时间':'销售数量']\n2.列名重命名：\ncolNameDict = {'购药时间':'销售时间'} #将‘购药时间’改为‘销售时间’\nsalesDf.rename(columns = colNameDict,inplace=True)\nsalesDf.head() #查看前五行\ninplace=False，数据框本身不会变，而会创建一个改动后新的数据框，默认的inplace是False，inplace=True，数据框本身会改动\n3.缺失数据处理：\npython缺失值有3种：None，NA，NaN\n1）Python内置的None值\n2）在pandas中，将缺失值表示为NA，表示不可用not available。\n3）对于数值数据，pandas使用浮点值NaN（Not a Number）表示缺失数据。\n后面出来数据，如果遇到错误：......foloat错误，那就是有缺失值，需要处理掉\nprint('删除缺失值前大小',salesDf.shape)\nsalesDf=salesDf.dropna(subset=['销售时间','社保卡号'],how='any') #删除列（销售时间，社保卡号）中为空的行\nprint('删除缺失后大小',salesDf.shape)\nhow='any'意为在给定的任何一列中有缺失值就删除\n如果缺失数据太多，我们可以建立模型，使用插入值的方法来补充数据（以后机器学习的文章中介绍）\n4.数据类型转换\n一开始导入时我们将所有数据都按字符串类型导入的，现在需要将销售数量、应收金额、实收金额的数据类型改为数值类型。\nsalesDf['销售数量'] = salesDf['销售数量'].astype('float')\nsalesDf['应收金额'] = salesDf['应收金额'].astype('float')\nsalesDf['实收金额'] = salesDf['实收金额'].astype('float')\nprint('转换后的数据类型：\\n',salesDf.dtypes)\n使用astype（）方法进行类型转换\n我们再来修改日期的格式\n用split()方法，用‘ ’分割字符串。返回列表的第一个元素，统一改成年-月-日格式，去掉星期几。\n接下来我们分割销售时间，先定义一个分割字符串的函数：\ndef splitSaletime(timeColSer):\n timeList=[]\n for value in timeColSer: #例如2018-01-01 星期五，分割后为：2018-01-01\n dateStr=value.split(' ')[0]\n timeList.append(dateStr)\n \n timeSer=pd.Series(timeList) #将列表转行为一维数据Series类型\n return timeSer\n输入：timeColSer——销售时间这一列，是个Series数据类型\n输出：分割后的时间，返回也是个Series数据类型\ntimeSer=salesDf.loc[:,'销售时间'] #获取“销售时间”这一列\ndateSer=splitSaletime(timeSer) #对字符串进行分割，获取销售日期\n\nsalesDf.loc[:,'销售时间']=dateSer #修改销售时间这一列的值\nsalesDf.head()\n（注意：如果运行后报错：AttributeError: 'float' object has no attribute 'split'是因为Excel中的空的cell读入pandas中是空值（NaN），这个NaN是个浮点类型，一般当作空值处理。所以要先去除NaN在进行分隔字符串）\n5.字符串转换日期\n我们使用pd.to_datetime方法来将字符串转换为日期格式。传入的格式是原始数据的日期格式——format='%Y-%m-%d'固定写法：Y表示年、m表示月、d表示日。\nsalesDf.loc[:,'销售时间']=pd.to_datetime(salesDf.loc[:,'销售时间'],\n format='%Y-%m-%d', \n errors='coerce')\nsalesDf.dtypes\nerrors='coerce'： 如果原始数据不符合日期的格式，转换后的值为空值NaT\n所以转换之后我们还要运行一次删除空值的代码，因为不符合格式的日期被转变为了空值需要删除。\nsalesDf=salesDf.dropna(subset=['销售时间','社保卡号'],how='any')\n6.数据排序\n使用pd.sort_values方法对数据进行排序，by表示按那几列进行排序，ascending=True 表示升序排列，ascending=False表示降序排列\nprint('排序前的数据集')\nsalesDf.head()\nsalesDf=salesDf.sort_values(by='销售时间', #按销售日期进行升序排列\n ascending=True)\nprint('排序后的数据集')\nsalesDf.head(3)\n接下来我们重命名行号：reset_index方法生成从0到N按顺序的索引值\nsalesDf=salesDf.reset_index(drop=True)\nsalesDf.head()\n7.异常值处理\n首先我们用describe()方法查看数据框中所有数据每列的描述统计信息：\nsalesDf.describe()\n（count：总数，mean：平均数，std：标准差，min：最小值，25%：下四分位数，50%：中位数，75%：上四分位数，max：最大值）\n我们发现最小值出现了小于0的情况，分析应该是记录过程中出现错误所致。\n我们接下来删除异常值：通过条件判断筛选出销售数量大于0的数据\n#设置查询条件\nquerySer=salesDf.loc[:,'销售数量']>0\n#应用查询条件\nprint('删除异常值前：',salesDf.shape)\nsalesDf=salesDf.loc[querySer,:]\nprint('删除异常值后：',salesDf.shape)\n这样，我们就算基本完成数据清洗的步骤了。\n\n构建模型：\n第一个指标：月均消费次数=总消费次数/月数\n注意：同一天内，同一个人发生的所有消费算作一次消费，根据列名（销售时间，社区卡号），如果这两个列值同时相同，只保留1条，使用drop_duplicates将重复的数据删除\nkpi1_Df=salesDf.drop_duplicates(\n subset=['销售时间', '社保卡号']\n)\n\ntotalI=kpi1_Df.shape[0] #总消费次数————有多少行\n\nprint('总消费次数=',totalI)\n计算月份数我们要知道最早一笔消费的时间和最晚一笔消费的时间：\n#第1步：按销售时间升序排序\nkpi1_Df=kpi1_Df.sort_values(by='销售时间',\n ascending=True)\nkpi1_Df=kpi1_Df.reset_index(drop=True) #重命名行名（index）\n\n#第2步：获取时间范围\nstartTime=kpi1_Df.loc[0,'销售时间'] #最小时间值\nendTime=kpi1_Df.loc[totalI-1,'销售时间'] #最大时间值\n\n#第3步：计算月份数\ndaysI=(endTime-startTime).days #天数\nmonthsI=daysI//30 #月份数: 运算符“//”表示取整除，返回商的整数部分，例如9//2 输出结果是4\nprint('月份数：',mo…",
+      "url": "https://zhuanlan.zhihu.com/p/35976466",
+      "author": {
+        "name": "Morning",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-5ad6976c3405faf39c8f823f7c1607d2_l.jpg?source=4e949a73",
+        "urlToken": "si-ma-liang-8",
+        "followerCount": 1471
+      },
+      "voteUp": 511,
+      "commentCount": 34,
+      "publishedAt": 1525457492,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "answer:2814412284",
+      "type": "answer",
+      "title": "如何自学python数据分析?",
+      "excerpt": "我们开始python库里数据分析包的实践（其实主要就是调用函数） 二、数据分析python库实践 1、常用的库",
+      "content": "渭河自己整理的免费资料已经超过了80%的内容，可对比后回来关注渭河，点击下方链接可以免费领取入门知识图谱\n数据分析全流程图谱\nPython数据分析基础全流程攻略如下（适合初学、转岗、无编程基础小白，直接教学，没有额外链接）\n一、学习框架\n针对数据分析模块，python学习的内容并非全都要学（SQL也是如此），即不需要像程序员一样学那么多，也要知道推动应用的部分是统计学知识，你要知道有回归这个东西，才去用python实现它\n大部分内容都需要额外百度和学习才可走完，但基本都是免费的\n主要的学习框架包括：\n1、程序语言基础（输入输出，函数，循环等）\n2、数据分析相关库使用（numpy、pandas、matplotlib）\n3、统计学理论应用，分析案例实战\n在工作流程中，python是工具，主要作用是在【已有数据】的情况下，将【数据导入软件】，【写逻辑得出分析结果】，最后【可视化为图表和结论输出】\n明确一点：python只是逻辑承接的工具，学会他并不能学会逻辑，相当于有剑没剑法，但剑法和剑缺一不可。\n二、程序语言基础\n程序语言基础是大一的必修课，非理工科的同学或许不接触（尤其是财会，商科），重要的学习【程序思维】，把电脑当成一个严谨的【执行人、工具、打工人】，用逻辑思维语句，通过交互界面让他输出你的想法。\n1、输入输出\n最基础的，当你在交互界面输出print的时候，系统会把你输入的输出出来\n你说一句话，他就说一句话。你怎么说，他就怎么说。\n>>>print(1) 1 >>> print(\"Hello World\") HelloWorld >>> a = 1 >>> b = 'runoob' >>> print(a,b) 1runoob\n如果你有很多话想说，比如说一个文档，里面存了好多数据，那你就需要准备好excel、csv和txt文件，然后换一个函数比如read_csv 和read_table就可以把这些文档导入\ndata = pd.read_csv('文件路径/result.csv',sep=',') >>>print(data) 你的文件就到了python里\n2、数据格式\n对于计算机来说，所有【输入】都必须归类，数字不只是数字，有整数、浮点数；汉字，英文都是字符串；以及更近一步的，列表类型，map类型，元组类型。\n不同的类型满足不同的需求、计算方式等\n数据类型汇总：\n数字：Int()整数、float()小数、bool()布尔类型、complex()复数 字符串(str) ：包括：文字，符号，字母，特殊字符等 单引号，双引号，三单引号，三双引号括起来的都是字符串 多行打印：输出元素时换行 单行打印：在同一行输出 列表：带方括号格式，元素之间逗号分隔，元素可以是数字、字符或其他数据类型 例如：[(1, 2), '三', 'd', {'y': 0}] 元组：半圆括号格式，元素可以是数字、字符或其他数据类型 例如：([1, 2], '三', 'd', {'y': 0}) 字典：大括号格式元素之间相互对应，查询功能，{key：value} key要求是不可变类型，value可以是任何数据类型（整形、字符串、列表、元组、字典），包括可迭代对象。不可变类型有：字符串、元组。 例如：{‘a’：1，‘b’：2}\n不同的类型有不同的规则，正如同你知道1可以+2但是不可以+渭河，只有同类型才可以相互运算\n3、定义变量\n到这个阶段，你可以自己定义一些变量了（注意数据类型）\n>>>name = '渭河' >>>print(name) >>>prtint('类型',type(name)) >>>prtint('值',name) 输出结果： 渭河 类型 <class 'str'> 值 渭河\n工作里需要定义很多变量，比如让a = 0 ，让a = []，让他们等于一个空数组，用来计算、循环、储存各种数字和结果\n4、算数运算符\n这里就是最基础的逻辑，在上面你已经可以输入变量，定义变量，输出变量，链路已经ok了，现在就是说上面的：你要往上面加逻辑。\n比如业务方给你提了一个需求：我要今天订单+昨天的订单\n\n运算符说明实例结果\n+加10.1+5.215.3\n-减4.51-0.514.00\n*乘5*3.618\n/除法7/23.5\n//整除7//23\n%取余7%21\n**幂运算，返回x的y次方2**416\n\n5、函数\n函数这两个字初中就学过了，输入一个x 等于一个 y。包括第一个print，包括我们说的算数运算符，背后都有源码写了一个函数，直接调用函数，就是调用背后的逻辑\n举个例子，前面学习了 len() 函数，通过它我们可以直接获得一个字符串的长度。我们不妨设想一下，如果没有 len() 函数，要想获取一个字符串的长度，该如何实现呢？\nn=0 for c in \"http://www.http://nowcoder.com/link/pc_kol_bzwh\": n = n + 1 print(n) >>>33\n函数的本质就是一段有特定功能、可以重复使用的代码，这段代码已经被提前编写好了，并且为其起一个“好听”的名字。在后续编写程序过程中，如果需要同样的功能，直接通过起好的名字就可以调用这段代码。\n下面演示了如何将我们自己实现的 len() 函数封装成一个函数：\n#自定义 len() 函数 def my_len(str): length = 0 for c in str: length = length + 1 return length #调用自定义的 my_len() 函数 length = my_len(\"http://www.http://nowcoder.com/link/pc_kol_bzwh\") print(length) #再次调用 my_len() 函数 length = my_len(\"http://www.http://nowcoder.com/link/pc_kol_bzwh\") print(length)\n在函数内实现加减乘除，比如计算出前两天的订单，前两年的订单，每天只需要调用函数即可\n6、循环\n循环是相对抽象的点，你就想象计算机不断的运行一次逻辑，这次逻辑可以递增，递减，递归的各种运行，来实现一些诸如【累计求和】这样的逻辑\nPython中的循环语句有 2 种，分别是 while 循环和 for 循环\nadd = \"http://www.http://nowcoder.com/link/pc_kol_bzwh\" #for循环，遍历 add 字符串 for ch in add: print(ch,end=\"\") 运行结果为： http://www.http://nowcoder.com/link/pc_kol_bzwh\n我自己学的时候，其实比c来说更痛苦的是，这个“ch”他很不规范，一般在c里面就写ijk，好理解，实际上这里的ch就类比c里面的ijk，意思是有这么一个扫描机器人，对着“add”这个字符串扫过去，每扫一次记一个数，记到ch这个东西里，最后把它输出来。\n循环可以做很多事，测试不同输入下（吧要输入的变量变成字符串，然后让程序遍历），函数的结果，然后输出结果（比如拟合的误差值，来直接判断哪个变量更合适）\n\n以上，可以被认为是程序语言基础的部分，实际的基础还有很多，并且巩固上述知识点，有最基础的算法帮忙练习（比如实现累计求和，数组相加等）这些需要自己去补齐（例如if函数等，这个很好理解）\n牛客网上可以刷这些题，推荐一波这个神级网站，IT从业者必备\n\n牛客网 - 找工作神器|笔试题库|面试经验|实习招聘内推，求职就业一站解决_牛客网从这里往下，我们开始python库里数据分析包的实践（其实主要就是调用函数）\n二、数据分析python库实践\n1、常用的库\n库可以看做是一堆函数的集合，就像是一本字典，import 库名 就像是命令计算机打开这本字典\n常用的库主要是三个，算上数据科学的可以有十个\n分别是：\nPandas、Numpy（数据清晰、分析、探索、数组处理）； Scikit-learn、TensorFlow、Keras（机器学习库）、Gradio（机器学习部署）； SciPy、Statsmodels（统计专用库）； matplotlib、Seaborn（可视化）\n一般来说，学Pandas、Numpy、Plotly足够了\n2、Numpy库\nNumpy突出一个数组处理能力，你就把数组看成一个excel表格，在一个个单元格内储存着数据\n结合上面的基础教程，当一个数据进来的时候，你应该准备好一个个箱子把数据装进去，这些动作涉及的函数就包括\n（1）数组创建\n\narray将输入的数据转化为ndarray\nasarray将输入转化成ndarray，如果输入已经是ndarray就不进行复制\narange类似于内置range，返回的是ndarray格式\nones\\ones_like制定创建一个全1数组，like相当于复制另一个格式的数组\nzeros\\zeros_like如上，制定全0数组\nempty\\empty_like创建空数组\neye\\identity创建正方形单位矩阵\n\n例如：\nimport numpy as np a = np.array([1,2,3,4]) b = np.array(['渭河','努力','分享','求关注']) print(a)\n数组之间可运算（参考线性代数的逻辑），数组可和数组进行加减乘除\n选择数组间的数字，基本的索引和切片，转置（transpose），三角函数运算，皆可百度，你只要知道他如何使用，数学上对于数组的运算皆可实现\n3、Pandas库\npa…",
+      "url": "https://www.zhihu.com/question/355811458/answer/2814412284",
+      "author": {
+        "name": "不知渭河",
+        "avatarUrl": "https://pica.zhimg.com/50/v2-0a25a09a476ee188fb30323355d87e39_l.jpg?source=4e949a73",
+        "headline": "六年互联网数分，经营分析专家/关注免费领数分学习新手包",
+        "urlToken": "chaos-44",
+        "followerCount": 24991
+      },
+      "voteUp": 2,
+      "commentCount": 0,
+      "publishedAt": 1671872679,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "article:579752256",
+      "type": "article",
+      "title": "数据分析之Python快速入门",
+      "excerpt": "推荐可以看一下猴子老师的数据分析基础入门课程理论基础的部分，掌握数据分析的理论是有助于掌握数据分析思维，通过科学的方法对实际工作中的数据分析部分进行操作",
+      "content": "本人不喜欢一上来就推荐一堆参考资料的东西，那只会让初学者更迷茫。好比一个婴儿，你告诉他学会走路的方法有 100 种，他只会变的对走路毫无兴趣，他要的只是一种最有效的学会走路的办法，而不是 100 种。\n同样的，下面介绍的是我之前刚开始自己学习 python 的 1 种方法，只需要 1 种就可以了。\n\n第 1 步，基础入门\n很多人喜欢搞一本厚厚的书来看，虽然看完了但是还不会用 Python，这是最大的悲哀。\n伤心吧？难过吧？\n其实，你只需要，看菜鸟教程网站的这个教程就足够了，网站地址：\nPython3 教程 | 菜鸟教程\n\n 如果你是刚开始学习编程的新手，没看懂，多看几次就会了。虽然这个过程会很乏味，但是对于你建立牢固的编程思维是必须的。\n这一阶段的辅助工具：\n当你看到无法理解的代码或者概念时，可以将代码复制到下面这个网站，它会将你的代码用图形化的方式显示出来，便于你理解：http://www.http://pythontutor.com/visualize.html#mode=edit\n\n如果你不知道代码在内存中是如何运行的，不妨把它拷贝到 Tutor 里可视化执行一遍，加深理解。\n举个栗子 ，比如你在学习 Python 中的字典数据结构，但是不太理解这个概念，那么你就可以将书中代码输入，然后点击下面红框汇中的按钮。\n\n \n 就会运行处以下的图形结果，对着图形理解概念，不要太爽哦。\n\n \n\n第 2 步：数据分析进阶\n上面第 1 步已经打好了 Python 编程的基础，现在进入数据分析的学习阶段。推荐一本书《利用 Python 进行数据分析》就够了，这本书在豆瓣评分是 8.5 分。\n\n \n 看到书里涉及到到当统计概率知识看不懂的时候，这时候反过来再学习统计概率的知识。\n很多人错误的学习方式是，先学习统计概率，再去学习数据分析编程工具（Excel，Python，R）。最后抱怨太难了，学不会。\n这其实学习方法是错误的。这是为什么呢？\n有两个原因：\n1）因为很多统计概率讲的都是复杂的数学公式，却不讲统计概率在生活中如何应用的。这样造成的结果就是你学习了很多，但是也忘记了很多。\n2）统计概率知识大多数时候是理论基础，如果不结合数据分析工具（Excel，Python，R）来使用，你肯定学不会。\n比如你学习了四分位数的理论，但是如何在实际中使用的，你不会数据分析的工具，你当然不会用了。\n但是如果你会数据分析的工具，实际操作就一行代码，四分位就计算出来了。你当然兴奋了，一高兴学习兴趣也就上来了。\n所以，我的建议，也是正确的学习方式是：先学习基础的数据分析工具用法，当遇到统计概率知识的时候，再来补这个知识，边学习边用数据分析工具实现一遍。\n现在知乎知学堂推出了一个基于 Python 的数据分析课程，个人觉得里面的内容是十分合适小白上手的，而且课程的目标也很明确：「自动化办公」、「数据分析」、「数据可视化」，推荐有需要的同学可以入手学习。反正也才一毛钱，直接冲，比淘宝上卖的盗版网课好多了！\n\n这一阶段的辅助工具：\n如果你想通过做实际项目来学 Python，可以试下《5 个适合 Python 数据分析初学者的项目》：Five data science projects to learn data science\n\n3. 数据分析高级-统计概率知识\n 统计概率知识学习其实很简单，只是很多老师和书把这个东东讲复杂了。学会下面图中的知识，你就可以学会统计概率了：\n\n \n 简单解释下，上面的图。\n\n如果你的学习目的是：提高认知，将统计概率应用在生活中，用于指导你面对重大决策时做出最好的选择，你的应该看《赤裸裸的统计学》这本书就够了。\n如果你的学习目的是：学习大数据的基础知识：统计概率，希望成为数据分析师，实现升职加薪的目的，那你的学习参考书是《深入浅出统计学》或者《商务与经济统计》。\n《深入浅出统计学》适合没有任何统计概率基础的人学习，这本书足够有趣和简单。\n如果你之前上学学习过一些统计概率的课，但是最后还是把课堂学的内容还给了老师，你应该选择看《商务与经济统计》这本书来重新巩固你的基础知识。\n学会高级知识，你就不再是一个苦逼的搬砖了，而且会帮助你实现年薪增幅的目标。\n\n4. 学习遇到困难，去哪找帮助？\n只要是学习就会遇到困难，遇到困难怎么办呢？\n1）首先，你需要使用某搜索引擎查找问题（你知道我说的不是百度），一般都能查到你问题的答案。学会用英文搜索真的很重要。\n2）利用某搜索引擎查不到答案的话，当然是找前辈们帮忙了。不过问了不一定有人回复，为了解决这个问题，你可以留下你的问题，我看到会回复的。\n3）最后记住，学习 Python 的目的，不是为了学一门编程语言而去学习一门编程语言，你的出发点应该是要完成什么项目，带着目标去学习。\n如果对答主以上说的有兴趣，推荐可以看一下猴子老师的数据分析基础入门课程理论基础的部分，掌握数据分析的理论是有助于掌握数据分析思维，通过科学的方法对实际工作中的数据分析部分进行操作，可以让零基础的你对枯燥无味的数据分析理论产生兴趣，并能够在工作中快速的提升自己的业务水平。\n 原文作者：猴子",
+      "url": "https://zhuanlan.zhihu.com/p/579752256",
+      "author": {
+        "name": "AI技能研究所",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-1f4740e0798e0fc5eac8c4cc7dae9fc2_l.jpg?source=4e949a73",
+        "headline": "AI的进阶之旅",
+        "urlToken": "shu-ju-fen-xi-gong-cheng-shi-81",
+        "followerCount": 39417
+      },
+      "voteUp": 82,
+      "commentCount": 2,
+      "publishedAt": 1667380299,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "answer:2113218342",
+      "type": "answer",
+      "title": "想学Python数据分析。请推荐一下比较基础的书，适合新手学习的？",
+      "excerpt": "可以看看pandas开发者Wes大神的那个“官方教材”《利用Python进行数据分析》。 不过，想要数据分析做的好，光是学会操作数据表、画点简单的图还是不够的",
+      "content": "新手入门Python数据分析，可以看看pandas开发者Wes大神的那个“官方教材”《利用Python进行数据分析》。\n不过，想要数据分析做的好，光是学会操作数据表、画点简单的图还是不够的。还需要拓展的知识模块有：\n1. 与Excel的协同，自动化办公；\n2. 系统地学习可视化 matplotlib、seaborn等等。所谓做的好，不如展示的好。一图胜千言；\n3. 学会常见的计量+机器学习建模方法；\n4. 学会利用与SQL的协同;\n5. 学会爬虫，自动化获取海量数据； \n6. 系统学习Python的编程知识，尤其是算法部分。\n各领域都有一两本口碑非常不错的书。当然了，如果Python数据分析只想看一本，就还是：\n其它需要补充的知识点，对应的口碑之选如下。\n（1）与Excel的协同，自动化办公：\n（2）系统地学习可视化。所谓做的好，不如展示的好。一图胜千言:\n（3）学会常见的计量+机器学习建模方法：\nNumPy + pandas + matplotlib + seaborn + Sciki-Learn!\n或者这本，难度高一些的，带上了深度学习：\n（4） 与SQL协同，处理大数据：\n（5）爬虫自动化获取数据：\n（6）系统学习Python的编程知识，尤其是算法部分：\n\n以上几本书，都是口碑炸裂、网红编程大神必备之作。\n找来好好看，代码好好模仿敲，日积月累，数据分析大神就练成了。\n当然了，如果想以就业为导向，把数据分析师当成职业目标，Excel/PPT/SQL/Power/tableau也得玩得6。Excel的话，尤其是vlookup和数据透视表。\n以上。",
+      "url": "https://www.zhihu.com/question/484344705/answer/2113218342",
+      "author": {
+        "name": "王几行XING",
+        "avatarUrl": "https://pica.zhimg.com/50/v2-116fdf676fa3d6a4f718e79e1cdbc326_l.jpg?source=4e949a73",
+        "headline": "Go fast or go home.",
+        "urlToken": "brycewang1898",
+        "followerCount": 19577
+      },
+      "voteUp": 57,
+      "commentCount": 2,
+      "publishedAt": 1631255183,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    },
+    {
+      "id": "article:38759896",
+      "type": "article",
+      "title": "入门Python数据分析最好的实战项目（一）分析篇",
+      "excerpt": "微信公众号：Python数据科学 知乎：python数据分析师 目的：本篇给大家介绍一个数据分析的初级项目",
+      "content": "作者：xiaoyu\n微信公众号：Python数据科学\n知乎：python数据分析师\n目的：本篇给大家介绍一个数据分析的初级项目，目的是通过项目了解如何使用Python进行简单的数据分析。\n数据源：博主通过爬虫采集的链家全网北京二手房数据（后台回复 二手房数据 便可获取）。\n\n数据初探\n\n首先导入要使用的科学计算包numpy,pandas,可视化matplotlib,seaborn,以及机器学习包sklearn。\nimport pandas as pd\nimport numpy as np\nimport seaborn as sns\nimport matplotlib as mpl\n\nimport matplotlib.pyplot as plt\nfrom IPython.display import display\nplt.style.use(\"fivethirtyeight\")\nsns.set_style({'font.sans-serif':['simhei','Arial']})\n%matplotlib inline\n\n# 检查Python版本\nfrom sys import version_info\nif version_info.major != 3:\n raise Exception('请使用Python 3 来完成此项目')\n\n然后导入数据，并进行初步的观察，这些观察包括了解数据特征的缺失值，异常值，以及大概的描述性统计。\n# 导入链家二手房数据\nlianjia_df = pd.read_csv('lianjia.csv')\ndisplay(lianjia_df.head(n=2))\n初步观察到一共有11个特征变量，Price 在这里是我们的目标变量，然后我们继续深入观察一下。\n# 检查缺失值情况\nlianjia_df.info()\n发现了数据集一共有23677条数据，其中Elevator特征有明显的缺失值。\n\nlianjia_df.describe()\n上面结果给出了特征值是数值的一些统计值，包括平均数，标准差，中位数，最小值，最大值，25%分位数，75%分位数。这些统计结果简单直接，对于初始了解一个特征好坏非常有用，比如我们观察到 Size 特征 的最大值为1019平米，最小值为2平米，那么我们就要思考这个在实际中是不是存在的，如果不存在没有意义，那么这个数据就是一个异常值，会严重影响模型的性能。\n\n当然，这只是初步观察，后续我们会用数据可视化来清晰的展示，并证实我们的猜测。\n# 添加新特征房屋均价\ndf = lianjia_df.copy()\ndf['PerPrice'] = lianjia_df['Price']/lianjia_df['Size']\n\n# 重新摆放列位置\ncolumns = ['Region', 'District', 'Garden', 'Layout', 'Floor', 'Year', 'Size', 'Elevator', 'Direction', 'Renovation', 'PerPrice', 'Price']\ndf = pd.DataFrame(df, columns = columns)\n\n# 重新审视数据集\ndisplay(df.head(n=2))\n我们发现 Id 特征其实没有什么实际意义，所以将其移除。由于房屋单价分析起来比较方便，简单的使用总价/面积就可得到，所以增加一个新的特征 PerPrice（只用于分析，不是预测特征）。另外，特征的顺序也被调整了一下，看起来比较舒服。\n\n数据可视化分析\n\nRegion特征分析\n对于区域特征，我们可以分析不同区域房价和数量的对比。\n# 对二手房区域分组对比二手房数量和每平米房价\ndf_house_count = df.groupby('Region')['Price'].count().sort_values(ascending=False).to_frame().reset_index()\ndf_house_mean = df.groupby('Region')['PerPrice'].mean().sort_values(ascending=False).to_frame().reset_index()\n\nf, [ax1,ax2,ax3] = plt.subplots(3,1,figsize=(20,15))\nsns.barplot(x='Region', y='PerPrice', palette=\"Blues_d\", data=df_house_mean, ax=ax1)\nax1.set_title('北京各大区二手房每平米单价对比',fontsize=15)\nax1.set_xlabel('区域')\nax1.set_ylabel('每平米单价')\n\nsns.barplot(x='Region', y='Price', palette=\"Greens_d\", data=df_house_count, ax=ax2)\nax2.set_title('北京各大区二手房数量对比',fontsize=15)\nax2.set_xlabel('区域')\nax2.set_ylabel('数量')\n\nsns.boxplot(x='Region', y='Price', data=df, ax=ax3)\nax3.set_title('北京各大区二手房房屋总价',fontsize=15)\nax3.set_xlabel('区域')\nax3.set_ylabel('房屋总价')\n\nplt.show()\n使用了pandas的网络透视功能groupby 分组排序。区域特征可视化直接采用 seaborn完成，颜色使用调色板palette 参数，颜色渐变，越浅说明越少，反之越多。可以观察到：\n二手房均价：西城区的房价最贵均价大约11万/平，因为西城在二环以里，且是热门学区房的聚集地。其次是东城大约10万/平，然后是海淀大约8.5万/平，其它均低于8万/平。\n二手房房数量：从数量统计上来看，目前二手房市场上比较火热的区域。海淀区和朝阳区二手房数量最多，差不多都接近3000套，毕竟大区，需求量也大。然后是丰台区，近几年正在改造建设，有赶超之势。\n二手房总价：通过箱型图看到，各大区域房屋总价中位数都都在1000万以下，且房屋总价离散值较高，西城最高达到了6000万，说明房屋价格特征不是理想的正太分布。\n\nSize特征分析\nf, [ax1,ax2] = plt.subplots(1, 2, figsize=(15, 5))\n# 建房时间的分布情况\nsns.distplot(df['Size'], bins=20, ax=ax1, color='r')\nsns.kdeplot(df['Size'], shade=True, ax=ax1)\n# 建房时间和出售价格的关系\nsns.regplot(x='Size', y='Price', data=df, ax=ax2)\nplt.show()\nSize 分布：\n通过 distplot 和 kdeplot 绘制柱状图观察 Size 特征的分布情况，属于长尾类型的分布，这说明了有很多面积很大且超出正常范围的二手房。\nSize 与 Price 的关系：\n通过 regplot 绘制了 Size 和 Price 之间的散点图，发现 Size 特征基本与Price呈现线性关系，符合基本常识，面积越大，价格越高。但是有两组明显的异常点：1. 面积不到10平米，但是价格超出10000万；2. 一个点面积超过了1000平米，价格很低，需要查看是什么情况。\ndf.loc[df['Size']< 10]\n经过查看发现这组数据是别墅，出现异常的原因是由于别墅结构比较特殊（无朝向无电梯），字段定义与二手商品房不太一样导致爬虫爬取数据错位。也因别墅类型二手房不在我们的考虑范围之内，故将其移除再次观察Size分布和Price关系。\ndf.loc[df['Size']>1000]\n经观察这个异常点不是普通的民用二手房，很可能是商用房，所以才有1房间0厅确有如此大超过1000平米的面积，这里选择移除。\ndf = df[(df['Layout']!='叠拼别墅')&(df['Size']<1000)]\n重新进行可视化发现就没有明显的异常点了。\n\nLayout特征分析\nf, ax1= plt.subplots(figsize=(20,20))\nsns.countplot(y='Layout', data=df, ax=ax1)\nax1.set_title('房屋户型',fontsize=15)\nax1.set_xlabel('数量')\nax1.set_ylabel('户型')\nplt.show()\n这个特征真是不看不知道，各种厅室组合搭配，竟然还有9室3厅，4室0厅等奇怪的结构。其中，2室一厅占绝大部分，其次是3室一厅，2室2厅，3室两厅。但是仔细观察特征分类下有很多不规则的命名，比如2室一厅与2房间1卫，还有别墅，没有统一的叫法。这样的特征肯定是不能作为机器学习模型的数据输入的，需要使用特征工程进行相应的处理。\n\nRenovation 特征分析\ndf['Renovation'].value_counts()\n\n精装 11345\n简装 8497\n其他 3239\n毛坯 576\n南北 20\nName: Renovation, dtype: int64\n发现Renovation装修特征中竟然有南北，它属于朝向的类型，可能是因为爬虫过程中一些信息位置为空，导致“Direction…",
+      "url": "https://zhuanlan.zhihu.com/p/38759896",
+      "author": {
+        "name": "东哥起飞",
+        "avatarUrl": "https://pic1.zhimg.com/50/v2-cbbda3ac8941363c5f05fe1c86af3bc8_l.jpg?source=4e949a73",
+        "urlToken": "lu-yuan-86-37",
+        "followerCount": 19739
+      },
+      "voteUp": 297,
+      "commentCount": 164,
+      "publishedAt": 1530425033,
+      "provider": "justone",
+      "query": "Python 数据分析"
+    }
+  ]
+}

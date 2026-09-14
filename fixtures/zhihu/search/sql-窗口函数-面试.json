@@ -1,0 +1,339 @@
+{
+  "query": "SQL 窗口函数 面试",
+  "fetchedAt": "2026-09-03T14:51:39.037Z",
+  "source": "justone",
+  "items": [
+    {
+      "id": "article:2050484234549212785",
+      "type": "article",
+      "title": "为什么大厂SQL面试都在考窗口函数？分析了165道真题后我找到了答案",
+      "excerpt": "如果你正在准备SQL面试，以窗口函数为核心来规划复习节奏，效率最高。 第1天：过一遍窗口函数的基础语法。",
+      "content": "为什么大厂SQL面试都在考窗口函数？分析了165道真题后我找到了答案\n从一个问题说起\n大概两年前我开始带团队里的新人准备SQL面试。那时候市面上能找到的面经零零散散的，质量参差不齐。有些号称”大厂面试题”的帖子，打开一看，题目描述就一句话，参考答案就一个SQL片段，连个建表语句都没有。\n我就干脆自己动手，把能找到的真实面试题一道道整理到 dwsql.com 上。标准是：每道题必须有题目描述、示例数据、建表语句、分步解析和最终SQL——缺一样我都不发。\n到目前整理了23家公司、165道题。\n整理的过程中，有个数据特别有意思，让我想明白了一件事。\n165道题里，窗口函数出现了45次\n先看考点分布（只列前5）：\n窗口函数：45次以上 — 排名第一\n连续问题：20次以上 — 其实连续问题的标准解法也是窗口函数\n行列转换：15次以上\n留存率：10次以上 — LAG/LEAD + DATEDIFF\n聚合与分组：10次以上\n如果把”连续问题”和”留存率”中涉及的窗口函数也算进去，窗口函数在165道题里的实际出现概率接近50%。\n也就是说，你面试的时候，平均每两道题就有一道和窗口函数相关。\n这不是巧合。我后来想明白了这背后的原因。\n为什么面试官偏爱窗口函数\n窗口函数考的不是”你会不会背这个函数的语法”，而是下面这几样东西：\n1. 考的是一组SQL思维，不是一个语法点\n写出 ROW_NUMBER() OVER (PARTITION BY dept ORDER BY salary DESC) 这只是第一步。面试官接下来会问：如果第三名并列两个人怎么办？如果只要每个部门的前10%怎么办？如果不要TOP N要累计占比怎么办？\n这些问题本质上是在考察你对”分组 + 排序 + 窗口”这个思维模型的理解程度。\n2. 贴近真实业务场景\nTop N 取数、环比增长率、累计求和、移动平均——这些都是日常开发中真实存在的需求。面试考窗口函数，考的不是算法题，是你在实际工作中解决问题的能力。\n3. 区分度极高\nSQL 基础语法（SELECT、JOIN、WHERE）几乎人人都能写。但窗口函数能把候选人分出三个层次：\n只会 ROW_NUMBER / RANK 做排名的 — 基础水平\n能熟练用 LAG/LEAD 解决连续问题的 — 合格水平\n能灵活组合多个窗口函数、理解执行顺序的 — 优秀水平\n一层之差，工资可能差好几千。\n窗口函数的核心心法\n如果只讲技术细节，这篇文章就没什么意思了。我试着提炼一个思维框架。\n窗口函数 = 给每一行数据开一扇”窗”\n┌──────────────────────────┐\n│ 行1 行2 行3 [行4] │ ← 窗口：当前行能看到的数据范围\n└──────────────────────────┘\n这扇窗的大小由三个要素决定：\nPARTITION BY：窗在哪个组里开。不加就是全表\nORDER BY：窗里的行按什么顺序排列\nROWS/RANGE：窗的边界。如果不指定，默认从分组的第1行到当前行\n大部分初学者就卡在第三步——搞不清默认的窗口范围。举个例子：\n-- 这两句的结果完全不一样\nSUM(salary) OVER (ORDER BY hire_date) -- 默认：从第1行到当前行（累计）\nSUM(salary) OVER (ORDER BY hire_date \n ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) -- 从第1行到最后1行（全局）\n第一句是”累计求和”，第二句是”全局求和”。语法只差了一个 ROWS BETWEEN，结果天差地别。\n面试官就爱在这儿挖坑——他会让你解释为什么同样的 SUM OVER 会得到不同的结果。\n真题是最好的老师\n讲框架不如上真题。我挑三道窗口函数的典型题目。\n第一道：连续登录天数\n这是面试中最著名的”连续问题”。考法多种多样，但解法模板就一个。\n核心思路是”日期差值法”：\n-- 精髓就在这一行\nlogin_date - ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY login_date)\n为什么这一行能识别连续日期？因为：\nROW_NUMBER 生成 1, 2, 3, 4…\n如果日期连续（1月1日、1月2日、1月3日），减去 ROW_NUMBER 后得到相同的日期\n如果日期断开（1月1日、1月3日），减出来就不一样\n就这么一个数学技巧，解决了面试中最难的一类题。\n 这道题的完整解析、建表语句和中间结果可以在 dwsql.com 高频面试题专区 找到（第4题和第14题都是连续问题的变体）。\n第二道：每年成绩都有所提升的学生\n美团真题。这道题考察 LAG() 窗口函数 + 聚合 + 条件判断的组合。\n思路分四步：\n每年每个学生的总成绩（SUM + GROUP BY）\n用 LAG 取去年的总成绩\n比较今年和去年\n判断是否”每年”都在进步（COUNT = SUM(improve_flag)）\n每一步单独拉出来都不难，但串在一起就考察了综合能力。\n第三道：次日留存率\n字节和腾讯都考过。留存率是数据分析最基础的指标之一。\n这道题的窗口函数解法是 LEAD：\nLEAD(active_date) OVER (PARTITION BY user_id ORDER BY active_date)\n取每个用户的下一次活跃日期，然后看是不是第二天（DATEDIFF = 1）。\n同样可以用 LEFT JOIN 的写法来解（自己 JOIN 自己，关联条件是 user_id 相同且日期差1天）。两种写法面试官可能都会问你，问哪种更好、为什么——这又回到了对”窗口函数执行原理”的考察。\n我的刷题建议\n如果你正在准备SQL面试，以窗口函数为核心来规划复习节奏，效率最高。\n第1天：过一遍窗口函数的基础语法。 ROW_NUMBER、RANK、DENSE_RANK、LAG、LEAD、SUM OVER，每个函数写3遍。建议跟着教程手敲代码，不要只看。我在 \ndwsql.com 窗口函数专题\n 里整理了14个常用窗口函数的完整教程，每个都配了业务场景的代码示例。\n第2-3天：集中攻克连续问题。 这是窗口函数面试题的”终极BOSS”。把日期差值法的模板搞透了，连续登录、连续增长都是一回事。连续问题专题可以在 \ndwsql.com\n 找到。\n第4-5天：按公司刷真题。 先刷高频题（dwsql.com 面试题库 里的cj目录），再按目标公司专项突破。每道题建议先自己想，实在想不出了再看解析。看完解析之后关上页面，自己重新写一遍。\n面试这件事，说到底就是准备得足够充分，就不会慌。\n本文作者运营公众号「数据仓库技术」和网站 dwsql.com，两个微信交流群已有500+数据人日常交流技术。欢迎关注。",
+      "url": "https://zhuanlan.zhihu.com/p/2050484234549212785",
+      "author": {
+        "name": "晨曦",
+        "avatarUrl": "https://pic1.zhimg.com/50/v2-abed1a8c04700ba7d72b45195223e0ff_l.jpg?source=4e949a73",
+        "urlToken": "bu-lu-tu-si-78",
+        "followerCount": 7
+      },
+      "voteUp": 1,
+      "commentCount": 0,
+      "publishedAt": 1781653761,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:653179752",
+      "type": "article",
+      "title": "面试被经常问的SQL窗口函数！",
+      "excerpt": "问题1是常见的排名问题（topN问题），要想到用我讲过的窗口函数来解决这类业务问题。 用窗口函数获取顺序有三种：rank()，dense_rank()和row_number()",
+      "content": "【面试题】\n有一张“学生成绩表”，包含4个字段：班级id、学生id、课程id、成绩。\n\n问题1：求出每个学生成绩最高的三条记录\n问题2：找出每门课程都高于班级课程平均分的学生\n\n【解题步骤】\n1. topN问题\n问题1是常见的排名问题（topN问题），要想到用我讲过的窗口函数来解决这类业务问题。\n用窗口函数获取顺序有三种：rank()，dense_rank()和row_number()。\n\n同样是按“值”从小到大排序，三者的区别如下：\n根据问题的描述，我们应该使用dense_rank窗户函数\n1 select *\n2 from (\n3 select *,\n4 dense_rank() over (partition by 班级id,学生id \n5 order by 成绩 desc) as 顺序\n6 from 学生成绩表\n7 ) t1\n8 where 顺序 <= 3;\n查询结果：\n参考资料：跟猴子系统学SQL数据分析\nSQL从入门到进阶(视频+社群)2. 汇总分析\n问题2要求找出每门课程都高于班级课程平均分的学生，可以拆解成以下几个问题：\n1）求出每个班级，每门课程的平均分\n2）将学生每门课程的成绩与所在班级的对应课程平均分相减，结果大于0就说明该学生的这门成绩高于课程平均分\n3）“找出每门课程都高于班级课程平均分的学生”说明对于学生来说，最小的“相减结果”都是大于0的\n\n首先用汇总分析求出每个班级，每门课程的平均分。\n1 select 班级id,课程id,avg(成绩) as 课程平均分\n2 from 学生成绩表\n3 group by 班级id,课程id;\n查询结果：\n\nSQL从入门到进阶(视频+社群)3. 多表联结\n涉及到多表查询，需要用到多表联结。\n这里目的是为了将“将学生每门课程的成绩与所在班级的对应课程平均分相减”。\n所以，是将原始的“学生成绩表”与“班级的课程平均分”进行联结。\n为了保持左表“学生成绩表”的所有数据，将所有学生的成绩都与“课程平均分”x相减，所以选择“左联结（left join）”。\n1 select t1.班级id,t1.学生id,t1.课程id,t1.成绩,\n2 t1.成绩 - t2.课程平均分 as 相减结果\n3 from 学生成绩表 t1\n4 left join (\n5 select 班级id,课程id,avg(成绩) as 课程平均分\n6 from 学生成绩表\n7 group by 班级id,课程id\n8 ) t2 on t1.班级id = t2.班级id and t1.课程id = t2.课程id;\n\n最后使用分组汇总，并结合having条件筛选出“相减结果的最小值大于0”的学生。\n1 select 班级id,学生id\n2 from (\n3 select t1.班级id,t1.学生id,t1.课程id,t1.成绩,\n4 t1.成绩 - t2.课程平均分 as 相减结果\n5 from 学生成绩表 as t1\n6 left join (\n7 select 班级id,课程id,avg(成绩) as 课程平均分\n8 from 学生成绩表\n9 group by 班级id,课程id\n10 ) as t2 on t1.班级id = t2.班级id and t1.课程id = t2.课程id\n11 ) as tmp\n12 group by 班级id,学生id\n13 having min(相减结果) > 0;\n\nSQL从入门到进阶(视频+社群)【本题考点】\n1.考查对分组汇总的了解，以及灵活使用来解决业务问题；\n2.考查对多表联结的了解，以及灵活使用来解决业务问题；\n3）考查对窗口函数的了解，窗户函数解决的经典问题就那么几种，记下来，就可以解决99%的业务问题。\n参考资料：跟猴子系统学SQL数据分析\nSQL从入门到进阶(视频+社群)",
+      "url": "https://zhuanlan.zhihu.com/p/653179752",
+      "author": {
+        "name": "中科院猴子",
+        "avatarUrl": "https://pic1.zhimg.com/50/v2-12ef91a3f1e91e70bd3480d755e058b1_l.jpg?source=4e949a73",
+        "urlToken": "houziliaorenwu",
+        "followerCount": 395983
+      },
+      "voteUp": 273,
+      "commentCount": 20,
+      "publishedAt": 1693351602,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:2077836148165064476",
+      "type": "article",
+      "title": "关于SQL的开窗函数，你只需要看这一篇文章就够了",
+      "excerpt": "几乎都得用开窗函数，所以全面掌握SQL的开窗函数，是不是就可以理解成是解决SQL面试题的必经之路？ 所以这篇文章",
+      "content": "写过几年 SQL 的同学应该都有这个体会：开窗函数这东西，学的时候觉得懂了，一到写需求的时候就含糊。什么 row_number 和 rank 到底差在哪、sum 后面加个 order by 结果怎么就变了、count 开窗怎么数出来不对……这些坑我见过太多人踩。所以这篇文章我打算把开窗函数从头到尾捋一遍：基础语法、窗口帧、空值处理、和 GROUP BY 怎么配合、case when 放在不同位置的区别。\n还有一个背景是：大家平时在工作中写的SQL跟实际面试中遇到的SQL题目是完全不同的，工作多年的资深开发者，也有极大可能解不出来一道正常的面试SQL题。实际面试中，一道相对中等或者较难的题目，几乎都得用开窗函数，所以全面掌握SQL的开窗函数，是不是就可以理解成是解决SQL面试题的必经之路？\n所以这篇文章，我们一次性给大家讲透，日常开发里的开窗需求以及面试中关于开窗函数的内容基本都能拿捏哈。\n1.开窗函数到底解决什么问题？\n先想一个场景：你有一张订单表，现在要查每个用户的每笔订单，同时带上这个用户的订单总数。\n用 GROUP BY 写不了。因为一旦 GROUP BY user_id，每个用户只剩一行，订单明细全没了——聚合是\"压缩\"，压完就回不去了\n（我们这边内部有一道非常经典的SQL答辩题目，就是要把常用的group by替换成开窗+partition by的方式，可是很多同学就是只会用group by，而不知道把数据按照某个字段聚合到一起还可以用partition by哈）。\n这就是开窗函数存在的意义：在不压缩数据的前提下，对一组行做计算，结果直接贴在每一行旁边。\n一句话记住它和 GROUP BY 的区别：GROUP BY 是 100 行聚成 5 行，开窗函数是 100 行还是 100 行，只是每行多了一列计算结果。\n2.语法拆解：OVER 里面那三件事\n开窗函数的骨架长这样：\n函数名(列名) OVER (\n PARTITION BY 列名1, ... -- 分区\n ORDER BY 列名2 [ASC|DESC] -- 组内排序\n ROWS|RANGE BETWEEN ... -- 窗口帧\n)\n\n三个部分挨个说：\nPARTITION BY：把数据切成一个个\"窗口\"。类似 GROUP BY 的分组，但不压缩行数。不写的话，整个表就是一个大窗口。\nORDER BY：窗口内部按什么顺序排。排序类函数（row_number 这些）必须加；聚合函数加不加有讲究，后面单说（这个地方就是一个非常容易踩坑的点！）。\n窗口帧（frame）：定义窗口的起止边界。这个是很多人的盲区，一会重点讲讲。\n窗口帧：UNBOUNDED PRECEDING 是个啥\n窗口帧的语法是：\n{ RANGE | ROWS } { frame_start | BETWEEN frame_start AND frame_end }\n\nframe_start 和 frame_end 可以是这几个值：\nUNBOUNDED PRECEDING：分区的第一行\noffset PRECEDING：当前行往前第 offset 行\nCURRENT ROW：当前行\noffset FOLLOWING：当前行往后第 offset 行\nUNBOUNDED FOLLOWING：分区的最后一行\n比如经典的\"移动平均\"：\navg(income) OVER (ORDER BY p_date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)\n\n意思是：按日期排序后，取\"当前行 + 前两行\"这三行求平均，在报表上滑动着算。\n两个默认规则要记住：\n不指定 ROWS/RANGE 时，默认是 RANGE 方式；\n不指定 frame_end 时，默认到 CURRENT ROW。\n这个\"默认 RANGE\"看着不起眼，其实是开窗函数里最经典的坑，第五节细说。\n3.函数字典：哪些函数能开窗（一定得记住呀）\n这块一定得记住呀，不然你连手里有什么武器都不知道，怎么对付题目呢？\n能开窗的函数分三类：排序函数、分析函数、聚合函数。前两类是开窗专属，第三类是普通聚合函数加了 OVER 之后变身。\n排序函数（必须掌握）\nrow_number、rank、dense_rank 三兄弟的对比是面试常客，记法很简单：去重取一条用 row_number，允许并列、要跳号用 rank，允许并列、不跳号用 dense_rank。\nNTILE 在\"取前 20% 用户\"这种需求里非常好用，后面有例子。\n分析函数（必须掌握）\nLAG 和 LEAD 是做环比、同比的利器。比如\"每个用户本次登录和上次登录隔了几天\"：\nSELECT user_id, login_date,\n DATEDIFF(login_date, LAG(login_date) OVER (\n PARTITION BY user_id ORDER BY login_date\n )) AS gap_days\nFROM user_log;\n\n比自关联的写法干净太多，性能也更好（很多人写SQL很喜欢用自关联，而总是想不到用开窗，所以这一点要改变一下，应该优先想想能不能用开窗！）。\n聚合函数（常用的记住这几个就行）\nsum、count、avg、max、min、collect_list、collect_set、first_value、last_value、any_value、count_if、percentile_approx……大部分你叫得出名字的聚合函数都能开窗。\n一个经验：聚合函数开窗，90% 的场景就是 sum/count 求累计值。而累计值恰恰是坑最多的地方，跳到第五节我们会讲解哈。\n4.开窗函数里的空值处理\n先看个现象。数据是这样：\nid rk\nnull 1\n 2 2\n 3 3\n 4 4\nnull 5\n 6 6\n\n现在要取\"上一行的 id\"：\nlag(id, 1) OVER (ORDER BY rk) AS res\n\n第 2 行的上一行是 null，第 6 行的上一行也是 null——但业务上我们往往想要的是\"上一个非空的 id\"。\n这时就轮到 IGNORE NULLS 登场了（Spark 3.1+ 支持）：\nlag(id, 1) IGNORE NULLS OVER (ORDER BY rk) AS res_2\n\n加上它之后，窗口函数会自动跳过 NULL，只盯着有效数据算。默认行为是 RESPECT NULLS，也就是不跳过。\n要注意，IGNORE NULLS 只能用在 LAG、LEAD、FIRST_VALUE、LAST_VALUE、NTH_VALUE 这几个函数上。\n另外 FIRST_VALUE / LAST_VALUE 还有个简写：第二个参数传 true，效果等同于忽略空值：\nfirst_value(id, true) OVER (ORDER BY rk) -- 等价于加 IGNORE NULLS\n\n在数仓里补维度、做属性填充时，这个写法能省不少 CASE WHEN。\n5.最经典的坑：sum 开窗加了 order by，结果\"不对\"\n这个坑我单独拎出来讲（实际上之前发过的一些公众号文章也单独讲过的哈，大家可以翻阅一下之前的文章），因为它坑过的人实在太多了。\n需求：按日期算累计销售额。绝大多数人的第一反应：\nsum(income) OVER (ORDER BY p_date) AS cum_income\n\n测试数据干净的时候，这写法没问题。但某天，同一天有两笔流水，p_date 出现了重复值——结果突然就不对了：两行重复日期拿到的是同一个累计值，而且是把两行加在一起后的值。\n为什么？回到第二节那个默认规则：不指定窗口帧时，默认按 RANGE 方式。\nRANGE 是\"值范围\"逻辑：ORDER BY 字段值相等的行，被认为是同一个逻辑位置，要么一起算进来，要么一起排除在外。而 ROWS 是纯物理行逻辑，一行就是一行。\n所以当排序字段有重复值时，RANGE 模式下的\"截至当前行\"实际变成了\"截至当前值\"，并列的行会被绑在一块儿。\n两种修法：\n修法一：加二级排序字段，把并列打破\nsum(income) OVER (ORDER BY p_date, id) AS cum_income\n\n只要 ORDER BY 的组合能保证唯一，RANGE 和 ROWS 就没区别了。\n修法二：显式指定 ROWS 窗口帧\nsum(income) OVER (\n ORDER BY p_date\n ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n) AS cum_income\n\n我个人的习惯是：凡是要\"逐行累计\"的场景，一律显式写 ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW，不赌数据没有重复值。写 SQL 最忌讳\"在我电脑上跑是对的\"。\n6.和 GROUP BY 混用：执行顺序是灵魂\n窗口函数和聚合函数是可以嵌套的，比如这个真题里常见的写法——按用户算未完成率，再给未完成率排名：\nSELECT uid,\n SUM(IF(submit_time IS NULL, 1, 0)) / COUNT(*) AS incomplete_rate,\n ROW_NUMBER() OVER (\n ORDER BY SUM(IF(submit_time IS NULL, 1, 0)) / COUNT(*) DESC\n ) AS ranking\nFROM exam_record\nGROUP BY uid\n\n注意 rankin…",
+      "url": "https://zhuanlan.zhihu.com/p/2077836148165064476",
+      "author": {
+        "name": "涤生大数据",
+        "avatarUrl": "https://pica.zhimg.com/50/v2-df0048bd52722e4e96bc165821090303_l.jpg?source=4e949a73",
+        "urlToken": "disheng_bigdata",
+        "followerCount": 3140
+      },
+      "voteUp": 1,
+      "commentCount": 0,
+      "publishedAt": 1788174787,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:680993654",
+      "type": "article",
+      "title": "面试被经常问的SQL窗口函数！",
+      "excerpt": "要想到用《猴子从零学会SQL》里讲过的窗口函数来解决这类业务问题。 用窗口函数获取顺序有三种：rank()",
+      "content": "【面试题】\n有一张“学生成绩表”，包含4个字段：班级id、学生id、课程id、成绩\n问题1：求出每个学生成绩最高的三条记录\n\n问题2：找出每门课程都高于班级课程平均分的学生\n\n【解题步骤】\n1. topN问题\n问题1是常见的排名问题（topN问题），要想到用《猴子从零学会SQL》里讲过的窗口函数来解决这类业务问题。\n用窗口函数获取顺序有三种：rank()，dense_rank()和row_number()。\n同样是按“值”从小到大排序，三者的区别如下：\n\n根据问题的描述，我们应该使用dense_rank窗户函数\n1 select *\n2 from (\n3 select *,\n4 dense_rank() over (partition by 班级id,学生id \n5 order by 成绩 desc) as 顺序\n6 from 学生成绩表\n7 ) t1\n8 where 顺序 <= 3;\n查询结果：\n\n2. 汇总分析\n问题2要求找出每门课程都高于班级课程平均分的学生，可以拆解成以下几个问题：\n1）求出每个班级，每门课程的平均分\n2）将学生每门课程的成绩与所在班级的对应课程平均分相减，结果大于0就说明该学生的这门成绩高于课程平均分\n3）“找出每门课程都高于班级课程平均分的学生”说明对于学生来说，最小的“相减结果”都是大于0的\n首先用汇总分析求出每个班级，每门课程的平均分。\n1 select 班级id,课程id,avg(成绩) as 课程平均分\n2 from 学生成绩表\n3 group by 班级id,课程id;\n查询结果：\n\n3. 多表联结\n\n涉及到多表查询，需要用到多表联结。\n\n这里目的是为了将“将学生每门课程的成绩与所在班级的对应课程平均分相减”。\n\n所以，是将原始的“学生成绩表”与“班级的课程平均分”进行联结。\n\n为了保持左表“学生成绩表”的所有数据，将所有学生的成绩都与“课程平均分”x相减，所以选择“左联结（left join）”。\n\n1 select t1.班级id,t1.学生id,t1.课程id,t1.成绩,\n2 t1.成绩 - t2.课程平均分 as 相减结果\n3 from 学生成绩表 t1\n4 left join (\n5 select 班级id,课程id,avg(成绩) as 课程平均分\n6 from 学生成绩表\n7 group by 班级id,课程id\n8 ) t2 on t1.班级id = t2.班级id and t1.课程id = t2.课程id;\n最后使用分组汇总，并结合having条件筛选出“相减结果的最小值大于0”的学生。\n1 select 班级id,学生id\n2 from (\n3 select t1.班级id,t1.学生id,t1.课程id,t1.成绩,\n4 t1.成绩 - t2.课程平均分 as 相减结果\n5 from 学生成绩表 as t1\n6 left join (\n7 select 班级id,课程id,avg(成绩) as 课程平均分\n8 from 学生成绩表\n9 group by 班级id,课程id\n10 ) as t2 on t1.班级id = t2.班级id and t1.课程id = t2.课程id\n11 ) as tmp\n12 group by 班级id,学生id\n13 having min(相减结果) > 0;\n\n【本题考点】\n\n1.考查对分组汇总的了解，以及灵活使用来解决业务问题；\n\n2.考查对多表联结的了解，以及灵活使用来解决业务问题；\n\n3.考查对窗口函数的了解，窗户函数解决的经典问题就那么几种，记下来，就可以解决99%的业务问题。",
+      "url": "https://zhuanlan.zhihu.com/p/680993654",
+      "author": {
+        "name": "中科院猴子",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-12ef91a3f1e91e70bd3480d755e058b1_l.jpg?source=4e949a73",
+        "urlToken": "houziliaorenwu",
+        "followerCount": 395983
+      },
+      "voteUp": 20,
+      "commentCount": 1,
+      "publishedAt": 1706788933,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:2024495660787929670",
+      "type": "article",
+      "title": "做过 SQL 面试题 100 道，发现这 10 道最容易踩坑",
+      "excerpt": "这里的次日留存分母是当天新增用户，对吗？” 这句话很值钱。 8. 窗口函数会写，但不懂默认窗口范围，累计值经常默默写错 题目原型 计算每个用户按时间排序的累计消费金额",
+      "content": "刷 SQL 面试题这件事，最容易出现一种错觉：\n题我见过，语法我也会，应该稳了。\n但真到面试里，很多人不是不会写，而是会在一些特别典型、特别高频的地方翻车。\n问题通常不在“不会”，而在：\n• 题意没吃透\n• 边界条件没考虑\n• 把“能跑”当成“答对”\n• 结果写对了，但写法让面试官怀疑你线上也这么干\n今天这篇，就不搞 100 道大全了。\n我把高频 SQL 面试题里最容易踩坑的 10 类题拎出来，逐个说清楚：\n• 坑点在哪\n• 为什么很多人会错\n• 面试里更稳的写法是什么\n你要是把这 10 个坑躲开，SQL 面试表现会稳很多。\n1. 分组后取最大值：你以为在求“最新一条”，其实只求出了“最大时间”\n这是经典中的经典。\n题目原型\n查询每个用户最近一次下单记录。\n很多人上来就写：\nSELECT user_id, MAX(order_time) AS last_order_time\nFROM orders\nGROUP BY user_id;\n这条 SQL 只能查出每个用户的最大下单时间。\n但题目要的通常是：最近那一整条订单记录。\n比如你还要 order_id、amount、status，这条就不够了。\n常见翻车点\n• 把“最大值”当成“对应那一行”\n• 在 MySQL 非严格模式下乱带非聚合列\n• 结果看上去像对了，其实是不确定值\n更稳的写法 1：窗口函数\nSELECT user_id, order_id, order_time, amount\nFROM (\n SELECT user_id,\n order_id,\n order_time,\n amount,\n ROW_NUMBER() OVER (\n PARTITION BY user_id\n ORDER BY order_time DESC, order_id DESC\n ) AS rn\n FROM orders\n) t\nWHERE rn = 1;\n面试官在看什么\n他不是只看你会不会 MAX()。\n他在看你知不知道：\n“分组后的最大值” 和 “取最大值对应那一行” 是两件事。\n2. 去重统计：COUNT(DISTINCT ...) 不是万能胶\n题目原型\n统计每天的去重登录用户数（DAU）。\n很多人写：\nSELECT login_date, COUNT(DISTINCT user_id) AS dau\nFROM user_login\nGROUP BY login_date;\n这题本身没错。\n但一旦题目稍微变一下，比如：\n统计每天每个渠道的去重登录用户数，并进一步汇总总 DAU。\n很多人就开始乱了：重复去重、交叉去重、汇总口径全混。\n常见翻车点\n• 把局部去重结果再相加，当成总去重\n• 忽略同一用户在多个渠道重复出现\n• 先聚合后去重，导致结果偏大\n一个典型误区\n按渠道先算：\nSELECT login_date, channel, COUNT(DISTINCT user_id) AS uv\nFROM user_login\nGROUP BY login_date, channel;\n然后把各渠道 uv 相加，当成当天总 DAU。\n这通常是错的。\n因为同一个用户可能当天从多个渠道都登录过。\n面试里更稳的回答\n你要主动区分两个口径：\n• 分渠道去重 UV\n• 全站总去重 DAU\n它们不能简单相加。\n如果要总 DAU，应直接按天全局去重：\nSELECT login_date, COUNT(DISTINCT user_id) AS dau\nFROM user_login\nGROUP BY login_date;\n面试加分点\n你如果能主动说出：\n“分组去重后的明细汇总，不一定等于更高层口径的去重结果。”\n这句话一出来，基本就不是刷题党水平了。\n3. WHERE 和 HAVING 分不清，说明你对执行顺序还是糊的\n题目原型\n查询下单次数大于 3 次的用户。\n很多人会这么写：\nSELECT user_id, COUNT(*) AS order_cnt\nFROM orders\nWHERE COUNT(*) > 3\nGROUP BY user_id;\n这当然会报错。\n因为 WHERE 是在聚合前过滤，COUNT(*) 是聚合后才得到的。\n正确写法\nSELECT user_id, COUNT(*) AS order_cnt\nFROM orders\nGROUP BY user_id\nHAVING COUNT(*) > 3;\n常见翻车点\n• 把聚合条件写进 WHERE\n• 把明明能前置过滤的条件都扔进 HAVING\n• 导致结果对了，但性能不行\n更完整的思路\n如果题目是：\n查询 2026 年下单次数大于 3 次的用户。\n那就应该：\nSELECT user_id, COUNT(*) AS order_cnt\nFROM orders\nWHERE order_time >= '2026-01-01'\n AND order_time < '2027-01-01'\nGROUP BY user_id\nHAVING COUNT(*) > 3;\n也就是：\n• 行级条件用 WHERE\n• 聚合结果条件用 HAVING\n这才是又对又稳。\n4. LEFT JOIN 一写 WHERE b.xxx IS NOT NULL，等于你自己把左连接写没了\n题目原型\n查询下过订单的用户，以及没有下单的用户也要保留。\n很多人先写：\nSELECT u.user_id, u.user_name, o.order_id\nFROM users u\nLEFT JOIN orders o\n ON u.user_id = o.user_id;\n到这里没问题。\n然后又加一句：\nWHERE o.status = 'PAID'\n这时候就很容易把原本的 LEFT JOIN 逻辑，变成接近 INNER JOIN 的效果。\n常见翻车点\n• 面试里口头说“保留主表全部用户”\n• 实际 SQL 却把没匹配上的行在 WHERE 里过滤掉了\n更稳的写法\n如果你要保留左表全部用户，同时只关联已支付订单，就把条件写到 ON 里：\nSELECT u.user_id, u.user_name, o.order_id\nFROM users u\nLEFT JOIN orders o\n ON u.user_id = o.user_id\n AND o.status = 'PAID';\n一句话记忆\n• ON：控制怎么连\n• WHERE：控制最后留谁\n你要是想保留左表，右表过滤条件通常要小心放在 ON 里。\n5. Top N 问题只会 LIMIT N，说明你还没分清“全局前 N”和“分组前 N”\n题目原型\n查询每个部门工资最高的 3 个员工。\n不少人第一反应：\nSELECT *\nFROM employee\nORDER BY salary DESC\nLIMIT 3;\n这查出来的是全公司工资最高的 3 个人。\n不是“每个部门各 3 个”。\n正确思路：分组排名\nSELECT dept_id, emp_id, emp_name, salary\nFROM (\n SELECT dept_id,\n emp_id,\n emp_name,\n salary,\n ROW_NUMBER() OVER (\n PARTITION BY dept_id\n ORDER BY salary DESC, emp_id ASC\n ) AS rn\n FROM employee\n) t\nWHERE rn <= 3;\n常见翻车点\n• 题目都没看清就先写 LIMIT\n• 把“组内排序”写成“全局排序”\n• 没处理并列排名时用什么函数\n额外加分点\n你可以顺手补一句：\n• ROW_NUMBER()：强制唯一排名\n• RANK()：并列占位，名次跳跃\n• DENSE_RANK()：并列占位，但名次连续\n这一下就不是“会写”，而是“知道为什么这样写”。\n6. 连续登录 / 连续签到题：日期相减法会背，边界一变就崩\n这类题几乎是面试常客。\n题目原型\n查询连续登录 3 天及以上的用户。\n很多人背过套路：\nSELECT user_id,\n DATE_SUB(login_date, INTERVAL rn DAY) AS grp\nFROM (\n SELECT user_id,\n login_date,\n ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY login_date) AS rn\n FROM user_login\n) t;\n思路没错，但实际做题时经常翻车。\n常见翻车点\n• 同一天多次登录，没先去重\n• 连续口径到底按自然日还是 24 小时没说清\n• 时间字段带时分秒，直接算导致分组错位\n• 漏了最后一步聚合统计连续段长度\n更稳的写法\n先按天去重，再做连续段识别：\nWITH distinct_login AS (\n SELECT DISTINCT user_id, DATE(login_time) AS login_date\n FROM user_login\n), tagged AS (\n SELECT user_id,\n login_date,\n ROW_NUMBER() OVER (\n PARTITION BY user_id\n ORDER BY login_date\n ) AS rn\n FROM distinct_login\n)\nSELECT user_id,\n MIN(login_date) AS start_date,\n MAX(login_date) AS end_date,\n COUNT(*) AS consecut…",
+      "url": "https://zhuanlan.zhihu.com/p/2024495660787929670",
+      "author": {
+        "name": "胡萝卜数分",
+        "avatarUrl": "https://pica.zhimg.com/50/v2-c2b91813d7d7cdec0879627d8aaf7929_l.jpg?source=4e949a73",
+        "headline": "六年数分经验的数据搬运工一枚",
+        "urlToken": "ke-ke-ke-66-63",
+        "followerCount": 23
+      },
+      "voteUp": 7,
+      "commentCount": 0,
+      "publishedAt": 1775457438,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:16512559871",
+      "type": "article",
+      "title": "面试被经常问的SQL窗口函数",
+      "excerpt": "SQL窗口函数是面试中经常被问到的高频考点，以下是SQL窗口函数的详细讲解，以及常见面试问题和例子：",
+      "content": "SQL窗口函数是面试中经常被问到的高频考点，以下是SQL窗口函数的详细讲解，以及常见面试问题和例子：\n1. 窗口函数的基础概念\n定义：窗口函数在一组（窗口）数据上进行操作，为每一行返回一个值。\n语法：\n组成部分：\n窗口函数：如 ROW_NUMBER()、RANK()、SUM()、AVG() 等。\nPARTITION BY：将数据分组，类似于 GROUP BY，但不聚合。\nORDER BY：定义窗口内的排序方式。\n2. 常见窗口函数分类\n2.1 排序相关\nROW_NUMBER()：按指定顺序为每行分配唯一的行号。\nRANK()：按排序值分配排名，相同值会有相同排名，后续排名会跳过。\nDENSE_RANK()：与 RANK() 类似，但排名连续，不会跳过。\nNTILE(n)：将数据划分为 n 组，每行分配一个组号。\n面试常问：ROW_NUMBER() 和 RANK() 的区别\n ROW_NUMBER()：即使值相同，也会分配不同的行号。\nRANK()：相同值分配相同排名，但后续排名会跳过。\n2.2 聚合相关\nSUM()、AVG()、COUNT()、MAX()、MIN()：计算分组的累积值或统计结果。\n用途：\n计算每组内的累计销售额。\n计算一个分组内的平均值或最大值。\n面试常问：按窗口累计求和\nSUM(sales_amount) 是普通聚合，OVER 确保不聚合整组，而是为每一行计算累计值。\n2.3 偏移相关\nLAG(column, offset, default)：返回当前行之前第 offset 行的值。\nLEAD(column, offset, default)：返回当前行之后第 offset 行的值。\n用途：\n计算环比（当前值 - 上一行的值）。\n比较前后两行的变化。\n面试常问：计算销售环比增长\nLAG(sales_amount) 获取上一行的销售额。\nsales_amount - LAG(sales_amount) 计算环比增长。\n2.4 行间累计和排名相关\nFIRST_VALUE(column)：返回当前窗口中按排序的第一个值。\nLAST_VALUE(column)：返回当前窗口中按排序的最后一个值。\n用途：\n查找每组内的第一条或最后一条记录。\n面试常问：获取每组的最大最小值\n-- 示例数据\nCREATE TABLE sales (id INT, employee_name VARCHAR(20), sales_amount INT);\nINSERT INTO sales VALUES \n(1, 'Alice', 500),\n(2, 'Alice', 600),\n(3, 'Bob', 700),\n(4, 'Bob', 300);\n\n-- 获取每组内的最大值和最小值\nSELECT employee_name, sales_amount,\n FIRST_VALUE(sales_amount) OVER (PARTITION BY employee_name ORDER BY sales_amount ASC) AS min_sales,\n LAST_VALUE(sales_amount) OVER (PARTITION BY employee_name ORDER BY sales_amount ASC) AS max_sales\nFROM sales;\n\n注意：LAST_VALUE() 默认是窗口范围内的最后一行，而不是分组的最大值，需要结合 ROWS BETWEEN 调整范围。\n2.5 窗口范围定义\n窗口范围定义对聚合计算的结果有重要影响：\n默认行为：窗口是从分组的起始行到当前行。\n可以通过 ROWS 或 RANGE 明确窗口范围：\nROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW（从起始行到当前行）。\nROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING（当前行上下各一行）。\n面试常问：动态窗口累计\n-- 示例数据\nCREATE TABLE sales (id INT, employee_name VARCHAR(20), sales_amount INT);\nINSERT INTO sales VALUES \n(1, 'Alice', 500),\n(2, 'Alice', 600),\n(3, 'Alice', 700);\n\n-- 动态窗口累计\nSELECT employee_name, sales_amount,\n SUM(sales_amount) OVER (PARTITION BY employee_name ORDER BY id ROWS BETWEEN 1 PRECEDING AND CURRENT ROW) AS sliding_sum\nFROM sales;\n\nROWS BETWEEN 1 PRECEDING AND CURRENT ROW 表示计算当前行和上一行的总和。\n3. 面试常见SQL窗口函数问题\n3.1 找出每个部门的最高薪资员工\nSELECT department_id, employee_name, salary\nFROM (\n SELECT department_id, employee_name, salary,\n RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS rank\n FROM employees\n) ranked\nWHERE rank = 1;\n\n考点：\n使用 RANK() 或 DENSE_RANK() 按部门分组。\nPARTITION BY 分组计算。\n3.2 计算每个员工的累计奖金\nSELECT employee_name, bonus,\n SUM(bonus) OVER (PARTITION BY employee_name ORDER BY month) AS cumulative_bonus\nFROM bonuses;\n\n考点：\nSUM() 用于计算累计值。\n结合 PARTITION BY 和 ORDER BY 定义窗口范围。\n3.3 获取环比增长最大的月份\nSELECT month, sales_amount,\n LAG(sales_amount) OVER (ORDER BY month) AS previous_month_sales,\n sales_amount - LAG(sales_amount) OVER (ORDER BY month) AS sales_diff\nFROM monthly_sales\nORDER BY sales_diff DESC\nLIMIT 1;\n\n考点：\n使用 LAG() 计算前后行的差值。\n按差值降序排序获取最大值。\n3.4 按用户分组计算购买频次\nSELECT user_id, COUNT(*) AS total_purchases,\n ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY purchase_date) AS purchase_rank\nFROM purchases;\n\n考点：\n使用窗口函数对每个用户的购买记录排序。\n4. 窗口函数面试技巧\n理解 PARTITION BY 和 ORDER BY 的区别：\nPARTITION BY 是分组依据。\nORDER BY 是组内排序依据。\n区别常见排序函数（ROW_NUMBER、RANK、DENSE_RANK）。\n动态窗口定义：用 ROWS 和 RANGE 明确窗口范围。\n结合聚合函数：如 SUM()、AVG() 等，用于计算累积值。\n多窗口函数组合使用：例如 LAG() 和 SUM() 同时使用。",
+      "url": "https://zhuanlan.zhihu.com/p/16512559871",
+      "author": {
+        "name": "Zhu堤",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-6ebebd9c6320c0b6c860dbe7ead73461_l.jpg?source=4e949a73",
+        "headline": "业余爱好:数据分析",
+        "urlToken": "xiao-ya-97-39-7",
+        "followerCount": 57
+      },
+      "voteUp": 3,
+      "commentCount": 0,
+      "publishedAt": 1736076313,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:2065387467033797064",
+      "type": "article",
+      "title": "SQL 面试题：窗口函数不是为了显得高级",
+      "excerpt": "TopN、连续登录、同比环比、累计求和。很多同学一看到就想上窗口函数，但窗口函数不是为了显得高级，而是为了表达“在某个分组和排序范围内计算”",
+      "content": "后端面试里，SQL 题经常出现：每组取 TopN、连续登录、同比环比、累计求和。很多同学一看到就想上窗口函数，但窗口函数不是为了显得高级，而是为了表达“在某个分组和排序范围内计算”。\n\n会用窗口函数，重点不是背 row_number()，而是知道 partition、order 和 frame 在描述什么。\n\n一、每组 TopN 示例\n题目：每个部门取工资最高的 3 个人。\nPARTITION BY department_id 表示每个部门单独排名，ORDER BY salary DESC 表示按工资降序。\n\n二、窗口函数执行逻辑\n窗口函数是在结果行上附加计算结果，不会像 group by 那样把多行压成一行。这是它和聚合查询的关键区别。\n\n三、row_number、rank、dense_rank 区别\n是否处理并列，要看业务题意。面试时不要默认用 row_number。题目说“前三名”，并列是否都要保留？要问清楚。\n\n四、性能注意点\n窗口函数通常需要排序。大表上要注意分区字段、排序字段、过滤条件。能先过滤日期和业务范围，就不要全表开窗。\n这句简单的分区过滤，可能比你换十种窗口写法都重要。\n\n面试里还常考连续登录。可以用日期减去排名构造分组键，同一段连续日期的差值相同。\n这类题最重要的是把“连续”转成“同组”。窗口函数只是工具，核心观察才是答案。\n\n写 SQL 时也要问清去重规则。同一天登录多次，是算一次还是多次？题目没说，就要先处理。\n\n窗口函数还常用于同比环比。LAG 能拿到上一行，但上一行是否就是昨天、上周、上月，要看排序和数据完整性。日期缺失时，直接 lag 可能拿错基准。\n这段只适合日期连续的情况。如果日期不连续，要先补日历表。面试里能指出这个边界，会显得很清醒。\n\n五、总结\nSQL 窗口函数用于在分组和排序范围内计算排名、累计、偏移等结果。关键是理解 partition、order、frame，而不是背高级语法。",
+      "url": "https://zhuanlan.zhihu.com/p/2065387467033797064",
+      "author": {
+        "name": "一仔敲代码",
+        "avatarUrl": "https://pic1.zhimg.com/50/v2-1918133953a81221b9cf9d649025b525_l.jpg?source=4e949a73",
+        "headline": "90 后互联网开发打工人｜只讲实在干货，不贩卖焦虑",
+        "urlToken": "wayne-73-18",
+        "followerCount": 7
+      },
+      "voteUp": 0,
+      "commentCount": 0,
+      "publishedAt": 1785207071,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:570441697",
+      "type": "article",
+      "title": "SQL面试题（实战题-窗口函数）",
+      "excerpt": "<窗口函数> over (partition by <用于分组的列名> order by <用于排序的列名>)",
+      "content": "<窗口函数> over (partition by <用于分组的列名> order by <用于排序的列名>)\n找出工资前3高的员工，相同工资并列排名\n现有员工表Employee（uid,name,salary,d_id） 和 部门表Department(id,name)\n编写一个SQL，找出每个部门工资前3高工资的员工，相同工资并列排名\n最终结果呈现如下：\n步骤一：连接2表，Employee 和 Department 以部门ID 相连接，因为每个员工均有对应的部门，所以可用内连接（如有员工无部门，则可用员工表左连接部门表）；按部门分组，对员工工资进行排序（倒序）\nSELECT\n de.name AS d_name,\n em.name AS e_name,\n em.salary AS e_salary,\n DENSE_RANK() OVER(PARTITION BY de.name ORDER BY em.salary DESC) AS salary_rank\nFROM Employee em\nJOIN Department de\nON em.d_id = de.id\n知识点：\n专用窗口函数：rank, dense_rank, row_number\nrank：如果有并列名次的行，会占用下一名次的位置。比如正常排名是1，2，3，4，如果前3名是并列的名次，结果是：1，1，1，4\ndense_rank：如果有并列名次的行，不占用下一名次的位置。比如正常排名是1，2，3，4，如果前3名是并列的名次，结果是：1，1，1，2\nrow_number：不考虑并列名次的情况。比如前3名是并列的名次，排名是正常的1，2，3，4\n本题中要求，相同工资并列排名，故需要用dense_rank，结果如图二：\n步骤二：根据步骤一结果选择出排名前3名的记录\nSELECT\n p1.department_name,\n p1.employee_name,\n p1.salary\nFROM\n(\n SELECT\n de.name AS d_name,\n em.name AS e_name,\n em.salary AS e_salary,\n DENSE_RANK() OVER(PARTITION BY de.name ORDER BY em.salary DESC) AS salary_rank\nFROM Employee em\nJOIN Department de\nON em.d_id = de.id\n) AS p1\nWHERE salary_rank <=3",
+      "url": "https://zhuanlan.zhihu.com/p/570441697",
+      "author": {
+        "name": "数据旅行家",
+        "avatarUrl": "https://pic1.zhimg.com/50/v2-367703e2d920de01d71422b76e9c8427_l.jpg?source=4e949a73",
+        "headline": "探索数据宝藏，引领职场蜕变。与我一起解析数据，提升自我",
+        "urlToken": "qiu-feng-de-xiao-ya-tou",
+        "followerCount": 73
+      },
+      "voteUp": 8,
+      "commentCount": 0,
+      "publishedAt": 1665198371,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:336545182",
+      "type": "article",
+      "title": "最全SQL窗口函数指南—数据分析面试必备",
+      "excerpt": "所以掌握好 SQL 窗口函数还是很必要的。 接下来我们按照顺序来介绍各种窗口函数。 一、组内排序函数：Rank/Dense_Rank/Row_Number",
+      "content": "在笔者比较早期的面试经历中，面试官经常会出一些 SQL 题，而其中最常见的就是那些需要用 窗口函数 来解题的。\n后来在笔者作为面试官面试候选人时，也是常常把窗口函数作为考察点。所以掌握好 SQL 窗口函数还是很必要的。\n接下来我们按照顺序来介绍各种窗口函数。\n一、组内排序函数：Rank/Dense_Rank/Row_Number\n组内排序，我们常常用于取分组内排序前N/后N的记录，或先分组排序然后根据序号关联组内前一条或后一条记录。\nRow_Number() over(partition by col1 order by col2)：数字相同序号不重复，序号最大值等于总记录数；\nRank() over(partition by col1 order by col2)：数字相同序号会重复，重复值后会跳过某些序号，序号最大值仍等于总记录数；\nDense_Rank() over(partition by col1 order by col2)：数字相同序号会重复，重复值后不跳过某些序号，序号最大值会小于记录数。\n示例，假定有如下一张表 test，执行下述 SQL 输出结果：\nIDNameSal\n1a10\n2a12\n3b13\n4b12\n5a14\n6a15\n7a13\n8b11\n9a16\n10b17\n11a14\nSelect \n name, sal, \n row_number() over(partition by name orderby sal desc) rnk1,\n rank() over(partition by name order by sal desc) rnk2,\n dense_rank() over(partition by name order by sal desc) rnk3\nFrom test\nNameSalrnk1rnk2rnk3\nb17111\nb13222\nb12333\nb11444\na16111\na15222\na14333\na14433\na13554\na12665\na10776\n二、累计计数、求和函数：SUM/AVG/MIN/MAX\n这类函数应用非常广泛。包括不使用 group by 即可分组聚合、分组内滚动聚合从第一行到当前行或分组内滚动聚合前N行到后N行。\n以 sum 为例，它的函数公式为：sum() over(partition by col1 order by col2 rows between xxx and yyy)。\n下面我们来看看这个例子，假设有如下日志表 log：\ncookie1 2015-04-10 1 \ncookie1 2015-04-11 5 \ncookie1 2015-04-12 7 \ncookie1 2015-04-13 3 \ncookie1 2015-04-14 2 \ncookie1 2015-04-15 4 \ncookie1 2015-04-16 4\n以下述代码来介绍各种使用场景：\nselect \n cookieid, pv,\n -- 从起点到当前行\n sum(pv) over(partition by cookieid order by created) as pv1, \n -- 从起点到当前行，结果同pv1\n sum(pv) over(partition by cookieid order by created rows between unbounded preceding and current row) as pv2,\n -- 分组内所有行\n sum(pv) over(partition by cookieid) pv3,\n-- 当前行往前3行 -> 当前行\n sum(pv) over(partition by cookieid order by created rows between 3 preceding and current row) pv4,\n-- 当前行往前3行 -> 当前行往后1行\n sum(pv) over(partition by cookieid order by created rows between 3 preceding and 1 following) pv5,\n-- 当前行往后所有行\n sum(pv) over(partition by cookieid order by created rows between current row and unbounded following) as pv6\nfrom log\n运行结果如下：\n使用说明：\n如果不指定rows between，默认为从起点到当前行；\n如果不指定order by，那么将分组内所有值累加；\nrow between 子句，也叫window子句：\npreceding 往前； \nfollowing 往后； \ncurrent row 当前行； \nunbounded 起点/终点：UNBOUNDED PRECEDING：表示从前面的起点， UNBOUNDED FOLLOWING：表示到后面的终点。\n4. Avg、Count、Max、Min 等函数与 Sum 用法一样。\n三、分桶函数：Ntile\n分桶可用于便捷选择前/后N分之几的数据。\n将有序的数据集平均分配到指定数量的桶内，并将桶号分配给每一条记录。如果不能平均分配，则优先分配给较小编号的桶，并且各个桶中能放的行数最多差1。\n如，取上述示例 test 表 Sal 排名前50%的订单记录：\nSelect *\nFrom(\n Select Id, Name, sal, \n Ntile(2) over(partition by name order by sal desc) nt\n From test\n)t where t.nt=1\n四、前后平移函数：Lag/Lead\n前后平移可快捷计算同比、环比值；\nLag(col, n, DEFAULT) 用于统计窗口内往上第n行值；\nLead(col, n, DEFAULT) 用于统计窗口内往下第n行值, 与LAG相反。\n小 tips： default省略，则默认为NULL； 不需显式进行手动分组排序，在使用函数 LAG/LEAD 时最终呈现记录为自动排序。\n示例：\n如某张有 doctorid, patientid, add_time 3个字段的表，下列 2段 SQL 运行结果分别如下：\nselect \n doctorid, patientid, add_time, \n Lag(patientid, 1) over(partition by doctorid order by add_time) patient_bf\nfrom stats.bi.nestle_patient \nselect \n doctorid, patientid, add_time, \n Lead(patientid, 1, 5188786) over(partition by doctorid order by add_time) patient_af\nfrom stats.bi.nestle_patient \n五、分组取最早、最迟函数：First_Value/Last_Value\n分组取最早、最迟函数可用于取用户的首次行为时间、最后一次行为时间，计算生命周期。\nFirst_Value()：分组内排序后，获得组内当前行往前的首个值；\nLast_Value()：分组内排序后，获得组内当前行往前的最后一个值。\n如某张有 doctorid, patientid, add_time 3个字段的表，下列 2段 SQL 运行结果分别如下：\nselect \n doctorid, patientid, add_time, \n First_Value(patientId) over(partition by doctorId order by add_time) first_patient,\n Last_Value(patientId) over(partition by doctorId order by add_time) last_patient,\n First_Value(patientId) over(partition by doctorId order by add_time desc) first_patient_desc\nfrom stats.bi.nestle_patient\n六、序列分析函数：CUME_DIST/ PERCENT_RANK\nCume_Dist:小于等于当前值的行数/分组内总行数。应用场景统计，用于收入订单前多少的排名，或者订单数 pk 百分比。注意：没有 partition ,所有数据分到同一组。\nPercent_Rank：分组内当前行的RANK值-1／分组内总行数-1。暂时没有想到应用场景。\nSELECT \n year, \n doctorId,\n orders,\n CUME_DIST() OVER(ORDER BY orders) AS rn1,\n CUME_DIST() OVER(PARTITION BY year ORDER BY orders desc) AS rn2 \nFROM(\n select date_trunc('year', payTime) year, doctorId, count(distinct id) orders\n from subscriptionorder\n where paystatus=2\n group by doctorId, date_trunc('year', payTime)…",
+      "url": "https://zhuanlan.zhihu.com/p/336545182",
+      "author": {
+        "name": "钟林子钰",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-4a03e52bdd9db5c39f45970ccdaa80cc_l.jpg?source=4e949a73",
+        "headline": "每一次的努力尝试，终将开花结果",
+        "urlToken": "zhong-jia-fu-47",
+        "followerCount": 2287
+      },
+      "voteUp": 58,
+      "commentCount": 8,
+      "publishedAt": 1607817913,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:456560406",
+      "type": "article",
+      "title": "SQL窗口函数详解--什么是窗口函数？数据分析师面试题必备",
+      "excerpt": "这时候就需要动态窗口或者叫滑动窗口。 2.什么是“窗口函数”？ “窗口函数”是动态处理数据的一类函数，也叫OLAP函数（Online",
+      "content": "1.什么是“窗口”？\n 如果看了上一篇文章“MySQL中group by分组和聚合函数”的话，应该理解了什么是分组和聚合，聚合函数可以理解为对一组值执行计算并返回单一的值的一类函数，它借助group by子句，根据“by”指定的规则对数据进行分组，所谓的分组就是将一个“数据集”划分成若干个“小区域”，然后针对若干个“小区域”进行数据处理。这里的“组”、“小区域”其实就是“窗口”，换了个说法而已。\n 对于聚合函数来说，”窗口“是固定的，就是每一个组。比如我想知道每个学生的平均成绩，指定的组就是每个学生的”s_id\"，聚合函数在这个s_id划定的窗口内对所有记录进行计算。这是静态窗口，窗口内的记录相互关联，窗口外的记录彼此无关。\n 但是实际业务中我们往往需要处理排名、累加、移动平均、取前N个这样的需求，每个记录的排名需要动态计算它在所有数据的位置；累加需要动态计算前面所有记录的和；移动平均要滑动计算；取前N个也是需要计算排名。这时候就需要动态窗口或者叫滑动窗口。\n2.什么是“窗口函数”？\n “窗口函数”是动态处理数据的一类函数，也叫OLAP函数（Online Anallytical Processing，联机分析处理），可以对数据库数据进行实时分析处理。\n “窗口函数”由两部分组成，第一部分是“分析函数”，第二部分是“窗口函数”，语法如下：\n分析函数 over(partition by \"要分组的列\"\n order by \"要排序的列\"\n rows between \"开始的行\" between “结束的行”)\n 其中第二部分over(）才是“窗口函数”，只不过因为它的特点大家都这样叫，就默认为这个语法结构就是“窗口函数”。over(）的作用是划定窗口，分析函数的作用是在窗口内对记录进行计算。\n2.1 over(）\n 先讲窗口函数over(），它的括号内有三个参数：\n2.1.1 “partition by”\n 表示的是分组或者分区，可以理解为group by，但是地位不同，如果partition by和group by后的字段相同，partition by就会失效。因为group by先分组（划分窗口），如果字段相同则partition by就没有可分的了。\n 如何只是简单的聚合计算，比如求和、求平均，partition by和group by的实质是一样的，不同在于group by聚合计算后合并记录，而partition by聚合计算后不合并记录，官方参考手册里解释over()窗口不会对查询的行组折叠为单个输出行，而是为为每一行生成一个结果。如果想达到和group by一样的效果，前面加上distinct关键字进行去重。\n\n2.1.2 \"order by\"\n 表示排序，前面说到的排名、累加都有排序的操作在里面，意思就是根据什么条件排名、根据什么条件累加。order by后面可以跟一个字段也可以跟多个字段，哪个写在前面先排序哪个。排序的方式有“asc（升序）\"和”desc（降序）\"控制。\n\n2.1.3 rows between \"开始的行\" between “结束的行”\n 这里就是控制窗口大小的地方，这个范围是随着数据的变化而变化的，写法有很多种，代表着不同的含义：\nproceding：往前\nfollowing：往后\nunbounded：无穷尽的（一般跟proceding和following搭配使用）\ncurrent row：当前行\nunbounded proceding：往前所有行\nunbounded following：往后所有行\n 为了更好理解，下面列举几个例子：\nrows between 2 preceding and current row --取当前行和前2行，这个可用于求移动平均 \nrows between current row and 2 following --取当前行和后2行，这个可用于求移动平均\nrows between unbounded preceding and current row --取当前行和之前所有行，这个可用于求累加；如果没有写rows between参数，则默认的窗口就是这个范围\nrows between current row and unbounded following --取当前行和之后所有行\nrows between 2 preceding and 2 following --取当前行的前面2行和下面2行，总共5行，这个可用于求移动平均\n再用一张动态图来演示计算累加的动态窗口是怎么变化的：\n\n 结合前面与groupby分组同时处理一组值的区别，窗口函数会对每一条记录扫描，生成动态窗口，再进行计算。这里累加的窗口范围写法就是“rows between unbounded preceding and current row”，一般默认不写。\n小结：以上就是三个参数的详解。这三个参数是可以自由组合使用以实现不同业务需求。\n 如果一个都不用，over后面的括号是空的，则所有记录就是一个窗口（未分组），前面的分析函数就是聚合函数的作用，整体聚合；\n 如果只用partition by则相当于group by分组聚合；\n 如果只用order by则可以实现整体数据累加计算；\n 如果只用rows between就可以实现窗口滑动、移动平均；\n 如果用partition by和order by实现分组累加计算；\n 如果用partition by和rows between实现分组移动平均计算；\n\n2.2 分析函数\n 搞清楚窗口之后，就可以解释与窗口函数一起使用的分析函数：\n 官方手册里可以查到所有可与窗口函数搭配使用的函数：12.21.2 窗口函数概念和语法，这里对经常使用进行分类举例说：\n2.2.1 聚合函数（括号内加列名）\n 一般情况下，常用的AVG()，COUNT()，GROUP_CONCAT()，MAX()，MIN()，STD()，SUM()，VARIANCE()都可以作为分析函数。\n\n2.2.2 排名函数（括号内什么都不写）\nROW_NUMBER()：按照字段值排序后生成一个连续不重复的排名，比如1、2、3、4、5；如果记录数相同的话，原始数据谁在前面就先排名，最后的排名就是记录数。\nRANK()：按照字段值排序后生成一个不连续且会重复的排名，比如1、2、2、4、5；排名会断掉，最后的排名就是记录数。\nDENSE_RANK()：按照字段值排序后生成一个连续且会重复的排名，比如1、2、2、3、4；排名不会断掉，但是最后的排名小于记录数。\n\n2.2.3 偏移函数\nLEAD(col,n,default)：用于统计窗口内往后第几行值。第一个参数为列名，第二个参数为往后第n行（可选，默认为1），第三个参数为默认值（当往后第n行为NULL时候，取默认值，如不指定，则为NULL）。\n 可以解决上一次登录、上一次购买等连续问题，非常实用。通过这个案例来加深理解：连续60天畅销产品怎么找？SQL相邻问题之连续登录的四种解法\nLAG(col,n,default)：用于统计窗口内往前第几行值。第一个参数为列名，第二个参数为往前第n行（可选，默认为1），第三个参数为默认值（当往前第n行为NULL时候，取默认值，如不指定，则为NULL）。\nFIRST_VALUE(列名)：用于找出统计窗口内的第一个值。\nLAST_VALUE(列名)：用于找出统计窗口内的最后一个值。\nNTH_VALUE()：用于找出统计窗口内的第N个值。\n\n2.2.4 占比函数\nCUME_DIST()：小于等于当前值的行数占分组内总行数的比例，相当于求累加分布函数。比如，统计小于等于当前薪水的人数，所占总人数的比例。\nPERCENT_RANK()：分组内当前行的RANK值减1占分组内总行数减1的比例，也就是排名百分比。\nNTILE()：按照记录数分区并排名编号，分区的方式是按百分比平均分成多少份，比如分成五份，编号1,2,3,4,5；间接可视作是排名。\n\n3.窗口函数的使用\n Oracle和SQL server很早就有了窗口函数，但是MySQL在8.0版本才开始引进窗口函数，在这之前都是使用自定义变量的方法处理排名、累加等问题。\n 因为窗口函数是计算函数不是筛选，只能对where和group by子句筛选后的结果进行操作，所以窗口函数只能写在select子句中，不能像聚合函数那样放在having后面做筛选条件。\n 窗口函数内不可以使用distinct关键字去重，但是在最外层可以使用。\n MySQL中不支持窗口函数的嵌套，即窗口函数内字段名嵌套一个窗口函数。\n over()作为窗口，如果需要重复使用多次，可以使用WINDOW子句在使用窗口的函数中单独指定窗口并起别名，然后在各函数的OVER子句内引用窗口别名。\n\n4.典型案例\n4.1 排名\n4.1.1 所有成绩进行排名（全局排名）\n 三种不同的排名函数结果不同。\n\n4.1.2 每科成绩排名\n在全局排名的基础上增加了partition by分组，就实现了组内排名。\n\n4.1.3 按成绩从高到低把学生分为1,2,3组\n把学生按成绩分为三个组，第一组成绩高，第二组成绩中等，第三组成绩较低。通过括号内的数字控制分成几个组。\n\n4.1.4 查询每个学科成绩最高（低）的学生\n\n4.2 累加\n4.2.1 按学号对学生总成绩进行累加（全局累加）\n\n4.2.2 对每个学生按照学科成绩进行累加（分组累加）\n\n4.3 移动平均\n4.3.1 查询3日移动平均值\n\n4.4 前N个/前百分比\n4.4.1 查询各个成绩在全班所有成绩的占比\n\n4.4.2…",
+      "url": "https://zhuanlan.zhihu.com/p/456560406",
+      "author": {
+        "name": "二八Data",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-036118598319dcc2c574c25f7c7e7028_l.jpg?source=4e949a73",
+        "urlToken": "qi-wang-5-76",
+        "followerCount": 2051
+      },
+      "voteUp": 19,
+      "commentCount": 3,
+      "publishedAt": 1641995480,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:518683950",
+      "type": "article",
+      "title": "大厂SQL经典面试题（一）窗口函数",
+      "excerpt": "窗口函数 窗口函数是数据分析师常用的语法函数，几乎是大厂的必考题。 窗口函数，也叫OLAP(Online",
+      "content": "窗口函数\n窗口函数是数据分析师常用的语法函数，几乎是大厂的必考题。\n窗口函数，也叫OLAP(Online AnallyticalProcessing,联机分析处理) ,可 以对数据库数据进行实时分析处理。\n下面给大家准备了两道经典的窗口函数题目。并准备了清晰的解题思路，具体可以看图片。\n第一题：求连续天数\n下面表格是用户访问表users,记录了用户id (usr_ id)和访问日期(log_ date)，求出连续3天下面表格是用户访问表users,记录了用户id以上访问的用户id。\n\n解题思路：\n我们需要根据这么一个简单的表，求出连续3天以上访问的用户。可以按照用户id给访问日期排名，然后再用访问日期减去排名，得到一个时间。如果用户是连续访问的，这个时间就是一样的。一个用户的这个时间如果出现3次及以上，说明这个用户连续访问了3天。\n第一步：\n先按照用户id (usr_ id) 对访问日期(log date)进行排名，这里要用到DENSE_ RANK() 这个窗口函数，用于给出排名序号。这个函数经常应用在给学生成绩进行排名。\n\n查看结果，多了一个rank_ id的列\n\n第二步：\n得到排名后,我们用访问日期减去排名，得到一个时间flg date。\n\n第三步：\n同一个用户有3个及以上flg date相同，说明用户连续访问了3天，所以我们对上面查出的这个结果进行分组，并统计判断是否大于3\n\n第四步：\n这样就已经得出最终结果了，因为题目只想知道usr_ id,我们最后再将usr_ id展示出来就可以了。\n\n最终结果：\n\n第二题:找出工资前3高的员工(相同工资并列排名)\n现在有Employee员工信息表和Department部门信息表，分别如下:\nEmployee员工信息表包括，每个员工对应的工号ld,姓名Name，工资Salary和部门编号Departmentld。\n\nDepartment部门]信息表包含部门]对应的编号ID和部门名称Name。\n\n编写一个SQL查询，找出每个部门获得前三高工资的所有员工\n例如，根据上述给定的表，查询结果应返回:\n\n解题思路:\n这里要注意是细节是，最终结果输出的是前三高工资的所有员工，有些员工的工资是一样的，每个部门可能不止3名员工符合这个要求。\n我们可以按照部门id (department_ id)给员工工资(salary) 排名，然后找出每个部门门前三高工资对应的所有员工。\n最终具体代码如下:\n\n专用窗口函数有: rank、 dense_ rank、row_ number\n基本语法: < 窗口函数> over (partition by < 用于分组的列名 > order by < 用于排序的列名>)\nover关键字用来指定函数执行的窗口范围,若后面括号中什么都不写，则意味着窗口包含满足WHERE条件的所有行，窗口函数基于所有行进行计算;\n\n如果不为空,则支持以下4种语法来设置窗口。\npartition by子句:窗口按照哪些字段进行分组，窗口函数在不同的分组上分别执行\norder by子句:按照哪些字段进行排序,窗口函数将按照排序后的记录顺序进行编号\nframe子句: frame 是当前分区的一个子集,子句用来定义子集的规则,通常用来作为滑动窗口使用\nwindow_ name:给窗口指定-一个别名。如果SQL中涉及的窗口较多,采用别名可以看起来更清晰易读。\n如果本文对你有帮助，别忘记给我个3连 ，点赞，转发，评论，\n咱们下期见。",
+      "url": "https://zhuanlan.zhihu.com/p/518683950",
+      "author": {
+        "name": "小七",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-4128044e17c2801f2a9a68ae325fa139_l.jpg?source=4e949a73",
+        "headline": "程序猿   大数据 SQL",
+        "urlToken": "shi-shui-jia-de-xiao-qi-a",
+        "followerCount": 253
+      },
+      "voteUp": 6,
+      "commentCount": 0,
+      "publishedAt": 1653292504,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:570417030",
+      "type": "article",
+      "title": "SQL面试题（实战题-窗口函数）",
+      "excerpt": "<窗口函数> over (partition by <用于分组的列名> order by <用于排序的列名>)",
+      "content": "<窗口函数> over (partition by <用于分组的列名> order by <用于排序的列名>)\n求连续天数\n事件表event_all，里面记录了用户（uid）访问平台任意事件（event）的日期（event_date），求出连续3天及以上活跃的uid\n表结构：events_all（uid，event，event_date)\n步骤一：按照用户uid 和 活跃日期 event_date 分组，结果如图1\nSELECT event_date ,uid \nfrom event_all\ngroup by event_date,uid \n\n步骤二：依照用户uid分组，对活跃日期排序（升序），结果见图2 \nSELECT uid,event_date\n ,ROW_NUMBER()over(PARTITION by uid ORDER BY event_date) as t_rank\nfrom \n(\nSELECT event_date ,uid \nfrom event_all\ngroup by event_date,uid\n) p1\n步骤三：用活跃日期 event_date 减去 时间排序的序号，得到相对辅助列，如图3（可以之间2列相减得到数值如fz_sz，也可以选择用时间函数相减得到日期fz_rq\nSELECT uid,(event_date - t_rank) as fz_sz \n ,DATE_SUB(event_date,INTERVAL t_rank DAY) as fz_rq\nfrom \n (SELECT uid,event_date\n ,ROW_NUMBER()over(PARTITION by uid ORDER BY event_date) as t_rank\n from \n (\n SELECT event_date ,uid \n from alytestdb.event_all\n group by event_date,uid\n ) p1\n ) t1\n\n步骤四：同一个用户辅助列有几个及以上重复数值说明连续活跃多少天。题目中求3天及以上，则辅助列有3个及以上重复值，按照uid 分组，求fz_sz 大于等于3，结果如图四\nSELECT uid,(event_date - t_rank) as fz_sz \n ,DATE_SUB(event_date,INTERVAL t_rank DAY) as fz_rq\nfrom \n (SELECT uid,event_date\n ,ROW_NUMBER()over(PARTITION by uid ORDER BY event_date) as t_rank\n from \n (\n SELECT event_date ,uid \n from alytestdb.event_all\n group by event_date,uid\n ) p1\n ) t1\ngroup by uid \nHAVING COUNT(fz_sz) >= 3 \n\n步骤五：按照题目要求，仅需要给出uid，如图5 \nSELECT uid \nfrom \n (SELECT uid,(event_date - t_rank) as fz_sz \n ,DATE_SUB(event_date,INTERVAL t_rank DAY) as fz_rq\n from \n (SELECT uid,event_date\n ,ROW_NUMBER()over(PARTITION by uid ORDER BY event_date) as t_rank\n from \n (\n SELECT event_date ,uid \n from alytestdb.event_all\n group by event_date,uid\n ) p1\n ) t1\n group by uid \n HAVING COUNT(fz_sz) >= 3 \n ) a",
+      "url": "https://zhuanlan.zhihu.com/p/570417030",
+      "author": {
+        "name": "数据旅行家",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-367703e2d920de01d71422b76e9c8427_l.jpg?source=4e949a73",
+        "headline": "探索数据宝藏，引领职场蜕变。与我一起解析数据，提升自我",
+        "urlToken": "qiu-feng-de-xiao-ya-tou",
+        "followerCount": 73
+      },
+      "voteUp": 5,
+      "commentCount": 0,
+      "publishedAt": 1665127570,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:575261142",
+      "type": "article",
+      "title": "SQL面试题（实战题-窗口函数真题）",
+      "excerpt": "group by a.d_id 简便新思路：运用窗口函数降序和升序获取最高和最低，条件去掉后取均值 解题思路",
+      "content": "字节：计算除去部门最高工资，和最低工资的平均工资\n表结构：event(uid,d_id,salary) 员工id，部门id，工资\n表结构和结果呈现如下：\n传统笨思路：找到每个最高工资，最低工资，（部门总工资-最高工资-最低工资）/（部门总人数-2）\nSELECT a.d_id,(SUM(salary)-maxs-mins)/(COUNT(uid) -2) as jz\nfrom \n (SELECT uid,d_id,salary\n from event \n ) a \nleft join\n (SELECT d_id,MAX(salary) as maxs\n from event \n group by d_id) b \n on a.d_id = b.d_id\nleft join\n (SELECT d_id,min(salary) as mins\n from event \n group by d_id) c \n on a.d_id = c.d_id\ngroup by a.d_id\n\n简便新思路：运用窗口函数降序和升序获取最高和最低，条件去掉后取均值\n解题思路：按照部门，正序工资排序，最低薪资排名为1；取排名大于1，即去掉最低值；\n 按照部门，倒序工资排序，最高薪资排名为1；取排名大于1，即去掉最高值；\n 剩下即符合条件的用户，按照部门分组，取平均薪资，可用平均值函数AVG，也可用SUM(salary)/COUNT(uid)\nSELECT d_id,AVG(salary) as jz\nfrom \n (SELECT uid,d_id,salary,\n ROW_NUMBER()over(PARTITION by d_id ORDER by salary ) as t_rank1,\n ROW_NUMBER()over(PARTITION by d_id ORDER by salary desc ) as t_rank2\n from event \n ) a \nwhere t_rank1 > 1 and t_rank2 > 1 \ngroup by d_id",
+      "url": "https://zhuanlan.zhihu.com/p/575261142",
+      "author": {
+        "name": "数据旅行家",
+        "avatarUrl": "https://pic1.zhimg.com/50/v2-367703e2d920de01d71422b76e9c8427_l.jpg?source=4e949a73",
+        "headline": "探索数据宝藏，引领职场蜕变。与我一起解析数据，提升自我",
+        "urlToken": "qiu-feng-de-xiao-ya-tou",
+        "followerCount": 73
+      },
+      "voteUp": 1,
+      "commentCount": 1,
+      "publishedAt": 1666236495,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "answer:3464948229",
+      "type": "answer",
+      "title": "数据分析面试必备——SQL窗口函数你会了吗？",
+      "excerpt": "我们讨论面试中各大厂的SQL算法面试题，往往核心考点就在于窗口函数，所以掌握好了窗口函数，面对SQL算法面试往往事半功倍",
+      "content": "1.综述\n我们讨论面试中各大厂的SQL算法面试题，往往核心考点就在于窗口函数，所以掌握好了窗口函数，面对SQL算法面试往往事半功倍。\n已更新第一类聚合函数类，点击这里阅读 hive窗口函数聚合函数类\n本节介绍Hive聚合函数中的第二类聚合函数：分组排序窗口函数。\n这些函数的用法不仅仅适用于Hive，对于很多数数据库来说同样也适用，比如SparkSQL，FlinkSQL以及Mysql8，Oracle，MSSQL等传统的关系型数据库。\n如果论使用的广泛性，hive窗口函数中我们使用最广泛的就是排序类窗口函数，我们通常一提起窗口函数，想到的就是这类排序类窗口函数，它在我们进行数据去重中扮演了至关重要的角色。\n1.1 Hive窗口函数分类\nHive提供的窗口函数可以分为一下几类\n聚合函数类\ncount() over();\nsum() over();\nmax() over();\nmin() over();\navg() over();\n\n分组排序类\nrow_number() over();\nrank() over();\ndense_rank() over();\npercent_rank() over();\ncume_dist() over();\nntile() over();\n\n求偏移量类\nlead() over();\nlag() over();\nfirst_value() over();\n\n1.2 分析函数语法\n分析函数 over(partition by 列名 order by 列名 rows between 开始位置 and 结束位置)\n\n具体解析\nover()\n括号内为空时，是直接进行计算。\n其中partition by 列名 \n是按指定列进行分组，进而进行计算。\n最后的order by 列名\n 是按照指定列进行排序，进而进行计算。\n1.3 基础数据准备\ncreate table if not exists temp.user_info (\n `id` bigint comment '用户id',\n `client` string comment '客户端',\n `gender` int comment '性别，0女1男',\n `constellation` string comment '星座',\n `age` int comment '年龄',\n `pv` bigint comment '访问量',\n `chat_num` bigint comment '聊天次数'\n) comment '用户信息测试临时表' \n\n数据预览\nidclientgenderconstellationagepvchat_num\n1ios0处女座291743\n2ios1双鱼座262632\n3android1双鱼座3523239\n4ios1水瓶座32573\n5ios1射手座33676\n6ios1双子座36815\n7ios1狮子座29684\n8ios1狮子座28193\n9ios0射手座324792\n10ios1白羊座2625536\n2.各分组排序类函数的使用\n2.1 row_number\n功能\n按照排序的顺序输出窗口中的数据的行号信息，不会出现排名相同的情况，且排名是连续的。即使是值相同，排名也会按照其排序顺序递增。\n示例\n按照星座分组，统计出pv由高到低的排名。\nselect id,client,gender,row_number() over(partition by constellation order by pv desc) as rank_id\nfrom temp.user_info where id <= 10\n\n数据结果：\nidclientgenderconstellationpvrank_id\n6ios1双子座811\n2ios1双鱼座2631\n3android1双鱼座2322\n1ios0处女座1741\n9ios0射手座4791\n5ios1射手座672\n4ios1水瓶座571\n7ios1狮子座681\n8ios1狮子座192\n10ios1白羊座2551\n可以很清晰的看到按星座分组，每个星座内部的PV排名的id。例如，射手座用户id9排名第一，用户id5排名第二。\n拓展使用：\n更深一步的需求是筛出每个星座最高pv的用户，（或者说按星座去重，只取最高访问pv的用户）\n \n再更进一步还可以计算诸如最大在线天数等SQL问题。\n \n业务中常用用法为通过指定主键进行数据去重。\n \n2.2 rank\n功能\n按照指定列进行排名，如果值相同，则排名并列，下一个排名会出现跳跃，即排名是不连续的。例如有前2个值一样，那么前2行并列第一，第3行的排名则为3。\n示例\n按使用客户端分组，统计年龄由高到低的排名。\nselect id,client,age,rank() over(partition by client order by age desc) as rank_id\nfrom temp.user_info where id <= 10\n\n数据结果：\nidclientagerank_id\n3android351\n6ios361\n5ios332\n9ios323\n4ios323\n1ios295\n7ios295\n8ios287\n2ios268\n10ios268\n可以看到上述信息中，通过安卓和iOS客户端的年龄大小排名。其中32岁两个并列第三，没有第四名，直接开始第五名。相同值进行并列。rank_id的排名是不连续的。\n拓展使用：\n常用于指定排名场景。\n2.3 dense_rank\n功能\n该函数可以和rank()\n对照使用，按照指定列排序的顺序输出窗口中的数据的排名，如果值相同时，排名并列，下一个排名是连续递增的，不会出现跳跃情况。即如果前2行的值相同，则前2行并列第1，第3行的排名则为第2。\n可以理解为一个为疏松排名（rank）,一个为密集排名（dense_rank）\n示例\n按使用客户端分组，统计年龄由高到低的排名。\nselect id,client,age,dense_rank() over(partition by client order by age desc) as rank_id\nfrom temp.user_info where id <= 10\n\n数据结果：对比上文\nidclientagerank_id\n3android351\n6ios361\n5ios332\n9ios323\n4ios323\n1ios294\n7ios294\n8ios285\n2ios266\n10ios266\n可以看到，排名没有出现跳跃，是连续的，相同排名并列其名次。例如ios的32岁两个并列第三老。\n拓展使用\n和rank相反，我希望出现不中断的排名，这样的使用场景。\n2.4 percent_rank\n功能\n见名知意，按百分比进行排名。\n与 percent 函数类似，percent_rank （分布函数）函数的窗口 order by 子句所指定列中的值的返回值，是介于 0 和 1 之间的小数形式表示。\n计算方法\n(rank - 1) / (n - 1)\n\nrank为上述rank()\n函数的排名，n 为当前窗口的总数。\n示例\n按使用客户端分组，统计年龄由高到低的百分比排名（percent_rank）。\n另一种问法:某某用户的年龄（或者其他指标）在ios客户端排名前百分之多少?\nselect id,client,age,percent_rank() over(partition by client order by age desc) as rank_id\nfrom temp.user_info where id <= 10\n\n数据结果：\nidclientagerank_id\n3android350.0\n6ios360.0\n5ios330.125\n9ios320.25\n4ios320.25\n1ios290.5\n7ios290.5\n8ios280.75\n2ios260.875\n10ios260.875\n可以看出，用户9和4的年龄32岁排名ios客户端前百分之二十五，其并列排名。\n拓展使用\n该函数经常用于较大数据量的百分比占比分析，也常用于探究数据分布分析场景。\n例如可以通过分布函数踢除极值，进而求解均值，降低数据误差。\n2.5 cume_dist\n功能\n如果按升序排列，则统计：小于等于当前值的行数所占当前分区窗口总行数的比例。(number of rows ≤ current row)/(total number of rows）。\n如果是降序排列，则统计：大于等于当前值的行数所占当前分区窗口总行数的比例。\n示例\n1.统计小于等于当前年龄的人数占总人数的比例。\n另一种问法：小于等于29岁的人占总人数的比例。\nselect id,client,age,cume_dist() over(order by age desc) as rank_id\nfrom temp.user_info where id <= 10\norder by age\n\n数据结果：\nidclientagerank_id\n2ios260.2\n10ios260.2\n8ios280.3\n1ios290.5\n7ios290.5\n4ios320.7\n9ios320.7\n5ios330.8\n3android350.9\n6ios361.0\n可以看到小于等于29岁所占人群的总比例为50%。\n2.统计当前客户端分区小于等于当前年龄的人数占总人数的比例。\n另一种问法：ios客户端小于等于29岁的人占总人数的比例。\nselect id,client,age,cume_dis…",
+      "url": "https://www.zhihu.com/question/586429007/answer/3464948229",
+      "author": {
+        "name": "鲁边",
+        "avatarUrl": "https://pic1.zhimg.com/50/v2-6845982fbadfec5ac83170dadb1895c7_l.jpg?source=4e949a73",
+        "urlToken": "lubianplus",
+        "followerCount": 87
+      },
+      "voteUp": 10,
+      "commentCount": 0,
+      "publishedAt": 1713017791,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:495785924",
+      "type": "article",
+      "title": "面试被经常问的SQL窗口函数，实战来啦",
+      "excerpt": "要想到用《猴子从零学会SQL》里讲过的窗口函数来解决这类业务问题。 用窗口函数获取顺序有三种：rank()",
+      "content": "【面试题】\n\n有一张“学生成绩表”，包含4个字段：班级id、学生id、课程id、成绩。\n\n问题1：求出每个学生成绩最高的三条记录\n\n问题2：找出每门课程都高于班级课程平均分的学生\n\n【解题步骤】\n\n1. topN问题\n\n问题1是常见的排名问题（topN问题），要想到用《猴子从零学会SQL》里讲过的窗口函数来解决这类业务问题。\n\n用窗口函数获取顺序有三种：rank()，dense_rank()和row_number()。\n\n同样是按“值”从小到大排序，三者的区别如下：\n\n根据问题的描述，我们应该使用dense_rank窗户函数\n1 select *\n2 from (\n3 select *,\n4 dense_rank() over (partition by 班级id,学生id \n5 order by 成绩 desc) as 顺序\n6 from 学生成绩表\n7 ) t1\n8 where 顺序 <= 3;\n查询结果：\n\n2. 汇总分析\n\n问题2要求找出每门课程都高于班级课程平均分的学生，可以拆解成以下几个问题：\n\n1）求出每个班级，每门课程的平均分\n\n2）将学生每门课程的成绩与所在班级的对应课程平均分相减，结果大于0就说明该学生的这门成绩高于课程平均分\n\n3）“找出每门课程都高于班级课程平均分的学生”说明对于学生来说，最小的“相减结果”都是大于0的\n\n首先用汇总分析求出每个班级，每门课程的平均分。\n1 select 班级id,课程id,avg(成绩) as 课程平均分\n2 from 学生成绩表\n3 group by 班级id,课程id;\n查询结果：\n\n3. 多表联结\n\n涉及到多表查询，需要用到多表联结。\n\n这里目的是为了将“将学生每门课程的成绩与所在班级的对应课程平均分相减”。\n\n所以，是将原始的“学生成绩表”与“班级的课程平均分”进行联结。\n\n为了保持左表“学生成绩表”的所有数据，将所有学生的成绩都与“课程平均分”x相减，所以选择“左联结（left join）”。\n\n1 select t1.班级id,t1.学生id,t1.课程id,t1.成绩,\n2 t1.成绩 - t2.课程平均分 as 相减结果\n3 from 学生成绩表 t1\n4 left join (\n5 select 班级id,课程id,avg(成绩) as 课程平均分\n6 from 学生成绩表\n7 group by 班级id,课程id\n8 ) t2 on t1.班级id = t2.班级id and t1.课程id = t2.课程id;\n\n最后使用分组汇总，并结合having条件筛选出“相减结果的最小值大于0”的学生。\n1 select 班级id,学生id\n2 from (\n3 select t1.班级id,t1.学生id,t1.课程id,t1.成绩,\n4 t1.成绩 - t2.课程平均分 as 相减结果\n5 from 学生成绩表 as t1\n6 left join (\n7 select 班级id,课程id,avg(成绩) as 课程平均分\n8 from 学生成绩表\n9 group by 班级id,课程id\n10 ) as t2 on t1.班级id = t2.班级id and t1.课程id = t2.课程id\n11 ) as tmp\n12 group by 班级id,学生id\n13 having min(相减结果) > 0;\n\n【本题考点】\n\n1.考查对分组汇总的了解，以及灵活使用来解决业务问题；\n\n2.考查对多表联结的了解，以及灵活使用来解决业务问题；\n\n3）考查对窗口函数的了解，窗户函数解决的经典问题就那么几种，记下来，就可以解决99%的业务问题，详细见《猴子从零学会SQL》。\n\n推荐：如何从零学会SQL？",
+      "url": "https://zhuanlan.zhihu.com/p/495785924",
+      "author": {
+        "name": "中科院猴子",
+        "avatarUrl": "https://pic1.zhimg.com/50/v2-12ef91a3f1e91e70bd3480d755e058b1_l.jpg?source=4e949a73",
+        "urlToken": "houziliaorenwu",
+        "followerCount": 395983
+      },
+      "voteUp": 17,
+      "commentCount": 2,
+      "publishedAt": 1649499893,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:663696021",
+      "type": "article",
+      "title": "10道不可不会的SQL面试题",
+      "excerpt": "如何在SQL中使用窗口函数？ 在SQL中，窗口函数是一种在窗口规范定义的一组行上操作的函数。窗口函数用于在行之间执行计算",
+      "content": "本文将列出十个常见的高级数据科学SQL面试问题及答案。\n简介\nSQL（结构化查询语言）是一种标准的编程语言，用于管理和操作数据库。对于任何数据专业人员来说，这都是一项基本技能，因为它使他们能够有效地检索和分析存储在数据库中的数据。因此，在与数据相关的职位（如数据分析师、数据工程师和数据库管理员）的技术面试中，SQL是一个常见的话题。\n问题 01\n查找第n高的工资/付款或第三高的工资/付款的SQL查询\n要查找第n高的工资，可以使用子查询和DENSE_RANK()函数计算每个工资的密集排名，然后过滤结果，只包括排名等于n的行。\nSELECT \n * \nFROM \n (\n SELECT \n name, \n salary, \n DENSE_RANK() OVER (\n ORDER BY \n salary DESC\n ) as salary_rank \n FROM \n employees\n ) subquery \nWHERE \n salary_rank = n;\n你还可以使用LIMIT和OFFSET子句来查找第n高的工资，如下所示：\nSELECT \n name, \n salary \nFROM \n employees \nORDER BY \n salary DESC \nLIMIT \n 1 OFFSET (n - 1);\n例如，要查找第三高的工资，可以使用以下查询：\nSELECT \n name, \n salary \nFROM \n employees \nORDER BY \n salary DESC \nLIMIT \n 1 OFFSET 2;\n问题 02\n如何优化SQL查询以提高性能？\n有几种方法可以优化SQL查询以获得更好的性能，包括：\n索引\n在一个列或一组列上创建索引可以显著提高过滤这些列的查询速度。\n分区\n将一个大表分成更小的部分，可以提高只需要访问数据子集的查询性能。\n规范化\n规范化涉及将数据库中的数据组织起来，使每个数据只存储在一个位置，减少冗余并完善数据的完整性。\n使用适当的数据类型\n为每个列使用正确的数据类型可以提高过滤或排序这些列的查询性能。\n使用适当的JOIN类型\n使用正确的JOIN类型（例如INNER JOIN、OUTER JOIN、CROSS JOIN）可以提高连接多个表的查询性能。\n使用适当的聚合函数\n使用适当的聚合函数（例如SUM、AVG、MIN、MAX）可以提高对大数据集执行计算的查询性能。某些聚合函数（例如COUNT）比其他函数更有效，因此为你的查询选择适用的函数很重要。\n问题 03\n如何在SQL中使用LAG和LEAD函数？能否给出它们的使用示例？\nLAG()和LEAD()函数是SQL中的窗口函数，允许你将一行中的值与其前面或后面的行中的值进行比较。它们对于计算累计总数或将表中的值与前一个或后一个行中的值进行比较非常有用。\nLAG()函数需要两个参数：要返回的列和要返回多少行。例如：\nSELECT \n name, \n salary, \n LAG(salary, 1) OVER (\n ORDER BY \n salary DESC\n ) as prev_salary \nFROM \n employees;\nLEAD()函数的工作方式类似，但它是向前而不是向后。例如：\nSELECT \n name, \n salary, \n LEAD(salary, 1) OVER (\n ORDER BY \n salary DESC\n ) as next_salary \nFROM \n employees\n问题 04\n在SQL中解释ETL和ELT概念。\nETL（Extract，Transform，Load/提取、转换、加载）是SQL中用于从一个或多个源中提取数据、将数据转换为适合分析或其他用途的格式，然后将数据加载到目标系统（如数据仓库或数据湖）的过程。\nELT（Extract，Load，Transform/抽取、加载、转换）与ETL类似，但是转换阶段是在数据加载到目标系统后执行的，而不是在之前执行的。这使得目标系统可以执行转换，这可能比在ETL工具中执行转换更有效和更可扩展。现代数据基础架构通常使用强大的数据处理引擎（如Apache Spark或Apache Flink）来执行转换阶段。\n问题 05\n请解释SQL中WHERE子句和HAVING子句之间的区别。\nWHERE子句和HAVING子句都用于过滤SELECT语句中的行。两者之间的主要区别在于WHERE子句用于在GROUP BY操作之前过滤行，而HAVING子句用于在GROUP BY操作之后过滤行。\nSELECT \n department, \n SUM(salary) \nFROM \n employees \nGROUP BY \n department \nHAVING \n SUM(salary) > 100000;\n在此示例中，HAVING子句用于过滤掉任何工资总和少于100000的部门。这是在GROUP BY操作之后完成的，因此它只影响代表每个部门的行。\nSELECT \n * \nFROM \n employees \nWHERE \n salary > 50000;\n在此示例中，WHERE子句用于过滤掉工资少于50000的员工。这是在任何GROUP BY操作之前完成的，因此它会影响到员工表中的所有行。\n问题 06\n请解释SQL中TRUNCATE、DROP和DELETE操作之间的区别。\nTRUNCATE\nTRUNCATE操作从表中删除所有行，但不影响表的结构。它比DELETE更快，因为它不生成任何撤消或重做日志，并且不触发任何删除触发器。\n以下是使用TRUNCATE语句的示例：\nTRUNCATE TABLE employees;\n该语句从员工表中删除所有行，但表结构（包括列名和数据类型）保持不变。\nDROP\nDROP操作从数据库中删除一个表并删除表中的所有数据。它还会删除与表相关联的任何索引、触发器和约束。\n以下是使用DROP语句的示例：\nDROP \n TABLE employees;\n该语句从数据库中删除员工表，并永久删除表中的所有数据。表结构也被删除。\nDELETE\nDELETE操作从表中删除一个或多个行。它允许你指定WHERE子句以选择要删除的行。它还生成撤消和重做日志，并触发取消触发器。\n以下是使用DELETE语句的示例：\nDELETE FROM \n employees \nWHERE \n salary & lt;\n50000;\n该语句删除员工表中所有工资小于50000的行。表结构保持不变，已删除的行可以使用撤消日志进行恢复。\n问题 07\n连接和子查询哪个更有效？\n在组合来自多个表的数据时，通常使用JOIN要比子查询更有效。这是因为JOIN允许数据库使用连接表上的索引更有效地执行查询。\n例如，考虑以下两个返回相同结果的查询：\nSELECT \n * \nFROM \n orders o \nWHERE \n o.customer_id IN (\n SELECT \n customer_id \n FROM \n customers \n WHERE \n country = 'US'\n );\n\nSELECT \n * \nFROM \n orders o \nWHERE \n o.customer_id IN (\n SELECT \n customer_id \n FROM \n customers \n WHERE \n country = 'US'\n );\n第一个查询使用JOIN将订单表和客户表组合起来，然后使用WHERE子句过滤结果。第二个查询使用子查询从客户表中选择相关的客户ID，然后使用IN运算符根据这些ID过滤订单表。\n问题 08\n如何在SQL中使用窗口函数？\n在SQL中，窗口函数是一种在窗口规范定义的一组行上操作的函数。窗口函数用于在行之间执行计算，并可用于SELECT、UPDATE和SQL面试问题语句，以及SELECT语句的WHERE和HAVING子句中。\n以下是在SELECT语句中使用窗口函数的示例：\nSELECT \n name, \n salary, \n AVG(salary) OVER (PARTITION BY department_id) as avg_salary_by_department \nFROM \n employees\n该语句返回一个带有三列的结果集：姓名、工资和avg_salary_by_department。avg_salary_by_department列使用AVG窗口函数计算每个部门的平均工资。PARTITION BY子句指定窗口按department_id分区，这意味着平均工资是单独计算每个部门的。\n问题 09\n请解释规范化。\n规范化是以减少冗余和依赖性的方式组织数据库的过程。它是一种系统化的方法，用于分解表以消除数据冗余并提高数据完整性。有几种规范形式可用于规范化数据库。最常见的规范形式是：\n第一范式（1NF）\n表中的每个单元格都包含一个值，而不是值列表。\n表中的每列都有一个唯一的名称。\n表中不包含任何重复的列组。\n第二范式（2NF）\n符合第一范式。\n没有任何部分依赖（即，非主属性依赖于复合主键的一部分）。\n第三范式（3NF）\n符合第二范式。\n没有任何传递依赖（即，一个非主属性依赖于另一个非主属性）。\nBoyce-Codd范式（BCNF）\n符合第三范式。\n每个决定因素（决定另一个属性值的属性）都是候选键（可以用作主键的列或列集）。\n问题 10\n解释SQL中的独占锁和更新锁。\n独占锁是一种防止其他事务读取或写入被锁定的行的锁。这种类型的锁通常用于当一个事务需要修改表中的数据时，它要确保没有其他事务可以同时访问该表…",
+      "url": "https://zhuanlan.zhihu.com/p/663696021",
+      "author": {
+        "name": "Python情报站",
+        "avatarUrl": "https://picx.zhimg.com/50/v2-4381fd578ecb8b4a9bc338ec3f22cd6c_l.jpg?source=4e949a73",
+        "urlToken": "python_study",
+        "followerCount": 707
+      },
+      "voteUp": 7,
+      "commentCount": 0,
+      "publishedAt": 1698825311,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    },
+    {
+      "id": "article:574820802",
+      "type": "article",
+      "title": "Hive SQL 大厂必考常用窗口函数及相关面试题",
+      "excerpt": "目录 一、窗口函数概述： 1.窗口函数的分类 2.窗口函数与普通聚合函数的区别： 二、窗口函数的基本用法",
+      "content": "全网最全大数据面试提升手册！\n\n目录一、窗口函数概述：\n1.窗口函数的分类\n2.窗口函数与普通聚合函数的区别：\n二、窗口函数的基本用法\n1.基本语法\n2.设置窗口的方法\n1）window_name\n2）partition by 子句\n3) order by子句\n4）rows 指定窗口大小\n3.开窗函数中加order by 和 不加 order by的区别\n三、窗口函数用法举例\n1.序号函数：row_number() / rank() / dense_rank()（面试重点）\n2.分布函数：percent_rank() / cume_dist()\n3.前后函数 lag(expr,n,defval)、lead(expr,n,defval)（面试重点）\n4.头尾函数：FIRST_VALUE(expr),LAST_VALUE(expr)\n5.聚合函数+窗口函数联合使用\n四、面试题\n1.用户行为分析\n2.学生成绩分析\n一、窗口函数概述：\n窗口函数也称为OLAP函数，OLAP 是OnLine Analytical Processing 的简称，意思是对数据库数据进行实时分析处理。例如，市场分析、创建财务报表、创建计划等日常性商务工作。窗口函数就是为了实现OLAP 而添加的标准SQL 功能。\n1. 窗口函数的分类按照功能划分：\n序号函数：row_number() / rank() / dense_rank()\n\n分布函数：percent_rank() / cume_dist()\n\n前后函数：lag() / lead()\n\n头尾函数：first_val() / last_val()\n\n聚合函数+窗口函数联合：\n\n求和 sum() over()\n\n求最大/小 max()/min() over()\n\n求平均 avg() over()\n\n其他函数：nth_value() / nfile()\n\n如上，窗口函数的用法多种多样，不仅有专门的的窗口函数，还可以与聚合函数配合使用。\n2. 窗口函数与普通聚合函数的区别：聚合函数是将多条记录聚合为一条；窗口函数是每条记录都会执行，有几条记录执行完还是几条。\n窗口函数兼具GROUP BY 子句的分组功能以及ORDER BY 子句的排序功能。但是，PARTITION BY 子句并不具备 GROUP BY 子句的汇总功能。\n举例：若原表中有id一样的10行数据，使用GROUP BY，返回的结果是将多条记录聚合成一条；而使用 rank() 等窗口函数并不会减少原表中 记录的行数，结果中仍然包含 10 行数据。\n窗口函数兼具分组和排序两种功能。\n二、窗口函数的基本用法\n如有基础数据：\ndroptableifexistsexam_record;\nCREATETABLEexam_record(\nidintPRIMARYKEYAUTO_INCREMENTCOMMENT'自增ID',\nuidintNOTNULLCOMMENT'用户ID',\nexam_idintNOTNULLCOMMENT'试卷ID',\nstart_timedatetimeNOTNULLCOMMENT'开始时间',\nsubmit_timedatetimeCOMMENT'提交时间',\nscoretinyintCOMMENT'得分'\n)CHARACTERSETutf8COLLATEutf8_general_ci;\n\nINSERTINTOexam_record(uid,exam_id,start_time,submit_time,score)VALUES\n(1006,9003,'2021-09-0710:01:01','2021-09-0710:21:02',84),\n(1006,9001,'2021-09-0112:11:01','2021-09-0112:31:01',89),\n(1006,9002,'2021-09-0610:01:01','2021-09-0610:21:01',81),\n(1005,9002,'2021-09-0510:01:01','2021-09-0510:21:01',81),\n(1005,9001,'2021-09-0510:31:01','2021-09-0510:51:01',81),\n(1004,9002,'2021-09-0510:01:01','2021-09-0510:21:01',71),\n(1004,9001,'2021-09-0510:31:01','2021-09-0510:51:01',91),\n(1004,9002,'2021-09-0510:01:01','2021-09-0510:21:01',80),\n(1004,9001,'2021-09-0510:31:01','2021-09-0510:51:01',80);\n\nselectuid,scorefromexam_record;\n1. 基本语法<窗口函数>OVER([PARTITIONBY<列名清单>]ORDERBY<排序列名清单>[rowsbetween开始位置and结束位置])\n其中：\n<窗口函数>：指需要使用的分析函数，如row_number()、sum()等。\nover() : 用来指定函数执行的窗口范围，这个数据窗口大小可能会随着行的变化而变化；\n如果括号中什么都不写，则意味着窗口包含满足WHERE条件的所有行，窗口函数基于所有行进行计算。如：\nselect\nuid,\nscore,\nsum(score)over()assum_score\nfromexam_record\n结果：\nsum(score) over() as sum_score 会聚合所有的数据，将结果接到每一行的后面(窗口函数不会改变结果原表行数)。\n2. 设置窗口的方法如果不为空,则支持以下4中语法来设置窗口。\n1）window_name\n给窗口指定一个别名。如果SQL中涉及的窗口较多,采用别名可以看起来更清晰易读，如：\n--给窗口指定别名：WINDOW my_window_name AS (PARTITION BY uid ORDER BY score)\nSELECT\nuid,\nscore,\nrank()OVERmy_window_nameASrk_num,\nrow_number()OVERmy_window_nameASrow_num\nFROMexam_record\nWINDOWmy_window_nameAS(PARTITIONBYuidORDERBYscore)\n2）partition by 子句\n窗口按照哪些字段进行分组,窗口函数在不同的分组上分别执行，如：\n实例1：\nSELECT\nuid,\nscore,\nsum(score)OVER(PARTITIONBYuid)ASsum_score\nFROMexam_record\n结果：\nsum(score) OVER(PARTITION BY uid) AS sum_score 会按照 uid 分组，分别求和，展示在每个分组的末尾。\n如果我想看某个uid有多少行记录，并标明序号该如何实现？使用序号函数row_number()请看：\nSELECT\nuid,\nscore,\nrow_number()OVER(PARTITIONBYuid)ASrow_num\nFROMexam_record\n可以看到，row_number()按照uid分组并从上到下按照顺序标号。我们看到1004中的score是无序的，如果想按照score降序排名应该怎么做呢？(实际场景：成绩排名)\n可以结合 order by 子句实现\n3）order by子句\n按照哪些字段进行排序,窗口函数将按照排序后的记录顺序进行编号，如：\nSELECT\nuid,\nscore,\nrow_number()OVER(PARTITIONBYuidORDERBYscoredesc)ASrow_num\nFROMexam_record\n这样就实现了每个uid内的分数降序排名，order by 后面可以跟多个列名，大家可以试一试。\n当order by 与聚合类函数连用时，特别需要注意理解，如下面几个例子：\n先看前面的例子，单独使用 partition by uid\nSELECT\nuid,\nscore,\nsum(score)OVER(PARTITIONBYuid)ASsum_score\nFROMexam_record\n结果：\n单独使用order by uid\nSELECT\nuid,\nscore,\nsum(score)OVER(ORDERBYuid)ASsum_score\nFROMexam_record\n结果：\n注意观察uid 从1004->1005的变化，两条SQL的结果有什么不同：\npartition by 按照uid分组，分别对score求和，”接到每一行的末尾“\n\n分组内求和，分组间相互独立。\n\norder by 按照uid排序，对”序号“相同的元素进行求和，不同”序号“的数累加求和\n\n如果将”序号“认为是分组的话，个人理解这是一个分组求和并累加的过程\n\n即分组内求和，分组间累加。\n\n再看，order by score 的例子\nSELECT\nuid,\nscore,\nsum(score)OVER(ORDERBYscore)ASsum_score\nFROMexam_record\n结果：\n总结一下：\n如果使⽤环境为hive，over()开窗函数前分排序函数和聚合函数两种。\n当为排序函数，如row_number(),rank()等时，over中的order by只起到窗⼝内排序作⽤。\n当为聚合函数，如max，min，coun…",
+      "url": "https://zhuanlan.zhihu.com/p/574820802",
+      "author": {
+        "name": "王知无",
+        "avatarUrl": "https://pica.zhimg.com/50/v2-27358cfbb9c3d21373f9b37da0caf69b_l.jpg?source=4e949a73",
+        "headline": "大数据专家，大数据提高班&amp;简历一对一：whispererrr",
+        "urlToken": "wang-zhi-wu-66",
+        "followerCount": 4955
+      },
+      "voteUp": 5,
+      "commentCount": 2,
+      "publishedAt": 1666082530,
+      "provider": "justone",
+      "query": "SQL 窗口函数 面试"
+    }
+  ]
+}

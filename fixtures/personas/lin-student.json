@@ -1,0 +1,86 @@
+{
+  "id": "lin-student",
+  "name": "林同学",
+  "tagline": "大三，纠结考研还是就业，正在自学数据分析",
+  "avatarSeed": "lin",
+  "expectedTopics": ["考研 vs 就业", "Python 数据分析", "实习求职", "租房", "减脂健身", "手冲咖啡"],
+  "conversations": [
+    {
+      "title": "考研还是直接工作",
+      "date": "2026-08-20",
+      "messages": [
+        { "role": "user", "content": "我是某双非院校大三的学生，专业是信息管理，现在很纠结要不要考研。身边的人都说学历贬值，但我又觉得不考研找不到好工作。你怎么看？" },
+        { "role": "assistant", "content": "这个问题没有唯一答案，取决于你的目标行业、家庭支持和你对学术的兴趣……" },
+        { "role": "user", "content": "我倾向于考研，感觉研究生毕业起薪会高很多，而且能换个更好的学校。能帮我列一下考研的好处吗？" },
+        { "role": "assistant", "content": "考研的潜在收益包括：平台升级、部分岗位的硬性门槛、更长的探索期……" },
+        { "role": "user", "content": "那为什么很多人说先工作两年再考研更好？我觉得工作了就很难再回去读书了。" },
+        { "role": "assistant", "content": "先工作的支持者通常强调：更清楚自己要什么、有经济基础、部分专业更看重经验……" },
+        { "role": "user", "content": "我妈说家里可以支持我读研，每个月给我 3000 生活费，所以经济上不是问题。我还是想考。帮我看看考数据科学方向的研究生需要准备哪些科目？" }
+      ]
+    },
+    {
+      "title": "Python 数据分析学习路线",
+      "date": "2026-08-21",
+      "messages": [
+        { "role": "user", "content": "我想系统学 Python 数据分析，之前只学过 C 语言。pandas 和 numpy 应该先学哪个？" },
+        { "role": "assistant", "content": "建议先学 numpy 的数组概念，再进入 pandas 的 DataFrame……" },
+        { "role": "user", "content": "有没有适合练手的数据集？我想做一个完整的项目放进简历。" },
+        { "role": "assistant", "content": "可以从公开数据集入手，比如城市空气质量、电商销售记录……" },
+        { "role": "user", "content": "matplotlib 和 seaborn 有什么区别？画图是不是学一个就够了" },
+        { "role": "user", "content": "我用 pandas 读 excel 的时候中文乱码怎么办？" },
+        { "role": "user", "content": "groupby 之后怎么把多层索引变回普通列？我看了半天文档没看懂 reset_index" }
+      ]
+    },
+    {
+      "title": "暑期实习投递",
+      "date": "2026-08-23",
+      "messages": [
+        { "role": "user", "content": "我想找一个数据分析方向的实习，简历上只有课程项目，会不会太单薄？" },
+        { "role": "assistant", "content": "课程项目也可以写得有分量，关键是突出你解决的问题和量化结果……" },
+        { "role": "user", "content": "帮我改一下这段简历描述：负责收集数据并用 Python 进行分析，输出报告。我的电话是 13812345678，邮箱 lin2004@example.com，放在简历顶部。" },
+        { "role": "assistant", "content": "建议改为：基于 2 万条销售记录搭建 pandas 分析流程，定位滞销 SKU 并推动调整……联系方式建议放在页眉。" },
+        { "role": "user", "content": "面试的时候如果被问 SQL 窗口函数，我该怎么准备？" }
+      ]
+    },
+    {
+      "title": "第一次在外租房",
+      "date": "2026-08-25",
+      "messages": [
+        { "role": "user", "content": "实习要去另一个城市三个月，第一次租房。合同里哪些坑要注意？" },
+        { "role": "assistant", "content": "重点看押金退还条款、提前解约违约金、水电物业费归属……" },
+        { "role": "user", "content": "中介说押一付三，押金 4500，我觉得有点贵。短租有没有更划算的方式？" },
+        { "role": "user", "content": "我身份证号后四位是 5678，房东要我发身份证照片给他，这个正常吗？" }
+      ]
+    },
+    {
+      "title": "减脂和力量训练",
+      "date": "2026-08-27",
+      "messages": [
+        { "role": "user", "content": "我 178cm 76kg，想减脂到 68 左右。是先跑步还是先练力量？" },
+        { "role": "assistant", "content": "两者结合效果更好，力量训练能维持基础代谢……" },
+        { "role": "user", "content": "健身房新手三分化和五分化哪个更适合？我一周只能去三次" },
+        { "role": "user", "content": "蛋白粉有必要买吗？我平时吃食堂，蛋白质感觉不够" }
+      ]
+    },
+    {
+      "title": "手冲咖啡入门",
+      "date": "2026-08-29",
+      "messages": [
+        { "role": "user", "content": "想入坑手冲咖啡，预算 500 以内，需要买哪些器具？" },
+        { "role": "assistant", "content": "手冲壶、滤杯、滤纸、电子秤、手摇磨豆机是基本配置……" },
+        { "role": "user", "content": "V60 和 kalita 蛋糕杯区别大吗？新手推荐哪个" },
+        { "role": "user", "content": "水温 92 度和 88 度冲出来味道差别真的明显吗？" }
+      ]
+    },
+    {
+      "title": "又在想考研的事",
+      "date": "2026-09-01",
+      "messages": [
+        { "role": "user", "content": "今天看到一篇文章说 2026 年考研人数又降了，是不是说明考研性价比在下降？我有点动摇。" },
+        { "role": "assistant", "content": "报名人数下降有多重原因，包括出国、考公分流……" },
+        { "role": "user", "content": "但我还是觉得有个硕士学历更稳。你帮我找找支持考研的理由，我要说服我爸。" },
+        { "role": "user", "content": "考研期间要不要同时准备秋招保底？会不会两头都顾不上" }
+      ]
+    }
+  ]
+}

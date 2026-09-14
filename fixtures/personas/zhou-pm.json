@@ -1,0 +1,75 @@
+{
+  "id": "zhou-pm",
+  "name": "周产品",
+  "tagline": "五年 B 端产品经理，正在转向 AI Agent 方向",
+  "avatarSeed": "zhou",
+  "expectedTopics": ["AI Agent 产品设计", "RAG 检索增强", "AI 是否取代程序员", "大厂 vs 创业公司", "公路车骑行"],
+  "conversations": [
+    {
+      "title": "Agent 产品的边界怎么定",
+      "date": "2026-08-18",
+      "messages": [
+        { "role": "user", "content": "我在做一个面向销售团队的 AI Agent，老板希望它能自动写跟进邮件、更新 CRM、还能预测成单概率。我觉得功能太多了，怎么划边界？" },
+        { "role": "assistant", "content": "可以按「用户信任成本」排序：先做可撤销、低风险的动作……" },
+        { "role": "user", "content": "Agent 在执行工具调用前要不要每次都让用户确认？确认多了体验很差，但不确认出错了又很麻烦" },
+        { "role": "assistant", "content": "常见做法是分级：只读操作直接执行，写操作按影响范围决定是否确认……" },
+        { "role": "user", "content": "有没有比较好的 Agent 产品的交互范式可以参考？比如 Devin、Cursor 那种" },
+        { "role": "user", "content": "我们评估 Agent 好坏的指标应该看什么？任务完成率？用户接受率？" }
+      ]
+    },
+    {
+      "title": "RAG 效果不好怎么调",
+      "date": "2026-08-19",
+      "messages": [
+        { "role": "user", "content": "我们知识库问答用了 RAG，但经常检索到不相关的段落。chunk 大小设成 512 是不是太大了？" },
+        { "role": "assistant", "content": "chunk 大小要结合文档结构，同时可以试试父子 chunk、混合检索……" },
+        { "role": "user", "content": "rerank 模型值得加吗？会增加多少延迟" },
+        { "role": "user", "content": "用户问的问题和文档用词不一样时召回率很低，query rewrite 有用吗" },
+        { "role": "user", "content": "GraphRAG 是不是噱头？我们的文档大多是流程规范，实体关系不多" }
+      ]
+    },
+    {
+      "title": "AI 会不会取代程序员",
+      "date": "2026-08-22",
+      "messages": [
+        { "role": "user", "content": "我们团队用了 AI 编程工具之后，两个前端一周干完了以前一个月的活。我越来越觉得初级程序员这个岗位很快就会消失，你同意吗？" },
+        { "role": "assistant", "content": "生产力提升是确定的，但「岗位消失」还要看需求端的变化……" },
+        { "role": "user", "content": "我准备写一篇公众号文章论证「三年内初级开发岗会被 AI 取代大半」，帮我找几个有力的论据和数据" },
+        { "role": "assistant", "content": "可以引用生产力研究、招聘数据趋势……但也建议呈现反方观点以增强说服力。" },
+        { "role": "user", "content": "反方观点我知道，无非是「AI 只是工具」「需求会增加」，我觉得都站不住脚。再给我几个支持我观点的案例。" },
+        { "role": "user", "content": "那产品经理会被取代吗？说实话我有点焦虑" }
+      ]
+    },
+    {
+      "title": "要不要去创业公司",
+      "date": "2026-08-26",
+      "messages": [
+        { "role": "user", "content": "收到两个 offer：一个是大厂 AI 部门的高级产品经理，年薪 65 万；另一个是一家 30 人的 AI Agent 创业公司做产品负责人，现金少 20 万但有期权。我 32 岁，怎么选？" },
+        { "role": "assistant", "content": "关键变量包括：创业公司的现金流和赛道判断、你对不确定性的承受力……" },
+        { "role": "user", "content": "我更想去创业公司，感觉大厂做 AI 都是内耗和 PPT。创业公司能真正做产品。" },
+        { "role": "user", "content": "期权怎么估值？他们给的是 0.3%，估值 2 亿人民币。这个比例正常吗？" },
+        { "role": "user", "content": "创业公司倒闭率很高我知道，但我觉得这个赛道现在正是窗口期。帮我分析一下 AI Agent 赛道未来两年的机会。" }
+      ]
+    },
+    {
+      "title": "买第一辆公路车",
+      "date": "2026-08-30",
+      "messages": [
+        { "role": "user", "content": "想入门公路车，预算 8000 左右，主要是周末骑郊区。碳架和铝架差别大吗？" },
+        { "role": "assistant", "content": "这个预算铝架配好一点的套件更划算，碳架入门款反而牺牲了套件……" },
+        { "role": "user", "content": "105 和 Tiagra 套件差多少？值得加钱吗" },
+        { "role": "user", "content": "新手骑 60 公里需要注意什么？要不要买锁鞋" }
+      ]
+    },
+    {
+      "title": "Agent 评测框架",
+      "date": "2026-09-02",
+      "messages": [
+        { "role": "user", "content": "老板要我出一个 Agent 上线前的评测方案。除了准确率之外，还应该评测哪些维度？" },
+        { "role": "assistant", "content": "可以加上安全性（越权操作）、稳定性（同一任务多次运行的一致性）、成本……" },
+        { "role": "user", "content": "有没有开源的 Agent 评测框架推荐？我们主要是 tool calling 场景" },
+        { "role": "user", "content": "多智能体协作真的比单 Agent 好吗？我看到很多人说是过度设计" }
+      ]
+    }
+  ]
+}

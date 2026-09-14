@@ -1,0 +1,269 @@
+{
+  "self": {
+    "name": "平凡",
+    "urlToken": "jzwa",
+    "headline": "英国大学讲师（AP）｜AI｜专栏作家｜pingfan.me",
+    "avatarUrl": "https://pic1.zhimg.com/v2-9f81432bb5f397e14ec2c65e949eb0d3_xl.jpg?source=32738c0c&needBackground=1"
+  },
+  "followees": [
+    {
+      "name": "Kimi",
+      "urlToken": "moonshot-ai",
+      "headline": "Kimi 致力于寻求将能源转化为智能的最优解",
+      "avatarUrl": "https://picx.zhimg.com/v2-a80f01dfda5d59f4e5146b7444c0d7b5_l.jpg?source=32738c0c",
+      "followerCount": 6266
+    },
+    {
+      "name": "张绳武",
+      "urlToken": "zhang-zi-chuan-59",
+      "headline": "智人非终点",
+      "avatarUrl": "https://pica.zhimg.com/v2-38b357841183d4eeacf73fa46abe3d2f_l.jpg?source=32738c0c",
+      "followerCount": 3075
+    },
+    {
+      "name": "waterwu",
+      "urlToken": "watert",
+      "headline": "十年全栈开发工程师，业余摄影爱好者，创业中",
+      "avatarUrl": "https://picx.zhimg.com/v2-83470f9c7a6a3c3bc104efc8d0edaa6b_l.jpg?source=32738c0c",
+      "followerCount": 12194
+    },
+    {
+      "name": "momo",
+      "urlToken": "rwkv-56",
+      "headline": "",
+      "avatarUrl": "https://picx.zhimg.com/v2-80e292e09a90292579c128df558016b8_l.jpg?source=32738c0c",
+      "followerCount": 15141
+    },
+    {
+      "name": "Jeff Tao 陶建辉",
+      "urlToken": "jefftao",
+      "headline": "TDengine核心开发、涛思数据创始人",
+      "avatarUrl": "https://picx.zhimg.com/v2-94a17171b6df162e14cad00f33f4447b_l.jpg?source=32738c0c",
+      "followerCount": 28757
+    },
+    {
+      "name": "沈奕斐",
+      "urlToken": "chen-yi-fei-38-89",
+      "headline": "复旦大学社会学系副教授，《社会学爱情思维课》主讲人，",
+      "avatarUrl": "https://pic1.zhimg.com/v2-22d2f441a2fbf43ccb538479b18e91a9_l.jpg?source=32738c0c",
+      "followerCount": 687566
+    },
+    {
+      "name": "听空",
+      "urlToken": "jin-bi-chong-81",
+      "headline": "人啊。不应该只有此生此世，还应该有一个诗意的人生",
+      "avatarUrl": "https://pic1.zhimg.com/v2-672daa83867e9d54e0fd14da6c77b48d_l.jpg?source=32738c0c",
+      "followerCount": 11606
+    },
+    {
+      "name": "非典型HR.Yang",
+      "urlToken": "yang-1999",
+      "headline": "HR，工友与工贼间横跳",
+      "avatarUrl": "https://picx.zhimg.com/1d5eb2e269e9bc315fc43aa8e7ba51fd_l.jpg?source=32738c0c",
+      "followerCount": 975
+    },
+    {
+      "name": "思不思",
+      "urlToken": "lisong-8",
+      "headline": "对不起，多有打扰。",
+      "avatarUrl": "https://picx.zhimg.com/v2-4453f08cbd7d011826272e1e9dc74d7e_l.jpg?source=32738c0c",
+      "followerCount": 4615
+    },
+    {
+      "name": "MIT奶茶店长",
+      "urlToken": "boyuan99",
+      "headline": "OpenAI科学家",
+      "avatarUrl": "https://pica.zhimg.com/v2-a7605ff7de27367e069e303c61ca3f85_l.jpg?source=32738c0c",
+      "followerCount": 7755
+    },
+    {
+      "name": "Mercer",
+      "urlToken": "daleige",
+      "headline": "爱好广泛，喜欢扯淡",
+      "avatarUrl": "https://picx.zhimg.com/v2-ac3c228292977096511da034f4168750_l.jpg?source=32738c0c",
+      "followerCount": 53444
+    },
+    {
+      "name": "袁超",
+      "urlToken": "yuan-chao-98",
+      "headline": "马拉松、越野跑第13年。互联网营销和商业化运营工作十余年老兵",
+      "avatarUrl": "https://picx.zhimg.com/v2-a165d0dea96a77dfc29695cda0f1e6e2_l.jpg?source=32738c0c",
+      "followerCount": 26037
+    },
+    {
+      "name": "玩家翁伟",
+      "urlToken": "wuvist",
+      "headline": "不懂美食的CTO不是好的键盘侠",
+      "avatarUrl": "https://picx.zhimg.com/v2-6a75de62f6476adb53313dc3a0e8a25e_l.jpg?source=32738c0c",
+      "followerCount": 83016
+    },
+    {
+      "name": "吴伟",
+      "urlToken": "wu-wei-86",
+      "headline": "靠AI，年入百旺的吴老师",
+      "avatarUrl": "https://pic1.zhimg.com/738f27c39_l.jpg?source=32738c0c",
+      "followerCount": 48177
+    },
+    {
+      "name": "许欣然",
+      "urlToken": "ultimategeeker",
+      "headline": "空栈打杂师",
+      "avatarUrl": "https://pica.zhimg.com/v2-41d3a051ff11e219b510bb50d0340c05_l.jpg?source=32738c0c",
+      "followerCount": 3974
+    },
+    {
+      "name": "Valkla",
+      "urlToken": "valkla123",
+      "headline": "知乎美股实盘，定期分享理财投资心得 mdalpha.ai",
+      "avatarUrl": "https://pica.zhimg.com/0afacdc5211de306aeb338e0139e431e_l.jpg?source=32738c0c",
+      "followerCount": 110396
+    },
+    {
+      "name": "Yibo Zhu",
+      "urlToken": "yibozhu",
+      "headline": "",
+      "avatarUrl": "https://picx.zhimg.com/v2-deef54c9edb93462586e299f7ce5dc24_l.jpg?source=32738c0c",
+      "followerCount": 5086
+    },
+    {
+      "name": "Joy Chu",
+      "urlToken": "xi-wai-wai-10-89",
+      "headline": "THU AI4S博后，USTC物理化学博士，公众号：智算催化",
+      "avatarUrl": "https://picx.zhimg.com/v2-b7011f3942ed52baca846f12a7b20af6_l.jpg?source=32738c0c",
+      "followerCount": 17021
+    },
+    {
+      "name": "Kenneth Pan",
+      "urlToken": "kenneth-pan",
+      "headline": "一只颇有趣的蛋疼星人",
+      "avatarUrl": "https://picx.zhimg.com/v2-d8ad30227a22c096095968530dd5f1cc_l.jpg?source=32738c0c",
+      "followerCount": 68375
+    },
+    {
+      "name": "数字生命卡兹克",
+      "urlToken": "Khazix",
+      "headline": "希望能激发你对AI的好奇。",
+      "avatarUrl": "https://picx.zhimg.com/v2-9767bdf72d2d5087f1e1e22673327ff9_l.jpg?source=32738c0c",
+      "followerCount": 28737
+    }
+  ],
+  "topics": [
+    {
+      "id": "30686242",
+      "name": "淡班计划",
+      "excerpt": "「淡班计划」拯救疲惫打工人！10 月 14 日至 11 月 5 日，参与活动，一起探讨科学摸鱼，赢「淡班好礼」！活动链接： https://www.zhihu.com/parker/campaign/1828127067537035264",
+      "followersCount": 114
+    },
+    {
+      "id": "19553376",
+      "name": "工具",
+      "followersCount": 5054
+    },
+    {
+      "id": "25658681",
+      "name": "midjourney",
+      "excerpt": "Midjourney是一款基于人工智能技术的绘画工具，能够生成高度还原和艺术性强的图像作品，广泛应用于创意设计和艺术创作领域。",
+      "followersCount": 554
+    },
+    {
+      "id": "28905621",
+      "name": "OpenAI 高层大地震",
+      "excerpt": "AI 圈迎来地震，OpenAI 创始人兼 CEO Sam Altman 被董事会罢免，CTO 接任为临时 CEO；董事会认为奥特曼在与董事会的沟通中不坦诚，阻碍了其履行职责的能力。",
+      "followersCount": 213
+    },
+    {
+      "id": "28835051",
+      "name": "OpenAI开发者大会",
+      "excerpt": "人工智能行业龙头OpenAI的历史首届开发者大会揭幕。OpenAI首席执行官山姆·奥特曼在接近45分钟的开幕演讲中，向全球开发者和ChatGPT用户展示了AI龙头即将推出的一系列产品更新。",
+      "followersCount": 263
+    },
+    {
+      "id": "28650539",
+      "name": "经典形象AI画展",
+      "excerpt": "若是以文物为灵感的AI绘画，会呈现出何等惊艳的视觉盛宴？ 2023.10.10-2023.11.30，发布带图原创想法，赢取盐粒、实体周边、超赞包等惊喜奖品！",
+      "followersCount": 101
+    },
+    {
+      "id": "23707263",
+      "name": "留学日记",
+      "excerpt": "在外求学的你，日常是什么样的呢？发想法带话题#留学日记#，记录、分享留学的点点滴滴",
+      "followersCount": 25
+    },
+    {
+      "id": "20660508",
+      "name": "LLM",
+      "followersCount": 1832
+    },
+    {
+      "id": "27798426",
+      "name": "暑期留学季",
+      "excerpt": "想要趁着暑期，弯道超车、圆梦名校，一份亮眼的语言成绩必不可少。这里汇聚了30余年教龄的英籍前雅思考官、资深人气老师以及备考经验丰富的学长学姐们，手把手给到你从入门到精通的学习指导。助你备考成功，圆梦 dream school。 ",
+      "followersCount": 358
+    },
+    {
+      "id": "19616396",
+      "name": "英语考试",
+      "followersCount": 9118
+    },
+    {
+      "id": "20106982",
+      "name": "AI技术",
+      "excerpt": "人工智能（Artificial Intelligence），英文缩写为AI。它是研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术科学。 人工智能是计算机科学的一个分支，它企图了解智能的实质，并生产出一种新的能以人类智能相似的方式做出反应的智能机器，该领域的研究包括机器人、语言识别、图像识别、自然语言处理和专家系统等。人工智能从诞生以来，理论和技术日益成熟，应用领域也不断扩大，可以设想，未来…",
+      "followersCount": 15521
+    },
+    {
+      "id": "26738378",
+      "name": "chat Gpt",
+      "excerpt": "ChatGPT是一个免费使用的人工智慧聊天机器人，用户可以通过自然对话的方式与其互动，体验人工智能的未来。",
+      "followersCount": 683
+    },
+    {
+      "id": "19912106",
+      "name": "GPT",
+      "followersCount": 1131
+    },
+    {
+      "id": "27026091",
+      "name": "chagpt",
+      "followersCount": 10
+    },
+    {
+      "id": "20083046",
+      "name": "OpenAI",
+      "excerpt": "由 Elon Musk, Peter Thiel, Sam Altman, Greg Brockman, Ian Goodfellow 等人合伙创建的研究性公司，目的是通过研究，持续跟踪通用人工智能领域内的进展。",
+      "followersCount": 6518
+    },
+    {
+      "id": "21276831",
+      "name": "Microsoft 365",
+      "excerpt": "微软推出 Microsoft 365 Copilot，集成 AI 智能对话功能，支持 Word、Excel、PPT 等产品自动生成内容。 ",
+      "followersCount": 258
+    },
+    {
+      "id": "27001023",
+      "name": "文心一言",
+      "excerpt": "文心一言是百度推出的新一代知识增强大语言模型，旨在提供强大的自然语言处理能力，支持多种AI应用场景。",
+      "followersCount": 2333
+    },
+    {
+      "id": "26658420",
+      "name": "GPT-4",
+      "excerpt": "3 月 15 日，OpenAI 发布 GPT-4 多模态大模型，支持文本和图像输入，在字数上限和回答准确度等各方面实现了巨大提升。知乎科技领域答主正在此聚集讨论，欢迎参与~ ",
+      "followersCount": 4122
+    },
+    {
+      "id": "19788870",
+      "name": "多邻国（Duolingo）",
+      "excerpt": "多邻国（Duolingo）是一家成立于美国的互联网公司，致力于将免费的语言教育带给世界。 多邻国的语言课程搭建采取众包模式。目前已有 70 个语言课程被成功搭建。全球注册用户人数已达到 1 亿人。 多邻国被 Google Play 和 App Store 评为 2013 年和 2014 年的年度最佳应用。",
+      "followersCount": 5679
+    },
+    {
+      "id": "26215901",
+      "name": "AIGC",
+      "excerpt": "人工智能生成内容 ",
+      "followersCount": 3402
+    }
+  ],
+  "questions": [],
+  "provider": "justone"
+}

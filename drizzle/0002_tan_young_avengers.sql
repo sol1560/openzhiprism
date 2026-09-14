@@ -1,0 +1,2 @@
+DROP INDEX `detection_content_version_idx`;--> statement-breakpoint
+CREATE UNIQUE INDEX `detection_content_version_idx` ON `detection_jobs` (`content_id`,`text_hash`,`model`,`processing_version`) WHERE "detection_jobs"."status" <> 'rejected';
