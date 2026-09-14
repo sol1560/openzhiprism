@@ -161,15 +161,6 @@ Chrome / Edge / Brave 可以点击工具栏图标，把当前 ChatGPT 或 Claude
 - `pnpm build:extension`：生成正式域名版本，网站构建时也会自动执行。
 - 安装、数据范围、接口和实际验收状态见 [浏览器插件文档](docs/BROWSER-EXTENSION.md)。
 
-## 关于公开版本
-
-GitHub 上的公开仓库由私有仓库通过 `pnpm export:public` 导出，两者的差别只有：
-
-- 不含 JustOne 内容源适配器（`lib/zhihu/justone.ts` 是同签名占位，`isJustoneConfigured()` 恒为 false）。`ZHIHU_SOURCE=auto` 会自动跳过它，走官方接口或离线快照。
-- 不含宣传视频工程、渲染素材与个人开发配置。
-
-不填任何 key、`ZHIHU_SOURCE=fixture` + `LLM_PROVIDER=mock` 即可离线跑通首页沙盒、Feed、换个角度看与证据核对的全部流程。`pnpm seed` 依赖私有适配器，在公开版本不可用；离线快照已随仓库提供。
-
 ## 许可证
 
 本项目以 [GNU AGPL-3.0-only](LICENSE) 发布。「知棱 / ZhiPrism」名称与 logo 不在授权范围内；闭源使用需商业授权。详见 [NOTICE.md](NOTICE.md)。
